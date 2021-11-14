@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "description": "this TypeScript AST is typesafe, instead of just 1 generic 'Node' type, there are hundreds of specific types",
   "main": "./dist/lib",
+  "types": "./dist/lib/index.d.ts",
   "scripts": {
     "build": "rm -rf ./dist && tsc",
     "generate-ts-api": "npm run build && node ./dist/lib/esc/generator/generateCode.js ./lib/esc/TypeScriptAPI",
