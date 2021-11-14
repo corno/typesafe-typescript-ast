@@ -170,7 +170,7 @@ function generateBuilder($w: Block) {
     $w.line(($w) => { })
 
     $w.line(($w) => {
-        $w.snippet(`export function root<Annotation>(`)
+        $w.snippet(`export function build<Annotation>(`)
         $w.indent(($w) => {
             $w.line(($w) => {
                 $w.snippet(`$: uapi.Node<Annotation>,`)
