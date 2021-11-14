@@ -6,7 +6,7 @@ export class UnrecognizedNodeError extends Error {
     constructor(message: string) { super(message); Object.setPrototypeOf(this, UnrecognizedNodeError.prototype); }
 }
 
-export function root<Annotation>(
+export function build<Annotation>(
     $: uapi.Node<Annotation>,
     callback: ($: tapi.TSourceFile<Annotation>) => void,
     reportUnexpectedChild: ($: { parent: uapi.Node<Annotation>, child: uapi.Node<Annotation>, }) => void,

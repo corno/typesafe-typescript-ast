@@ -1,1 +1,1 @@
-export * from "./TypeScriptAPI"
+export * from "./TypeScriptAST"
