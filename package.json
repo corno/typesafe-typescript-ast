@@ -1,0 +1,33 @@
+{
+  "name": "typesafe-typescript-ast",
+  "version": "0.0.1",
+  "description": "this TypeScript AST is typesafe, instead of just 1 generic 'Node' type, there are hundreds of specific types",
+  "main": "./dist/lib",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf ./dist && tsc",
+    "generate-ts-api": "npm run build && node ./dist/lib/esc/generator/generateCode.js ./lib/esc/TypeScriptAPI",
+    "update2latest": "ncu -u --packageFile package.json && nsi && tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corno/typesafe-typescript-ast.git"
+  },
+  "keywords": [
+    "TypeScript",
+    "AST",
+    "typesafe"
+  ],
+  "author": "Corno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/corno/typesafe-typescript-ast/issues"
+  },
+  "homepage": "https://github.com/corno/typesafe-typescript-ast#readme",
+  "dependencies": {
+    "pareto-runtime": "^0.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.7"
+  }
+}
