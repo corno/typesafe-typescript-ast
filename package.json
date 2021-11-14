@@ -4,10 +4,13 @@
   "description": "this TypeScript AST is typesafe, instead of just 1 generic 'Node' type, there are hundreds of specific types",
   "main": "./dist/lib",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf ./dist && tsc",
     "generate-ts-api": "npm run build && node ./dist/lib/esc/generator/generateCode.js ./lib/esc/TypeScriptAPI",
-    "update2latest": "ncu -u --packageFile package.json && nsi && tsc"
+    "pubMin": "npm run validatePublishReadiness && npm version minor && git push && npm publish",
+    "pubPatch": "npm run validatePublishReadiness && npm version patch && git push && npm publish",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "update2latest": "ncu -u --packageFile package.json && nsi && tsc",
+    "validatePublishReadiness": "git diff --exit-code && ncu -u --packageFile package.json && npm install && npm run build"
   },
   "repository": {
     "type": "git",
