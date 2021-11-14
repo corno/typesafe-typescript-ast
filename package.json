@@ -28,7 +28,9 @@
   },
   "homepage": "https://github.com/corno/typesafe-typescript-ast#readme",
   "dependencies": {
-    "pareto-runtime": "^0.10.0"
+    "pareto-runtime": "^0.10.0",
+    "ts-morph": "^12.2.0",
+    "typescript": "^4.4.4"
   },
   "devDependencies": {
     "@types/node": "^16.11.7"
