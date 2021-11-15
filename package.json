@@ -11,10 +11,11 @@
     "build": "rm -rf ./dist && tsc",
     "generate-ts-api": "npm run build && node ./dist/dev/esc/bin/generateTypescriptAPICode.js ./pub/esc",
     "copyPackage": "node ./dist/copyPackage",
-    "pubMin":   "npm run validatePublishReadiness && npm run copyPackage && npm version minor && git push && npm publish",
+    "pubMin": "npm run validatePublishReadiness && npm run copyPackage && npm version minor && git push && npm publish",
     "pubPatch": "npm run validatePublishReadiness && npm run copyPackage && npm version patch && git push && npm publish",
     "test": "echo \"Error: no test specified\" && exit 1",
     "update2latest": "ncu -u --packageFile package.json && nsi && tsc",
     "validatePublishReadiness": "git diff --exit-code && ncu -u --packageFile package.json && npm install && npm run build"
-  }
+  },
+  "version": "0.0.1"
 }
