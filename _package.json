@@ -1,0 +1,26 @@
+{
+  "author": "Corno",
+  "bugs": {
+    "url": "https://github.com/corno/typesafe-typescript-ast/issues"
+  },
+  "dependencies": {
+    "pareto-runtime": "^0.10.0",
+    "ts-morph": "^12.2.0",
+    "typescript": "^4.4.4"
+  },
+  "description": "this TypeScript AST is typesafe, instead of just 1 generic 'Node' type, there are hundreds of specific types",
+  "homepage": "https://github.com/corno/typesafe-typescript-ast#readme",
+  "keywords": [
+    "TypeScript",
+    "AST",
+    "typesafe"
+  ],
+  "license": "ISC",
+  "main": ".",
+  "name": "typesafe-typescript-ast",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corno/typesafe-typescript-ast.git"
+  },
+  "version": "0.4.1"
+}

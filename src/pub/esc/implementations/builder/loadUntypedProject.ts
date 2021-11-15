@@ -1,12 +1,12 @@
 import * as tsm from "ts-morph"
 import * as ts from "typescript"
-import * as p from "../../interfaces/untypedAST"
+import * as uast from "../../interfaces/untypedAST"
 import * as path from "path"
 
 export function loadUntypedProject<Annotation>(
     tsconfigPath: string,
     callback: (
-        project: p.Project<Annotation>,
+        project: uast.Project<Annotation>,
         getLineInfo: ($: Annotation) => string,
     ) => void,
     createAnnotation: ($: tsm.Node) => Annotation,
@@ -18,7 +18,7 @@ export function loadUntypedProject<Annotation>(
 
     //SKIP: project.resolveSourceFileDependencies()
 
-    class XNode implements p.Node<Annotation> {
+    class XNode implements uast.Node<Annotation> {
         private imp: tsm.Node<ts.Node>
         private _annotation: Annotation
         constructor(
@@ -33,7 +33,7 @@ export function loadUntypedProject<Annotation>(
         }
         get children() {
             return {
-                forEach: (callback: ($: p.Node<Annotation>) => void) => {
+                forEach: (callback: ($: uast.Node<Annotation>) => void) => {
                     this.imp.forEachChild((x) => {
                         callback(wrapNode(x))
                     })
@@ -45,7 +45,7 @@ export function loadUntypedProject<Annotation>(
         }
     }
 
-    function wrapNode($: tsm.Node<ts.Node>): p.Node<Annotation> {
+    function wrapNode($: tsm.Node<ts.Node>): uast.Node<Annotation> {
         // return {
         //     get kindName() {
         //         return $.getKindName()
