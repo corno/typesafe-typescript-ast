@@ -38,5 +38,5 @@
     "validatePublishReadiness": "git diff --exit-code && ncu -u --packageFile package.json && npm install && npm run build"
   },
   "types": "./dist/pub/index.d.ts",
-  "version": "0.4.0"
+  "version": "0.4.1"
 }
