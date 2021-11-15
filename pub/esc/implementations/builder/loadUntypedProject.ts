@@ -1,18 +1,16 @@
 import * as tsm from "ts-morph"
 import * as ts from "typescript"
-import * as p from "./untypedAPI"
+import * as p from "../../interfaces/untypedAST"
 import * as path from "path"
 
-export type SimpleNode = {
-    getLineInfo: () => string
-}
-
-export function loadProjectWithSimpleAnnotation(
+export function loadUntypedProject<Annotation>(
     tsconfigPath: string,
     callback: (
-        project: p.Project<SimpleNode>,
-        getLineInfo: ($: SimpleNode) => string,
+        project: p.Project<Annotation>,
+        getLineInfo: ($: Annotation) => string,
     ) => void,
+    createAnnotation: ($: tsm.Node) => Annotation,
+    getLineInfo: ($: Annotation) => string,
 ) {
     const project = new tsm.Project({})
 
@@ -20,12 +18,12 @@ export function loadProjectWithSimpleAnnotation(
 
     //SKIP: project.resolveSourceFileDependencies()
 
-    class XNode implements p.Node<SimpleNode> {
+    class XNode implements p.Node<Annotation> {
         private imp: tsm.Node<ts.Node>
-        private _annotation: SimpleNode
+        private _annotation: Annotation
         constructor(
             imp: tsm.Node<ts.Node>,
-            annotation: SimpleNode,
+            annotation: Annotation,
         ) {
             this.imp = imp
             this._annotation = annotation
@@ -35,7 +33,7 @@ export function loadProjectWithSimpleAnnotation(
         }
         get children() {
             return {
-                forEach: (callback: ($: p.Node<SimpleNode>) => void) => {
+                forEach: (callback: ($: p.Node<Annotation>) => void) => {
                     this.imp.forEachChild((x) => {
                         callback(wrapNode(x))
                     })
@@ -47,13 +45,7 @@ export function loadProjectWithSimpleAnnotation(
         }
     }
 
-    project.getSourceFiles().forEach(($) => {
-        if ($.getKindName() === "assdfafdssfskja;sdf") {
-            console.log("XXXXX")
-        }
-    })
-
-    function wrapNode($: tsm.Node<ts.Node>): p.Node<SimpleNode> {
+    function wrapNode($: tsm.Node<ts.Node>): p.Node<Annotation> {
         // return {
         //     get kindName() {
         //         return $.getKindName()
@@ -77,12 +69,13 @@ export function loadProjectWithSimpleAnnotation(
         // }
         return new XNode(
             $,
-            {
-                getLineInfo: () => {
-                    const lp = $.getSourceFile().getLineAndColumnAtPos($.getStart())
-                    return `[${lp.line}, ${lp.column}]`
-                }
-            },
+            // {
+            //     getLineInfo: () => {
+            //         const lp = $.getSourceFile().getLineAndColumnAtPos($.getStart())
+            //         return `[${lp.line}, ${lp.column}]`
+            //     }
+            // },
+            createAnnotation($)
         )
     }
     callback(
@@ -102,7 +95,7 @@ export function loadProjectWithSimpleAnnotation(
             }
         },
         ($) => {
-            return $.getLineInfo()
+            return getLineInfo($)
             // const lp = $.getSourceFile().getLineAndColumnAtPos($.getStart())
             // return `[${lp.line}, ${lp.column}]`
         },

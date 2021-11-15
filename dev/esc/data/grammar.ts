@@ -1,19 +1,6 @@
+import * as gramm from "../interfaces/Grammar";
 
-
-export type Type =
-    | ["bag", Definition[]]
-    | ["leaf", {}]
-
-export type Definition =
-    | ["local", [string, Type]]
-    | ["global", string]
-
-export type Grammar = {
-    tokenRules: { [key: string]: Type }
-    startRule: string
-}
-
-export const grammar: Grammar = {
+export const grammar: gramm.Grammar = {
     startRule: "SourceFile",
     "tokenRules": {
         "SourceFile": ["bag", [

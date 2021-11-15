@@ -1,10 +1,13 @@
-import { Block, Line } from "./WriteAPI"
 import * as pr from "pareto-runtime"
+
+import { Block, Line } from "../../interfaces/WriteAPI"
 
 export function createFile(
     indentation: string,
     newline: string,
-    write: (str: string,) => void,
+    write: (
+        str: string,
+    ) => void,
 ): Block {
     let isFirstLine = true
     function createBlock(

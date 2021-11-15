@@ -1,26 +1,26 @@
 import * as pr from "pareto-runtime"
-import * as uapi from "./untypedAPI"
-import * as tapi from "./ts_api.generated"
+import * as uast from "../../interfaces/untypedAST"
+import * as tast from "../../interfaces/typedAST"
 
 export class UnrecognizedNodeError extends Error {
     constructor(message: string) { super(message); Object.setPrototypeOf(this, UnrecognizedNodeError.prototype); }
 }
 
 export function build<Annotation>(
-    $: uapi.Node<Annotation>,
-    callback: ($: tapi.TSourceFile<Annotation>) => void,
-    reportUnexpectedChild: ($: { parent: uapi.Node<Annotation>, child: uapi.Node<Annotation>, }) => void,
+    $: uast.Node<Annotation>,
+    callback: ($: tast.TSourceFile<Annotation>) => void,
+    reportUnexpectedChild: ($: { parent: uast.Node<Annotation>, child: uast.Node<Annotation>, }) => void,
 ): void {
     function _SourceFile(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TSourceFile<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TSourceFile<Annotation>) => void,
     ) {
-        const temp: tapi.CSourceFile<Annotation>[] = []
+        const temp: tast.CSourceFile<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
                 case "InterfaceDeclaration": {
-                    const callback = ($: tapi.TInterfaceDeclaration<Annotation>) => {
+                    const callback = ($: tast.TInterfaceDeclaration<Annotation>) => {
                         temp.push(["InterfaceDeclaration", $])
                     }
                     pr.cc(null, (_) => {})
@@ -41,18 +41,18 @@ export function build<Annotation>(
                     break
                 }
                 case "EndOfFileToken": {
-                    const callback = ($: tapi.TEndOfFileToken<Annotation>) => {
+                    const callback = ($: tast.TEndOfFileToken<Annotation>) => {
                         temp.push(["EndOfFileToken", $])
                     }
                     pr.cc(null, (_) => {})
                     break
                 }
                 case "ExportDeclaration": {
-                    const callback = ($: tapi.TExportDeclaration<Annotation>) => {
+                    const callback = ($: tast.TExportDeclaration<Annotation>) => {
                         temp.push(["ExportDeclaration", $])
                     }
                     pr.cc(null, (_) => {
-                        const temp: tapi.CExportDeclaration<Annotation>[] = []
+                        const temp: tast.CExportDeclaration<Annotation>[] = []
                         const $parent = $
                         $.children.forEach(($) => {
                             switch ($.kindName) {
@@ -74,11 +74,11 @@ export function build<Annotation>(
                     break
                 }
                 case "ImportDeclaration": {
-                    const callback = ($: tapi.TImportDeclaration<Annotation>) => {
+                    const callback = ($: tast.TImportDeclaration<Annotation>) => {
                         temp.push(["ImportDeclaration", $])
                     }
                     pr.cc(null, (_) => {
-                        const temp: tapi.CImportDeclaration<Annotation>[] = []
+                        const temp: tast.CImportDeclaration<Annotation>[] = []
                         const $parent = $
                         $.children.forEach(($) => {
                             switch ($.kindName) {
@@ -122,14 +122,14 @@ export function build<Annotation>(
         })
     }
     function _Identifier(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TIdentifier<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TIdentifier<Annotation>) => void,
     ) {}
     function _TypeParameter(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TTypeParameter<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TTypeParameter<Annotation>) => void,
     ) {
-        const temp: tapi.CTypeParameter<Annotation>[] = []
+        const temp: tast.CTypeParameter<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -149,10 +149,10 @@ export function build<Annotation>(
         })
     }
     function _MethodSignature(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TMethodSignature<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TMethodSignature<Annotation>) => void,
     ) {
-        const temp: tapi.CMethodSignature<Annotation>[] = []
+        const temp: tast.CMethodSignature<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -235,10 +235,10 @@ export function build<Annotation>(
         })
     }
     function _Parameter(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TParameter<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TParameter<Annotation>) => void,
     ) {
-        const temp: tapi.CParameter<Annotation>[] = []
+        const temp: tast.CParameter<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -299,7 +299,7 @@ export function build<Annotation>(
                     break
                 }
                 case "NeverKeyword": {
-                    const callback = ($: tapi.TNeverKeyword<Annotation>) => {
+                    const callback = ($: tast.TNeverKeyword<Annotation>) => {
                         temp.push(["NeverKeyword", $])
                     }
                     pr.cc(null, (_) => {})
@@ -335,10 +335,10 @@ export function build<Annotation>(
         })
     }
     function _TypeReference(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TTypeReference<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TTypeReference<Annotation>) => void,
     ) {
-        const temp: tapi.CTypeReference<Annotation>[] = []
+        const temp: tast.CTypeReference<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -357,11 +357,11 @@ export function build<Annotation>(
                     break
                 }
                 case "QualifiedName": {
-                    const callback = ($: tapi.TQualifiedName<Annotation>) => {
+                    const callback = ($: tast.TQualifiedName<Annotation>) => {
                         temp.push(["QualifiedName", $])
                     }
                     pr.cc(null, (_) => {
-                        const temp: tapi.CQualifiedName<Annotation>[] = []
+                        const temp: tast.CQualifiedName<Annotation>[] = []
                         const $parent = $
                         $.children.forEach(($) => {
                             switch ($.kindName) {
@@ -412,14 +412,14 @@ export function build<Annotation>(
         })
     }
     function _VoidKeyword(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TVoidKeyword<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TVoidKeyword<Annotation>) => void,
     ) {}
     function _FunctionType(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TFunctionType<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TFunctionType<Annotation>) => void,
     ) {
-        const temp: tapi.CFunctionType<Annotation>[] = []
+        const temp: tast.CFunctionType<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -488,14 +488,14 @@ export function build<Annotation>(
         })
     }
     function _NumberKeyword(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TNumberKeyword<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TNumberKeyword<Annotation>) => void,
     ) {}
     function _ArrayType(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TArrayType<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TArrayType<Annotation>) => void,
     ) {
-        const temp: tapi.CArrayType<Annotation>[] = []
+        const temp: tast.CArrayType<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -522,14 +522,14 @@ export function build<Annotation>(
         })
     }
     function _BooleanKeyword(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TBooleanKeyword<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TBooleanKeyword<Annotation>) => void,
     ) {}
     function _PropertySignature(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TPropertySignature<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TPropertySignature<Annotation>) => void,
     ) {
-        const temp: tapi.CPropertySignature<Annotation>[] = []
+        const temp: tast.CPropertySignature<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -633,19 +633,19 @@ export function build<Annotation>(
         })
     }
     function _StringKeyword(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TStringKeyword<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TStringKeyword<Annotation>) => void,
     ) {}
     function _UnionType(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TUnionType<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TUnionType<Annotation>) => void,
     ) {
-        const temp: tapi.CUnionType<Annotation>[] = []
+        const temp: tast.CUnionType<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
                 case "UndefinedKeyword": {
-                    const callback = ($: tapi.TUndefinedKeyword<Annotation>) => {
+                    const callback = ($: tast.TUndefinedKeyword<Annotation>) => {
                         temp.push(["UndefinedKeyword", $])
                     }
                     pr.cc(null, (_) => {})
@@ -701,11 +701,11 @@ export function build<Annotation>(
                     break
                 }
                 case "ParenthesizedType": {
-                    const callback = ($: tapi.TParenthesizedType<Annotation>) => {
+                    const callback = ($: tast.TParenthesizedType<Annotation>) => {
                         temp.push(["ParenthesizedType", $])
                     }
                     pr.cc(null, (_) => {
-                        const temp: tapi.CParenthesizedType<Annotation>[] = []
+                        const temp: tast.CParenthesizedType<Annotation>[] = []
                         const $parent = $
                         $.children.forEach(($) => {
                             switch ($.kindName) {
@@ -735,14 +735,14 @@ export function build<Annotation>(
         })
     }
     function _ReadonlyKeyword(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TReadonlyKeyword<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TReadonlyKeyword<Annotation>) => void,
     ) {}
     function _FunctionDeclaration(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TFunctionDeclaration<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TFunctionDeclaration<Annotation>) => void,
     ) {
-        const temp: tapi.CFunctionDeclaration<Annotation>[] = []
+        const temp: tast.CFunctionDeclaration<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -839,22 +839,22 @@ export function build<Annotation>(
         })
     }
     function _DeclareKeyword(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TDeclareKeyword<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TDeclareKeyword<Annotation>) => void,
     ) {}
     function _AnyKeyword(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TAnyKeyword<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TAnyKeyword<Annotation>) => void,
     ) {}
     function _QuestionToken(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TQuestionToken<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TQuestionToken<Annotation>) => void,
     ) {}
     function _VariableStatement(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TVariableStatement<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TVariableStatement<Annotation>) => void,
     ) {
-        const temp: tapi.CVariableStatement<Annotation>[] = []
+        const temp: tast.CVariableStatement<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -888,10 +888,10 @@ export function build<Annotation>(
         })
     }
     function _VariableDeclarationList(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TVariableDeclarationList<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TVariableDeclarationList<Annotation>) => void,
     ) {
-        const temp: tapi.CVariableDeclarationList<Annotation>[] = []
+        const temp: tast.CVariableDeclarationList<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -911,10 +911,10 @@ export function build<Annotation>(
         })
     }
     function _VariableDeclaration(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TVariableDeclaration<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TVariableDeclaration<Annotation>) => void,
     ) {
-        const temp: tapi.CVariableDeclaration<Annotation>[] = []
+        const temp: tast.CVariableDeclaration<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -1074,32 +1074,32 @@ export function build<Annotation>(
         })
     }
     function _StringLiteral(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TStringLiteral<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TStringLiteral<Annotation>) => void,
     ) {}
     function _Block(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TBlock<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TBlock<Annotation>) => void,
     ) {
-        const temp: tapi.CBlock<Annotation>[] = []
+        const temp: tast.CBlock<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
                 case "ThrowStatement": {
-                    const callback = ($: tapi.TThrowStatement<Annotation>) => {
+                    const callback = ($: tast.TThrowStatement<Annotation>) => {
                         temp.push(["ThrowStatement", $])
                     }
                     pr.cc(null, (_) => {
-                        const temp: tapi.CThrowStatement<Annotation>[] = []
+                        const temp: tast.CThrowStatement<Annotation>[] = []
                         const $parent = $
                         $.children.forEach(($) => {
                             switch ($.kindName) {
                                 case "NewExpression": {
-                                    const callback = ($: tapi.TNewExpression<Annotation>) => {
+                                    const callback = ($: tast.TNewExpression<Annotation>) => {
                                         temp.push(["NewExpression", $])
                                     }
                                     pr.cc(null, (_) => {
-                                        const temp: tapi.CNewExpression<Annotation>[] = []
+                                        const temp: tast.CNewExpression<Annotation>[] = []
                                         const $parent = $
                                         $.children.forEach(($) => {
                                             switch ($.kindName) {
@@ -1194,11 +1194,11 @@ export function build<Annotation>(
                     break
                 }
                 case "SwitchStatement": {
-                    const callback = ($: tapi.TSwitchStatement<Annotation>) => {
+                    const callback = ($: tast.TSwitchStatement<Annotation>) => {
                         temp.push(["SwitchStatement", $])
                     }
                     pr.cc(null, (_) => {
-                        const temp: tapi.CSwitchStatement<Annotation>[] = []
+                        const temp: tast.CSwitchStatement<Annotation>[] = []
                         const $parent = $
                         $.children.forEach(($) => {
                             switch ($.kindName) {
@@ -1210,20 +1210,20 @@ export function build<Annotation>(
                                     break
                                 }
                                 case "CaseBlock": {
-                                    const callback = ($: tapi.TCaseBlock<Annotation>) => {
+                                    const callback = ($: tast.TCaseBlock<Annotation>) => {
                                         temp.push(["CaseBlock", $])
                                     }
                                     pr.cc(null, (_) => {
-                                        const temp: tapi.CCaseBlock<Annotation>[] = []
+                                        const temp: tast.CCaseBlock<Annotation>[] = []
                                         const $parent = $
                                         $.children.forEach(($) => {
                                             switch ($.kindName) {
                                                 case "CaseClause": {
-                                                    const callback = ($: tapi.TCaseClause<Annotation>) => {
+                                                    const callback = ($: tast.TCaseClause<Annotation>) => {
                                                         temp.push(["CaseClause", $])
                                                     }
                                                     pr.cc(null, (_) => {
-                                                        const temp: tapi.CCaseClause<Annotation>[] = []
+                                                        const temp: tast.CCaseClause<Annotation>[] = []
                                                         const $parent = $
                                                         $.children.forEach(($) => {
                                                             switch ($.kindName) {
@@ -1294,11 +1294,11 @@ export function build<Annotation>(
                                                     break
                                                 }
                                                 case "DefaultClause": {
-                                                    const callback = ($: tapi.TDefaultClause<Annotation>) => {
+                                                    const callback = ($: tast.TDefaultClause<Annotation>) => {
                                                         temp.push(["DefaultClause", $])
                                                     }
                                                     pr.cc(null, (_) => {
-                                                        const temp: tapi.CDefaultClause<Annotation>[] = []
+                                                        const temp: tast.CDefaultClause<Annotation>[] = []
                                                         const $parent = $
                                                         $.children.forEach(($) => {
                                                             switch ($.kindName) {
@@ -1368,11 +1368,11 @@ export function build<Annotation>(
                     break
                 }
                 case "TryStatement": {
-                    const callback = ($: tapi.TTryStatement<Annotation>) => {
+                    const callback = ($: tast.TTryStatement<Annotation>) => {
                         temp.push(["TryStatement", $])
                     }
                     pr.cc(null, (_) => {
-                        const temp: tapi.CTryStatement<Annotation>[] = []
+                        const temp: tast.CTryStatement<Annotation>[] = []
                         const $parent = $
                         $.children.forEach(($) => {
                             switch ($.kindName) {
@@ -1384,11 +1384,11 @@ export function build<Annotation>(
                                     break
                                 }
                                 case "CatchClause": {
-                                    const callback = ($: tapi.TCatchClause<Annotation>) => {
+                                    const callback = ($: tast.TCatchClause<Annotation>) => {
                                         temp.push(["CatchClause", $])
                                     }
                                     pr.cc(null, (_) => {
-                                        const temp: tapi.CCatchClause<Annotation>[] = []
+                                        const temp: tast.CCatchClause<Annotation>[] = []
                                         const $parent = $
                                         $.children.forEach(($) => {
                                             switch ($.kindName) {
@@ -1441,11 +1441,11 @@ export function build<Annotation>(
                     break
                 }
                 case "ForStatement": {
-                    const callback = ($: tapi.TForStatement<Annotation>) => {
+                    const callback = ($: tast.TForStatement<Annotation>) => {
                         temp.push(["ForStatement", $])
                     }
                     pr.cc(null, (_) => {
-                        const temp: tapi.CForStatement<Annotation>[] = []
+                        const temp: tast.CForStatement<Annotation>[] = []
                         const $parent = $
                         $.children.forEach(($) => {
                             switch ($.kindName) {
@@ -1488,11 +1488,11 @@ export function build<Annotation>(
                     break
                 }
                 case "LabeledStatement": {
-                    const callback = ($: tapi.TLabeledStatement<Annotation>) => {
+                    const callback = ($: tast.TLabeledStatement<Annotation>) => {
                         temp.push(["LabeledStatement", $])
                     }
                     pr.cc(null, (_) => {
-                        const temp: tapi.CLabeledStatement<Annotation>[] = []
+                        const temp: tast.CLabeledStatement<Annotation>[] = []
                         const $parent = $
                         $.children.forEach(($) => {
                             switch ($.kindName) {
@@ -1529,10 +1529,10 @@ export function build<Annotation>(
         })
     }
     function _ReturnStatement(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TReturnStatement<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TReturnStatement<Annotation>) => void,
     ) {
-        const temp: tapi.CReturnStatement<Annotation>[] = []
+        const temp: tast.CReturnStatement<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -1643,10 +1643,10 @@ export function build<Annotation>(
         })
     }
     function _CallExpression(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TCallExpression<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TCallExpression<Annotation>) => void,
     ) {
-        const temp: tapi.CCallExpression<Annotation>[] = []
+        const temp: tast.CCallExpression<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -1785,22 +1785,22 @@ export function build<Annotation>(
         })
     }
     function _ExportKeyword(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TExportKeyword<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TExportKeyword<Annotation>) => void,
     ) {}
     function _NumericLiteral(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TNumericLiteral<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TNumericLiteral<Annotation>) => void,
     ) {}
     function _FalseKeyword(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TFalseKeyword<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TFalseKeyword<Annotation>) => void,
     ) {}
     function _IfStatement(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TIfStatement<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TIfStatement<Annotation>) => void,
     ) {
-        const temp: tapi.CIfStatement<Annotation>[] = []
+        const temp: tast.CIfStatement<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -1869,10 +1869,10 @@ export function build<Annotation>(
         })
     }
     function _BinaryExpression(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TBinaryExpression<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TBinaryExpression<Annotation>) => void,
     ) {
-        const temp: tapi.CBinaryExpression<Annotation>[] = []
+        const temp: tast.CBinaryExpression<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -1891,7 +1891,7 @@ export function build<Annotation>(
                     break
                 }
                 case "EqualsEqualsEqualsToken": {
-                    const callback = ($: tapi.TEqualsEqualsEqualsToken<Annotation>) => {
+                    const callback = ($: tast.TEqualsEqualsEqualsToken<Annotation>) => {
                         temp.push(["EqualsEqualsEqualsToken", $])
                     }
                     pr.cc(null, (_) => {})
@@ -1905,28 +1905,28 @@ export function build<Annotation>(
                     break
                 }
                 case "AmpersandAmpersandToken": {
-                    const callback = ($: tapi.TAmpersandAmpersandToken<Annotation>) => {
+                    const callback = ($: tast.TAmpersandAmpersandToken<Annotation>) => {
                         temp.push(["AmpersandAmpersandToken", $])
                     }
                     pr.cc(null, (_) => {})
                     break
                 }
                 case "PlusEqualsToken": {
-                    const callback = ($: tapi.TPlusEqualsToken<Annotation>) => {
+                    const callback = ($: tast.TPlusEqualsToken<Annotation>) => {
                         temp.push(["PlusEqualsToken", $])
                     }
                     pr.cc(null, (_) => {})
                     break
                 }
                 case "MinusEqualsToken": {
-                    const callback = ($: tapi.TMinusEqualsToken<Annotation>) => {
+                    const callback = ($: tast.TMinusEqualsToken<Annotation>) => {
                         temp.push(["MinusEqualsToken", $])
                     }
                     pr.cc(null, (_) => {})
                     break
                 }
                 case "EqualsToken": {
-                    const callback = ($: tapi.TEqualsToken<Annotation>) => {
+                    const callback = ($: tast.TEqualsToken<Annotation>) => {
                         temp.push(["EqualsToken", $])
                     }
                     pr.cc(null, (_) => {})
@@ -1947,7 +1947,7 @@ export function build<Annotation>(
                     break
                 }
                 case "ExclamationEqualsEqualsToken": {
-                    const callback = ($: tapi.TExclamationEqualsEqualsToken<Annotation>) => {
+                    const callback = ($: tast.TExclamationEqualsEqualsToken<Annotation>) => {
                         temp.push(["ExclamationEqualsEqualsToken", $])
                     }
                     pr.cc(null, (_) => {})
@@ -1961,7 +1961,7 @@ export function build<Annotation>(
                     break
                 }
                 case "PlusToken": {
-                    const callback = ($: tapi.TPlusToken<Annotation>) => {
+                    const callback = ($: tast.TPlusToken<Annotation>) => {
                         temp.push(["PlusToken", $])
                     }
                     pr.cc(null, (_) => {})
@@ -1996,14 +1996,14 @@ export function build<Annotation>(
                     break
                 }
                 case "MinusToken": {
-                    const callback = ($: tapi.TMinusToken<Annotation>) => {
+                    const callback = ($: tast.TMinusToken<Annotation>) => {
                         temp.push(["MinusToken", $])
                     }
                     pr.cc(null, (_) => {})
                     break
                 }
                 case "GreaterThanToken": {
-                    const callback = ($: tapi.TGreaterThanToken<Annotation>) => {
+                    const callback = ($: tast.TGreaterThanToken<Annotation>) => {
                         temp.push(["GreaterThanToken", $])
                     }
                     pr.cc(null, (_) => {})
@@ -2024,14 +2024,14 @@ export function build<Annotation>(
                     break
                 }
                 case "LessThanToken": {
-                    const callback = ($: tapi.TLessThanToken<Annotation>) => {
+                    const callback = ($: tast.TLessThanToken<Annotation>) => {
                         temp.push(["LessThanToken", $])
                     }
                     pr.cc(null, (_) => {})
                     break
                 }
                 case "BarBarToken": {
-                    const callback = ($: tapi.TBarBarToken<Annotation>) => {
+                    const callback = ($: tast.TBarBarToken<Annotation>) => {
                         temp.push(["BarBarToken", $])
                     }
                     pr.cc(null, (_) => {})
@@ -2053,10 +2053,10 @@ export function build<Annotation>(
         })
     }
     function _ExpressionStatement(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TExpressionStatement<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TExpressionStatement<Annotation>) => void,
     ) {
-        const temp: tapi.CExpressionStatement<Annotation>[] = []
+        const temp: tast.CExpressionStatement<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -2075,11 +2075,11 @@ export function build<Annotation>(
                     break
                 }
                 case "PostfixUnaryExpression": {
-                    const callback = ($: tapi.TPostfixUnaryExpression<Annotation>) => {
+                    const callback = ($: tast.TPostfixUnaryExpression<Annotation>) => {
                         temp.push(["PostfixUnaryExpression", $])
                     }
                     pr.cc(null, (_) => {
-                        const temp: tapi.CPostfixUnaryExpression<Annotation>[] = []
+                        const temp: tast.CPostfixUnaryExpression<Annotation>[] = []
                         const $parent = $
                         $.children.forEach(($) => {
                             switch ($.kindName) {
@@ -2116,19 +2116,19 @@ export function build<Annotation>(
         })
     }
     function _ObjectLiteralExpression(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TObjectLiteralExpression<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TObjectLiteralExpression<Annotation>) => void,
     ) {
-        const temp: tapi.CObjectLiteralExpression<Annotation>[] = []
+        const temp: tast.CObjectLiteralExpression<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
                 case "PropertyAssignment": {
-                    const callback = ($: tapi.TPropertyAssignment<Annotation>) => {
+                    const callback = ($: tast.TPropertyAssignment<Annotation>) => {
                         temp.push(["PropertyAssignment", $])
                     }
                     pr.cc(null, (_) => {
-                        const temp: tapi.CPropertyAssignment<Annotation>[] = []
+                        const temp: tast.CPropertyAssignment<Annotation>[] = []
                         const $parent = $
                         $.children.forEach(($) => {
                             switch ($.kindName) {
@@ -2277,10 +2277,10 @@ export function build<Annotation>(
         })
     }
     function _ArrowFunction(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TArrowFunction<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TArrowFunction<Annotation>) => void,
     ) {
-        const temp: tapi.CArrowFunction<Annotation>[] = []
+        const temp: tast.CArrowFunction<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -2292,7 +2292,7 @@ export function build<Annotation>(
                     break
                 }
                 case "EqualsGreaterThanToken": {
-                    const callback = ($: tapi.TEqualsGreaterThanToken<Annotation>) => {
+                    const callback = ($: tast.TEqualsGreaterThanToken<Annotation>) => {
                         temp.push(["EqualsGreaterThanToken", $])
                     }
                     pr.cc(null, (_) => {})
@@ -2377,10 +2377,10 @@ export function build<Annotation>(
         })
     }
     function _PropertyAccessExpression(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TPropertyAccessExpression<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TPropertyAccessExpression<Annotation>) => void,
     ) {
-        const temp: tapi.CPropertyAccessExpression<Annotation>[] = []
+        const temp: tast.CPropertyAccessExpression<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -2421,10 +2421,10 @@ export function build<Annotation>(
         })
     }
     function _ElementAccessExpression(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TElementAccessExpression<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TElementAccessExpression<Annotation>) => void,
     ) {
-        const temp: tapi.CElementAccessExpression<Annotation>[] = []
+        const temp: tast.CElementAccessExpression<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -2479,10 +2479,10 @@ export function build<Annotation>(
         })
     }
     function _ArrayLiteralExpression(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TArrayLiteralExpression<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TArrayLiteralExpression<Annotation>) => void,
     ) {
-        const temp: tapi.CArrayLiteralExpression<Annotation>[] = []
+        const temp: tast.CArrayLiteralExpression<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -2572,10 +2572,10 @@ export function build<Annotation>(
         })
     }
     function _BreakStatement(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TBreakStatement<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TBreakStatement<Annotation>) => void,
     ) {
-        const temp: tapi.CBreakStatement<Annotation>[] = []
+        const temp: tast.CBreakStatement<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -2595,18 +2595,18 @@ export function build<Annotation>(
         })
     }
     function _NullKeyword(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TNullKeyword<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TNullKeyword<Annotation>) => void,
     ) {}
     function _TrueKeyword(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TTrueKeyword<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TTrueKeyword<Annotation>) => void,
     ) {}
     function _TypeAliasDeclaration(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TTypeAliasDeclaration<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TTypeAliasDeclaration<Annotation>) => void,
     ) {
-        const temp: tapi.CTypeAliasDeclaration<Annotation>[] = []
+        const temp: tast.CTypeAliasDeclaration<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -2682,10 +2682,10 @@ export function build<Annotation>(
         })
     }
     function _TypeLiteral(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TTypeLiteral<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TTypeLiteral<Annotation>) => void,
     ) {
-        const temp: tapi.CTypeLiteral<Annotation>[] = []
+        const temp: tast.CTypeLiteral<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -2704,7 +2704,7 @@ export function build<Annotation>(
                     break
                 }
                 case "IndexSignature": {
-                    const callback = ($: tapi.TIndexSignature<Annotation>) => {
+                    const callback = ($: tast.TIndexSignature<Annotation>) => {
                         temp.push(["IndexSignature", $])
                     }
                     pr.cc(null, (_) => {})
@@ -2719,26 +2719,26 @@ export function build<Annotation>(
         })
     }
     function _TemplateExpression(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TTemplateExpression<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TTemplateExpression<Annotation>) => void,
     ) {
-        const temp: tapi.CTemplateExpression<Annotation>[] = []
+        const temp: tast.CTemplateExpression<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
                 case "TemplateHead": {
-                    const callback = ($: tapi.TTemplateHead<Annotation>) => {
+                    const callback = ($: tast.TTemplateHead<Annotation>) => {
                         temp.push(["TemplateHead", $])
                     }
                     pr.cc(null, (_) => {})
                     break
                 }
                 case "TemplateSpan": {
-                    const callback = ($: tapi.TTemplateSpan<Annotation>) => {
+                    const callback = ($: tast.TTemplateSpan<Annotation>) => {
                         temp.push(["TemplateSpan", $])
                     }
                     pr.cc(null, (_) => {
-                        const temp: tapi.CTemplateSpan<Annotation>[] = []
+                        const temp: tast.CTemplateSpan<Annotation>[] = []
                         const $parent = $
                         $.children.forEach(($) => {
                             switch ($.kindName) {
@@ -2750,14 +2750,14 @@ export function build<Annotation>(
                                     break
                                 }
                                 case "TemplateMiddle": {
-                                    const callback = ($: tapi.TTemplateMiddle<Annotation>) => {
+                                    const callback = ($: tast.TTemplateMiddle<Annotation>) => {
                                         temp.push(["TemplateMiddle", $])
                                     }
                                     pr.cc(null, (_) => {})
                                     break
                                 }
                                 case "TemplateTail": {
-                                    const callback = ($: tapi.TTemplateTail<Annotation>) => {
+                                    const callback = ($: tast.TTemplateTail<Annotation>) => {
                                         temp.push(["TemplateTail", $])
                                     }
                                     pr.cc(null, (_) => {})
@@ -2817,10 +2817,10 @@ export function build<Annotation>(
         })
     }
     function _PrefixUnaryExpression(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TPrefixUnaryExpression<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TPrefixUnaryExpression<Annotation>) => void,
     ) {
-        const temp: tapi.CPrefixUnaryExpression<Annotation>[] = []
+        const temp: tast.CPrefixUnaryExpression<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -2861,19 +2861,19 @@ export function build<Annotation>(
         })
     }
     function _TupleType(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TTupleType<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TTupleType<Annotation>) => void,
     ) {
-        const temp: tapi.CTupleType<Annotation>[] = []
+        const temp: tast.CTupleType<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
                 case "OptionalType": {
-                    const callback = ($: tapi.TOptionalType<Annotation>) => {
+                    const callback = ($: tast.TOptionalType<Annotation>) => {
                         temp.push(["OptionalType", $])
                     }
                     pr.cc(null, (_) => {
-                        const temp: tapi.COptionalType<Annotation>[] = []
+                        const temp: tast.COptionalType<Annotation>[] = []
                         const $parent = $
                         $.children.forEach(($) => {
                             switch ($.kindName) {
@@ -2952,10 +2952,10 @@ export function build<Annotation>(
         })
     }
     function _LiteralType(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TLiteralType<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TLiteralType<Annotation>) => void,
     ) {
-        const temp: tapi.CLiteralType<Annotation>[] = []
+        const temp: tast.CLiteralType<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -2982,10 +2982,10 @@ export function build<Annotation>(
         })
     }
     function _ConditionalExpression(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TConditionalExpression<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TConditionalExpression<Annotation>) => void,
     ) {
-        const temp: tapi.CConditionalExpression<Annotation>[] = []
+        const temp: tast.CConditionalExpression<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -3011,7 +3011,7 @@ export function build<Annotation>(
                     break
                 }
                 case "ColonToken": {
-                    const callback = ($: tapi.TColonToken<Annotation>) => {
+                    const callback = ($: tast.TColonToken<Annotation>) => {
                         temp.push(["ColonToken", $])
                     }
                     pr.cc(null, (_) => {})
@@ -3110,10 +3110,10 @@ export function build<Annotation>(
         })
     }
     function _ParenthesizedExpression(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TParenthesizedExpression<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TParenthesizedExpression<Annotation>) => void,
     ) {
-        const temp: tapi.CParenthesizedExpression<Annotation>[] = []
+        const temp: tast.CParenthesizedExpression<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
@@ -3147,14 +3147,14 @@ export function build<Annotation>(
         })
     }
     function _NoSubstitutionTemplateLiteral(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TNoSubstitutionTemplateLiteral<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TNoSubstitutionTemplateLiteral<Annotation>) => void,
     ) {}
     function _WhileStatement(
-        $: uapi.Node<Annotation>,
-        callback: ($: tapi.TWhileStatement<Annotation>) => void,
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TWhileStatement<Annotation>) => void,
     ) {
-        const temp: tapi.CWhileStatement<Annotation>[] = []
+        const temp: tast.CWhileStatement<Annotation>[] = []
         const $parent = $
         $.children.forEach(($) => {
             switch ($.kindName) {
