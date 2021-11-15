@@ -1,6 +1,6 @@
 {
   "name": "typesafe-typescript-ast",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "this TypeScript AST is typesafe, instead of just 1 generic 'Node' type, there are hundreds of specific types",
   "main": "./dist/pub",
   "types": "./dist/pub/index.d.ts",
