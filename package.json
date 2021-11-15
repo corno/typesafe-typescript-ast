@@ -1,9 +1,33 @@
 {
-  "name": "typesafe-typescript-ast",
-  "version": "0.4.0",
+  "author": "Corno",
+  "bugs": {
+    "url": "https://github.com/corno/typesafe-typescript-ast/issues"
+  },
+  "dependencies": {
+    "pareto-runtime": "^0.10.0",
+    "ts-morph": "^12.2.0",
+    "typescript": "^4.4.4"
+  },
   "description": "this TypeScript AST is typesafe, instead of just 1 generic 'Node' type, there are hundreds of specific types",
+  "devDependencies": {
+    "@types/node": "^16.11.7"
+  },
+  "files": [
+    "dist/pub"
+  ],
+  "homepage": "https://github.com/corno/typesafe-typescript-ast#readme",
+  "keywords": [
+    "TypeScript",
+    "AST",
+    "typesafe"
+  ],
+  "license": "ISC",
   "main": "./dist/pub",
-  "types": "./dist/pub/index.d.ts",
+  "name": "typesafe-typescript-ast",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corno/typesafe-typescript-ast.git"
+  },
   "scripts": {
     "build": "rm -rf ./dist && tsc",
     "generate-ts-api": "npm run build && node ./dist/dev/esc/bin/generateTypescriptAPICode.js ./pub/esc",
@@ -13,27 +37,6 @@
     "update2latest": "ncu -u --packageFile package.json && nsi && tsc",
     "validatePublishReadiness": "git diff --exit-code && ncu -u --packageFile package.json && npm install && npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/corno/typesafe-typescript-ast.git"
-  },
-  "keywords": [
-    "TypeScript",
-    "AST",
-    "typesafe"
-  ],
-  "author": "Corno",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/corno/typesafe-typescript-ast/issues"
-  },
-  "homepage": "https://github.com/corno/typesafe-typescript-ast#readme",
-  "dependencies": {
-    "pareto-runtime": "^0.10.0",
-    "ts-morph": "^12.2.0",
-    "typescript": "^4.4.4"
-  },
-  "devDependencies": {
-    "@types/node": "^16.11.7"
-  }
+  "types": "./dist/pub/index.d.ts",
+  "version": "0.4.0"
 }
