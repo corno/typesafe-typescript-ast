@@ -1,6 +1,6 @@
 import * as pr from "pareto-runtime"
 
-import { Block, Line } from "../../interfaces/WriteAPI"
+import * as wapi from "../../interfaces/WriteAPI"
 
 export function createFile(
     indentation: string,
@@ -8,13 +8,13 @@ export function createFile(
     write: (
         str: string,
     ) => void,
-): Block {
+): wapi.Block {
     let isFirstLine = true
     function createBlock(
         indentation: string,
         currentIndentation: string,
         flush: () => void,
-    ): Block {
+    ): wapi.Block {
         return {
             line: (callback) => {
                 flush()
@@ -26,7 +26,7 @@ export function createFile(
                 function createLine(
                     indentation: string,
                     currentIndentation: string,
-                ): Line {
+                ): wapi.Line {
                     return {
                         indent: (callback) => {
                             callback(createBlock(

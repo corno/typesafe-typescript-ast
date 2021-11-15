@@ -1,12 +1,12 @@
 import * as pr from "pareto-runtime"
-import * as api from "../interfaces/typedAST"
+import * as tast from "../interfaces/typedAST"
 
 export function visit<Annotation>(
-    $: api.TSourceFile<Annotation>,
+    $: tast.TSourceFile<Annotation>,
     report: (annotation: Annotation) => void,
 ): void {
     function _SourceFile(
-        $: api.TSourceFile<Annotation>,
+        $: tast.TSourceFile<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -92,13 +92,13 @@ export function visit<Annotation>(
         })
     }
     function _Identifier(
-        $: api.TIdentifier<Annotation>,
+        $: tast.TIdentifier<Annotation>,
     ) {
         //report($.annotation)//LEAF
         //FIXME
     }
     function _TypeParameter(
-        $: api.TTypeParameter<Annotation>,
+        $: tast.TTypeParameter<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -114,7 +114,7 @@ export function visit<Annotation>(
         })
     }
     function _MethodSignature(
-        $: api.TMethodSignature<Annotation>,
+        $: tast.TMethodSignature<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -184,7 +184,7 @@ export function visit<Annotation>(
         })
     }
     function _Parameter(
-        $: api.TParameter<Annotation>,
+        $: tast.TParameter<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -268,7 +268,7 @@ export function visit<Annotation>(
         })
     }
     function _TypeReference(
-        $: api.TTypeReference<Annotation>,
+        $: tast.TTypeReference<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -326,13 +326,13 @@ export function visit<Annotation>(
         })
     }
     function _VoidKeyword(
-        $: api.TVoidKeyword<Annotation>,
+        $: tast.TVoidKeyword<Annotation>,
     ) {
         //report($.annotation)//LEAF
         //FIXME
     }
     function _FunctionType(
-        $: api.TFunctionType<Annotation>,
+        $: tast.TFunctionType<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -390,13 +390,13 @@ export function visit<Annotation>(
         })
     }
     function _NumberKeyword(
-        $: api.TNumberKeyword<Annotation>,
+        $: tast.TNumberKeyword<Annotation>,
     ) {
         //report($.annotation)//LEAF
         //FIXME
     }
     function _ArrayType(
-        $: api.TArrayType<Annotation>,
+        $: tast.TArrayType<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -418,13 +418,13 @@ export function visit<Annotation>(
         })
     }
     function _BooleanKeyword(
-        $: api.TBooleanKeyword<Annotation>,
+        $: tast.TBooleanKeyword<Annotation>,
     ) {
         //report($.annotation)//LEAF
         //FIXME
     }
     function _PropertySignature(
-        $: api.TPropertySignature<Annotation>,
+        $: tast.TPropertySignature<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -512,13 +512,13 @@ export function visit<Annotation>(
         })
     }
     function _StringKeyword(
-        $: api.TStringKeyword<Annotation>,
+        $: tast.TStringKeyword<Annotation>,
     ) {
         //report($.annotation)//LEAF
         //FIXME
     }
     function _UnionType(
-        $: api.TUnionType<Annotation>,
+        $: tast.TUnionType<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -596,13 +596,13 @@ export function visit<Annotation>(
         })
     }
     function _ReadonlyKeyword(
-        $: api.TReadonlyKeyword<Annotation>,
+        $: tast.TReadonlyKeyword<Annotation>,
     ) {
         //report($.annotation)//LEAF
         //FIXME
     }
     function _FunctionDeclaration(
-        $: api.TFunctionDeclaration<Annotation>,
+        $: tast.TFunctionDeclaration<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -684,25 +684,25 @@ export function visit<Annotation>(
         })
     }
     function _DeclareKeyword(
-        $: api.TDeclareKeyword<Annotation>,
+        $: tast.TDeclareKeyword<Annotation>,
     ) {
         //report($.annotation)//LEAF
         //FIXME
     }
     function _AnyKeyword(
-        $: api.TAnyKeyword<Annotation>,
+        $: tast.TAnyKeyword<Annotation>,
     ) {
         //report($.annotation)//LEAF
         //FIXME
     }
     function _QuestionToken(
-        $: api.TQuestionToken<Annotation>,
+        $: tast.TQuestionToken<Annotation>,
     ) {
         //report($.annotation)//LEAF
         //FIXME
     }
     function _VariableStatement(
-        $: api.TVariableStatement<Annotation>,
+        $: tast.TVariableStatement<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -730,7 +730,7 @@ export function visit<Annotation>(
         })
     }
     function _VariableDeclarationList(
-        $: api.TVariableDeclarationList<Annotation>,
+        $: tast.TVariableDeclarationList<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -746,7 +746,7 @@ export function visit<Annotation>(
         })
     }
     function _VariableDeclaration(
-        $: api.TVariableDeclaration<Annotation>,
+        $: tast.TVariableDeclaration<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -882,13 +882,13 @@ export function visit<Annotation>(
         })
     }
     function _StringLiteral(
-        $: api.TStringLiteral<Annotation>,
+        $: tast.TStringLiteral<Annotation>,
     ) {
         //report($.annotation)//LEAF
         //FIXME
     }
     function _Block(
-        $: api.TBlock<Annotation>,
+        $: tast.TBlock<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -1228,7 +1228,7 @@ export function visit<Annotation>(
         })
     }
     function _ReturnStatement(
-        $: api.TReturnStatement<Annotation>,
+        $: tast.TReturnStatement<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -1322,7 +1322,7 @@ export function visit<Annotation>(
         })
     }
     function _CallExpression(
-        $: api.TCallExpression<Annotation>,
+        $: tast.TCallExpression<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -1440,25 +1440,25 @@ export function visit<Annotation>(
         })
     }
     function _ExportKeyword(
-        $: api.TExportKeyword<Annotation>,
+        $: tast.TExportKeyword<Annotation>,
     ) {
         //report($.annotation)//LEAF
         //FIXME
     }
     function _NumericLiteral(
-        $: api.TNumericLiteral<Annotation>,
+        $: tast.TNumericLiteral<Annotation>,
     ) {
         //report($.annotation)//LEAF
         //FIXME
     }
     function _FalseKeyword(
-        $: api.TFalseKeyword<Annotation>,
+        $: tast.TFalseKeyword<Annotation>,
     ) {
         //report($.annotation)//LEAF
         //FIXME
     }
     function _IfStatement(
-        $: api.TIfStatement<Annotation>,
+        $: tast.TIfStatement<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -1516,7 +1516,7 @@ export function visit<Annotation>(
         })
     }
     function _BinaryExpression(
-        $: api.TBinaryExpression<Annotation>,
+        $: tast.TBinaryExpression<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -1692,7 +1692,7 @@ export function visit<Annotation>(
         })
     }
     function _ExpressionStatement(
-        $: api.TExpressionStatement<Annotation>,
+        $: tast.TExpressionStatement<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -1738,7 +1738,7 @@ export function visit<Annotation>(
         })
     }
     function _ObjectLiteralExpression(
-        $: api.TObjectLiteralExpression<Annotation>,
+        $: tast.TObjectLiteralExpression<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -1868,7 +1868,7 @@ export function visit<Annotation>(
         })
     }
     function _ArrowFunction(
-        $: api.TArrowFunction<Annotation>,
+        $: tast.TArrowFunction<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -1952,7 +1952,7 @@ export function visit<Annotation>(
         })
     }
     function _PropertyAccessExpression(
-        $: api.TPropertyAccessExpression<Annotation>,
+        $: tast.TPropertyAccessExpression<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -1986,7 +1986,7 @@ export function visit<Annotation>(
         })
     }
     function _ElementAccessExpression(
-        $: api.TElementAccessExpression<Annotation>,
+        $: tast.TElementAccessExpression<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -2032,7 +2032,7 @@ export function visit<Annotation>(
         })
     }
     function _ArrayLiteralExpression(
-        $: api.TArrayLiteralExpression<Annotation>,
+        $: tast.TArrayLiteralExpression<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -2108,7 +2108,7 @@ export function visit<Annotation>(
         })
     }
     function _BreakStatement(
-        $: api.TBreakStatement<Annotation>,
+        $: tast.TBreakStatement<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -2124,19 +2124,19 @@ export function visit<Annotation>(
         })
     }
     function _NullKeyword(
-        $: api.TNullKeyword<Annotation>,
+        $: tast.TNullKeyword<Annotation>,
     ) {
         //report($.annotation)//LEAF
         //FIXME
     }
     function _TrueKeyword(
-        $: api.TTrueKeyword<Annotation>,
+        $: tast.TTrueKeyword<Annotation>,
     ) {
         //report($.annotation)//LEAF
         //FIXME
     }
     function _TypeAliasDeclaration(
-        $: api.TTypeAliasDeclaration<Annotation>,
+        $: tast.TTypeAliasDeclaration<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -2200,7 +2200,7 @@ export function visit<Annotation>(
         })
     }
     function _TypeLiteral(
-        $: api.TTypeLiteral<Annotation>,
+        $: tast.TTypeLiteral<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -2230,7 +2230,7 @@ export function visit<Annotation>(
         })
     }
     function _TemplateExpression(
-        $: api.TTemplateExpression<Annotation>,
+        $: tast.TTemplateExpression<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -2312,7 +2312,7 @@ export function visit<Annotation>(
         })
     }
     function _PrefixUnaryExpression(
-        $: api.TPrefixUnaryExpression<Annotation>,
+        $: tast.TPrefixUnaryExpression<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -2346,7 +2346,7 @@ export function visit<Annotation>(
         })
     }
     function _TupleType(
-        $: api.TTupleType<Annotation>,
+        $: tast.TTupleType<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -2416,7 +2416,7 @@ export function visit<Annotation>(
         })
     }
     function _LiteralType(
-        $: api.TLiteralType<Annotation>,
+        $: tast.TLiteralType<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -2438,7 +2438,7 @@ export function visit<Annotation>(
         })
     }
     function _ConditionalExpression(
-        $: api.TConditionalExpression<Annotation>,
+        $: tast.TConditionalExpression<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -2546,7 +2546,7 @@ export function visit<Annotation>(
         })
     }
     function _ParenthesizedExpression(
-        $: api.TParenthesizedExpression<Annotation>,
+        $: tast.TParenthesizedExpression<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {
@@ -2574,13 +2574,13 @@ export function visit<Annotation>(
         })
     }
     function _NoSubstitutionTemplateLiteral(
-        $: api.TNoSubstitutionTemplateLiteral<Annotation>,
+        $: tast.TNoSubstitutionTemplateLiteral<Annotation>,
     ) {
         //report($.annotation)//LEAF
         //FIXME
     }
     function _WhileStatement(
-        $: api.TWhileStatement<Annotation>,
+        $: tast.TWhileStatement<Annotation>,
     ) {
         report($.annotation)
         $.children.forEach(($) => {

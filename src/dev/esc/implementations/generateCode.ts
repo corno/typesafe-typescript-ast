@@ -1,7 +1,9 @@
 import * as pr from "pareto-runtime"
-import { createFile } from "./createBlock"
+
 import * as g from "../interfaces/Grammar"
-import { Block } from "../interfaces/WriteAPI"
+import * as wapi from "../interfaces/WriteAPI"
+
+import { createFile } from "./createBlock"
 
 export function gen(
     grammar: g.Grammar,
@@ -17,7 +19,7 @@ export function gen(
         })
     }
 
-    function generateAPI($w: Block) {
+    function generateAPI($w: wapi.Block) {
         $w.line(($w) => {
             $w.snippet(`import * as pr from "pareto-runtime"`)
         })
@@ -136,7 +138,7 @@ export function gen(
 
     }
 
-    function generateBuilder($w: Block) {
+    function generateBuilder($w: wapi.Block) {
 
         $w.line(($w) => {
             $w.snippet(`import * as pr from "pareto-runtime"`)
@@ -194,7 +196,7 @@ export function gen(
                             function generateType(
                                 $k: string,
                                 $: g.Type,
-                                $w: Block,
+                                $w: wapi.Block,
                             ) {
                                 switch ($[0]) {
                                     case "bag":
@@ -329,7 +331,7 @@ export function gen(
         })
     }
 
-    function generateVisitorTemplate($w: Block) {
+    function generateVisitorTemplate($w: wapi.Block) {
 
         $w.line(($w) => {
             $w.snippet(`import * as pr from "pareto-runtime"`)
@@ -366,7 +368,7 @@ export function gen(
                             function generateType(
                                 $key: string,
                                 $: g.Type,
-                                $w: Block
+                                $w: wapi.Block
                             ) {
                                 switch ($[0]) {
                                     case "bag":
@@ -479,7 +481,7 @@ export function gen(
     function generate(
         targetPath: string,
         func: (
-            $w: Block,
+            $w: wapi.Block,
         ) => void,
     ) {
 
