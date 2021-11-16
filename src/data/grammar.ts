@@ -1,55 +1,20 @@
-import * as gramm from "../interfaces/Grammar";
+import * as gramm from "../generateCode/esc/interfaces/Grammar";
 
 export const grammar: gramm.Grammar = {
-    startRule: "SourceFile",
     "tokenRules": {
         "SourceFile": ["bag", [
-            ["local", ["InterfaceDeclaration", ["leaf", [
-
-                // "Identifier",
-                // "TypeParameter",
-                // "MethodSignature",
-                // "PropertySignature",
-                // "IndexSignature",
-                // "ConstructSignature",
-                // "ExportKeyword"
-
-            ]]]],
+            ["global", "InterfaceDeclaration"],
             ["global", "FunctionDeclaration"],
             ["global", "VariableStatement"],
-            ["local", ["EndOfFileToken", ["leaf", {}]]],
-            ["local", ["ExportDeclaration", ["bag", [
-                ["global", "StringLiteral"]
-            ]]]],
-            ["local", ["ImportDeclaration", ["bag", [
-                ["global", "StringLiteral"]
-            ]]]],
+            ["global", "EndOfFileToken"],
+            ["global", "ExportDeclaration"],
+            ["global", "ImportDeclaration"],
             ["global", "TypeAliasDeclaration"],
             ["global", "ExpressionStatement"],
-
-
-            //   "ImportDeclaration": [
-            //     "ImportClause",
-            //     "StringLiteral"
-            // ],
-            // "ImportClause": [
-            //     "NamespaceImport",
-            //     "NamedImports"
-            // ],
-            // "NamespaceImport": [
-            //     "Identifier"
-            // ],
-            // "NamedImports": [
-            //     "ImportSpecifier"
-            // ],
-            // "ImportSpecifier": [
-            //     "Identifier"
-            // ],
-
         ]],
         "Identifier": ["leaf", {}],
         "TypeParameter": ["bag", [
-            ["global", "Identifier"]
+            ["global", "Identifier"],
         ]],
         "MethodSignature": ["bag", [
             ["global", "Identifier"],
@@ -61,7 +26,7 @@ export const grammar: gramm.Grammar = {
             ["global", "StringKeyword"],
             ["global", "UnionType"],
             ["global", "NumberKeyword"],
-            ["global", "TypeReference"]
+            ["global", "TypeReference"],
         ]],
         "Parameter": ["bag", [
             ["global", "Identifier"],
@@ -72,20 +37,18 @@ export const grammar: gramm.Grammar = {
             ["global", "ArrayType"],
             ["global", "AnyKeyword"],
             ["global", "QuestionToken"],
-            ["local", ["NeverKeyword", ["leaf", {}]]],
+            ["global", "NeverKeyword"],
             ["global", "TypeLiteral"],
             ["global", "UnionType"],
-            ["global", "BooleanKeyword"]
+            ["global", "BooleanKeyword"],
         ]],
         "TypeReference": ["bag", [
             ["global", "Identifier"],
             ["global", "TypeReference"],
-            ["local", ["QualifiedName", ["bag", [
-                ["global", "Identifier"]
-            ]]]],
+            ["global", "QualifiedName"],
             ["global", "StringKeyword"],
             ["global", "LiteralType"],
-            ["global", "TypeLiteral"]
+            ["global", "TypeLiteral"],
         ]],
         "VoidKeyword": ["leaf", {}],
         "FunctionType": ["bag", [
@@ -96,12 +59,12 @@ export const grammar: gramm.Grammar = {
             ["global", "UnionType"],
             ["global", "BooleanKeyword"],
             ["global", "ArrayType"],
-            ["global", "StringKeyword"]
+            ["global", "StringKeyword"],
         ]],
         "NumberKeyword": ["leaf", {}],
         "ArrayType": ["bag", [
             ["global", "TypeReference"],
-            ["global", "StringKeyword"]
+            ["global", "StringKeyword"],
         ]],
         "BooleanKeyword": ["leaf", {}],
         "PropertySignature": ["bag", [
@@ -117,12 +80,11 @@ export const grammar: gramm.Grammar = {
             ["global", "UnionType"],
             ["global", "LiteralType"],
             ["global", "TypeLiteral"],
-            ["global", "StringLiteral"]
+            ["global", "StringLiteral"],
         ]],
         "StringKeyword": ["leaf", {}],
         "UnionType": ["bag", [
-            ["local", ["UndefinedKeyword", ["leaf", {}]]
-            ],
+            ["global", "UndefinedKeyword"],
             ["global", "TypeReference"],
             ["global", "TupleType"],
             ["global", "LiteralType"],
@@ -130,9 +92,7 @@ export const grammar: gramm.Grammar = {
             ["global", "BooleanKeyword"],
             ["global", "ArrayType"],
             ["global", "NumberKeyword"],
-            ["local", ["ParenthesizedType", ["bag", [
-                ["global", "FunctionType"]
-            ]]]]
+            ["global", "ParenthesizedType"],
         ]],
         "ReadonlyKeyword": ["leaf", {}],
         "FunctionDeclaration": ["bag", [
@@ -147,7 +107,7 @@ export const grammar: gramm.Grammar = {
             ["global", "VoidKeyword"],
             ["global", "UnionType"],
             ["global", "StringKeyword"],
-            ["global", "ArrayType"]
+            ["global", "ArrayType"],
         ]],
         "DeclareKeyword": ["leaf", {}],
         "AnyKeyword": ["leaf", {}],
@@ -155,10 +115,10 @@ export const grammar: gramm.Grammar = {
         "VariableStatement": ["bag", [
             ["global", "DeclareKeyword"],
             ["global", "VariableDeclarationList"],
-            ["global", "ExportKeyword"]
+            ["global", "ExportKeyword"],
         ]],
         "VariableDeclarationList": ["bag", [
-            ["global", "VariableDeclaration"]
+            ["global", "VariableDeclaration"],
         ]],
         "VariableDeclaration": ["bag", [
             ["global", "Identifier"],
@@ -181,65 +141,23 @@ export const grammar: gramm.Grammar = {
             ["global", "NumberKeyword"],
             ["global", "UnionType"],
             ["global", "NullKeyword"],
-            ["global", "TypeLiteral"]
+            ["global", "TypeLiteral"],
         ]],
         "StringLiteral": ["leaf", {}],
         "Block": ["bag", [
-            ["local", ["ThrowStatement", ["bag", [
-                ["local", ["NewExpression", ["bag", [
-                    ["global", "Identifier"],
-                    ["global", "StringLiteral"],
-                    ["global", "CallExpression"],
-                    ["global", "TemplateExpression"],
-                    ["global", "NoSubstitutionTemplateLiteral"]
-                ]]]]
-            ]]]],
+            ["global", "ThrowStatement"],
             ["global", "ReturnStatement"],
             ["global", "VariableStatement"],
             ["global", "FunctionDeclaration"],
             ["global", "IfStatement"],
             ["global", "ExpressionStatement"],
-            ["local", ["SwitchStatement", ["bag", [
-                ["global", "ElementAccessExpression"],
-                ["local", ["CaseBlock", ["bag", [
-                    ["local", ["CaseClause", ["bag", [
-                        ["global", "StringLiteral"],
-                        ["global", "ExpressionStatement"],
-                        ["global", "BreakStatement"],
-                        ["global", "Block"],
-                        ["global", "ReturnStatement"],
-                        ["global", "VariableStatement"],
-                        ["global", "IfStatement"],
-                        ["global", "PropertyAccessExpression"]
-                    ]]]],
-                    ["local", ["DefaultClause", ["bag", [
-                        ["global", "ExpressionStatement"],
-                        ["global", "ReturnStatement"],
-                        ["global", "Block"]
-                    ]]]]
-                ]]]],
-                ["global", "Identifier"],
-                ["global", "PropertyAccessExpression"]
-            ]]]],
-            ["local", ["TryStatement", ["bag", [
-                ["global", "Block"],
-                ["local", ["CatchClause", ["bag", [
-                    ["global", "VariableDeclaration"],
-                    ["global", "Block"]
-                ]]]]
-            ]]]],
+            ["global", "SwitchStatement"],
+            ["global", "TryStatement"],
             ["global", "BreakStatement"],
             ["global", "TypeAliasDeclaration"],
-            ["local", ["ForStatement", ["bag", [
-                ["global", "VariableDeclarationList"],
-                ["global", "BinaryExpression"],
-                ["global", "Block"]
-            ]]]],
+            ["global", "ForStatement"],
             ["global", "WhileStatement"],
-            ["local", ["LabeledStatement", ["bag", [
-                ["global", "Identifier"],
-                ["global", "WhileStatement"]
-            ]]]]
+            ["global", "LabeledStatement"],
         ]],
         "ReturnStatement": ["bag", [
             ["global", "CallExpression"],
@@ -255,7 +173,7 @@ export const grammar: gramm.Grammar = {
             ["global", "ConditionalExpression"],
             ["global", "ElementAccessExpression"],
             ["global", "NoSubstitutionTemplateLiteral"],
-            ["global", "StringLiteral"]
+            ["global", "StringLiteral"],
         ]],
         "CallExpression": ["bag", [
             ["global", "Identifier"],
@@ -275,7 +193,7 @@ export const grammar: gramm.Grammar = {
             ["global", "ParenthesizedExpression"],
             ["global", "NumericLiteral"],
             ["global", "TrueKeyword"],
-            ["global", "FalseKeyword"]
+            ["global", "FalseKeyword"],
         ]],
         "ExportKeyword": ["leaf", {}],
         "NumericLiteral": ["leaf", {}],
@@ -288,67 +206,45 @@ export const grammar: gramm.Grammar = {
             ["global", "PrefixUnaryExpression"],
             ["global", "ReturnStatement"],
             ["global", "CallExpression"],
-            ["global", "IfStatement"]
+            ["global", "IfStatement"],
         ]],
         "BinaryExpression": ["bag", [
             ["global", "BinaryExpression"],
             ["global", "Identifier"],
-            ["local", ["EqualsEqualsEqualsToken", ["leaf", {}]]],
+            ["global", "EqualsEqualsEqualsToken"],
             ["global", "NumericLiteral"],
-            ["local", ["AmpersandAmpersandToken", ["leaf", {}]]],
-            ["local", ["PlusEqualsToken", ["leaf", {}]]],
-            ["local", ["MinusEqualsToken", ["leaf", {}]]],
-            ["local", ["EqualsToken", ["leaf", {}]]],
+            ["global", "AmpersandAmpersandToken"],
+            ["global", "PlusEqualsToken"],
+            ["global", "MinusEqualsToken"],
+            ["global", "EqualsToken"],
             ["global", "TrueKeyword"],
             ["global", "ElementAccessExpression"],
-            ["local", ["ExclamationEqualsEqualsToken", ["leaf", {}]]],
+            ["global", "ExclamationEqualsEqualsToken"],
             ["global", "StringLiteral"],
-            ["local", ["PlusToken", ["leaf", {}]]],
+            ["global", "PlusToken"],
             ["global", "PropertyAccessExpression"],
             ["global", "NullKeyword"],
             ["global", "ParenthesizedExpression"],
             ["global", "ObjectLiteralExpression"],
-            ["local", ["MinusToken", ["leaf", {}]]],
-            ["local", ["GreaterThanToken", ["leaf", {}]]],
+            ["global", "MinusToken"],
+            ["global", "GreaterThanToken"],
             ["global", "CallExpression"],
             ["global", "FalseKeyword"],
-            ["local", ["LessThanToken", ["leaf", {}]]],
-            ["local", ["BarBarToken", ["leaf", {}]]],
-            ["global", "ArrayLiteralExpression"]
+            ["global", "LessThanToken"],
+            ["global", "BarBarToken"],
+            ["global", "ArrayLiteralExpression"],
         ]],
         "ExpressionStatement": ["bag", [
             ["global", "CallExpression"],
             ["global", "BinaryExpression"],
-            ["local", ["PostfixUnaryExpression", ["bag", [
-                ["global", "Identifier"],
-                ["global", "PropertyAccessExpression"]
-            ]]]]
+            ["global", "PostfixUnaryExpression"],
         ]],
         "ObjectLiteralExpression": ["bag", [
-            ["local", ["PropertyAssignment", ["bag", [
-                ["global", "Identifier"],
-                ["global", "ArrowFunction"],
-                ["global", "PropertyAccessExpression"],
-                ["global", "StringLiteral"],
-                ["global", "ElementAccessExpression"],
-                ["global", "ObjectLiteralExpression"],
-                ["global", "CallExpression"],
-                ["global", "NullKeyword"],
-                ["global", "PrefixUnaryExpression"],
-                ["global", "FalseKeyword"],
-                ["global", "TemplateExpression"],
-                ["global", "TrueKeyword"],
-                ["global", "ConditionalExpression"],
-                ["global", "ArrayLiteralExpression"],
-                ["global", "NoSubstitutionTemplateLiteral"],
-                ["global", "BinaryExpression"],
-                ["global", "ParenthesizedExpression"],
-                ["global", "NumericLiteral"]
-            ]]]]
+            ["global", "PropertyAssignment"],
         ]],
         "ArrowFunction": ["bag", [
             ["global", "Parameter"],
-            ["local", ["EqualsGreaterThanToken", ["leaf", {}]]],
+            ["global", "EqualsGreaterThanToken"],
             ["global", "Block"],
             ["global", "Identifier"],
             ["global", "CallExpression"],
@@ -358,13 +254,13 @@ export const grammar: gramm.Grammar = {
             ["global", "VoidKeyword"],
             ["global", "UnionType"],
             ["global", "TemplateExpression"],
-            ["global", "PropertyAccessExpression"]
+            ["global", "PropertyAccessExpression"],
         ]],
         "PropertyAccessExpression": ["bag", [
             ["global", "Identifier"],
             ["global", "CallExpression"],
             ["global", "PropertyAccessExpression"],
-            ["global", "ElementAccessExpression"]
+            ["global", "ElementAccessExpression"],
         ]],
         "ElementAccessExpression": ["bag", [
             ["global", "Identifier"],
@@ -372,7 +268,7 @@ export const grammar: gramm.Grammar = {
             ["global", "PropertyAccessExpression"],
             ["global", "CallExpression"],
             ["global", "StringLiteral"],
-            ["global", "ElementAccessExpression"]
+            ["global", "ElementAccessExpression"],
         ]],
         "ArrayLiteralExpression": ["bag", [
             ["global", "StringLiteral"],
@@ -385,10 +281,10 @@ export const grammar: gramm.Grammar = {
             ["global", "ConditionalExpression"],
             ["global", "TemplateExpression"],
             ["global", "ArrayLiteralExpression"],
-            ["global", "NumericLiteral"]
+            ["global", "NumericLiteral"],
         ]],
         "BreakStatement": ["bag", [
-            ["global", "Identifier"]
+            ["global", "Identifier"],
         ]],
         "NullKeyword": ["leaf", {}],
         "TrueKeyword": ["leaf", {}],
@@ -401,53 +297,41 @@ export const grammar: gramm.Grammar = {
             ["global", "UnionType"],
             ["global", "ArrayType"],
             ["global", "TypeReference"],
-            ["global", "FunctionType"]
+            ["global", "FunctionType"],
         ]],
         "TypeLiteral": ["bag", [
             ["global", "PropertySignature"],
             ["global", "MethodSignature"],
-            ["local", ["IndexSignature", ["leaf", {}]]],
+            ["global", "IndexSignature"],
         ]],
         "TemplateExpression": ["bag", [
-            ["local", ["TemplateHead", ["leaf", {}]]],
-            ["local", ["TemplateSpan", ["bag", [
-                ["global", "PropertyAccessExpression"],
-                ["local", ["TemplateMiddle", ["leaf", {}]]],
-                ["local", ["TemplateTail", ["leaf", {}]]],
-                ["global", "Identifier"],
-                ["global", "CallExpression"],
-                ["global", "ConditionalExpression"],
-                ["global", "ElementAccessExpression"],
-                ["global", "BinaryExpression"]
-            ]]]]
+            ["global", "TemplateHead"],
+            ["global", "TemplateSpan"],
         ]],
         "PrefixUnaryExpression": ["bag", [
             ["global", "Identifier"],
             ["global", "PropertyAccessExpression"],
             ["global", "CallExpression"],
-            ["global", "NumericLiteral"]
+            ["global", "NumericLiteral"],
         ]],
         "TupleType": ["bag", [
-            ["local", ["OptionalType", ["bag", [
-                ["global", "NumberKeyword"],
-                ["global", "TypeReference"]
-            ]]]],
+            ["global", "OptionalType"],
             ["global", "LiteralType"],
             ["global", "StringKeyword"],
             ["global", "UnionType"],
             ["global", "TypeReference"],
             ["global", "TypeLiteral"],
-            ["global", "ArrayType"]
+            ["global", "ArrayType"],
         ]],
         "LiteralType": ["bag", [
             ["global", "StringLiteral"],
-            ["global", "NullKeyword"]
+            ["global", "NullKeyword"],
         ]],
         "ConditionalExpression": ["bag", [
             ["global", "BinaryExpression"],
             ["global", "QuestionToken"],
             ["global", "NullKeyword"],
-            ["local", ["ColonToken", ["leaf", {}]]],
+            ["global", "ColonToken"],
             ["global", "PropertyAccessExpression"],
             ["global", "StringLiteral"],
             ["global", "TemplateExpression"],
@@ -459,17 +343,179 @@ export const grammar: gramm.Grammar = {
             ["global", "ArrayLiteralExpression"],
             ["global", "ElementAccessExpression"],
             ["global", "ArrowFunction"],
-            ["global", "NumericLiteral"]
+            ["global", "NumericLiteral"],
         ]],
         "ParenthesizedExpression": ["bag", [
             ["global", "ConditionalExpression"],
             ["global", "BinaryExpression"],
-            ["global", "ArrowFunction"]
+            ["global", "ArrowFunction"],
         ]],
         "NoSubstitutionTemplateLiteral": ["leaf", {}],
         "WhileStatement": ["bag", [
             ["global", "TrueKeyword"],
-            ["global", "Block"]
-        ]]
-    }
+            ["global", "Block"],
+        ]],
+        "InterfaceDeclaration": ["bag", [
+            ["global", "Identifier"],
+            ["global", "TypeParameter"],
+            ["global", "MethodSignature"],
+            ["global", "MethodSignature"],
+            ["global", "MethodSignature"],
+            ["global", "MethodSignature"],
+            ["global", "PropertySignature"],
+            ["global", "MethodSignature"],
+            ["global", "MethodSignature"],
+            ["global", "MethodSignature"],
+            ["global", "MethodSignature"],
+            ["global", "MethodSignature"],
+            ["global", "IndexSignature"],
+            ["global", "ConstructSignature"],
+            ["global", "ExportKeyword"],
+        ]],
+        "QualifiedName": ["bag", [
+            ["global", "Identifier"],
+            ["global", "Identifier"],
+        ]],
+        "UndefinedKeyword": ["leaf", {}],
+        "IndexSignature": ["bag", [
+            ["global", "Parameter"],
+            ["global", "TypeReference"],
+        ]],
+        "ConstructSignature": ["bag", [
+            ["global", "Parameter"],
+            ["global", "TypeReference"],
+        ]],
+        "EndOfFileToken": ["leaf", {}],
+        "ExportDeclaration": ["bag", [
+            ["global", "StringLiteral"],
+        ]],
+        "ImportDeclaration": ["bag", [
+            ["global", "StringLiteral"],
+            ["global", "ImportClause"],
+        ]],
+        "ImportClause": ["bag", [
+            ["global", "NamespaceImport"],
+            ["global", "NamedImports"],
+        ]],
+        "NamespaceImport": ["bag", [
+            ["global", "Identifier"],
+        ]],
+        "NamedImports": ["bag", [
+            ["global", "ImportSpecifier"],
+        ]],
+        "ImportSpecifier": ["bag", [
+            ["global", "Identifier"],
+        ]],
+        "NeverKeyword": ["leaf", {}],
+        "ParenthesizedType": ["bag", [
+            ["global", "FunctionType"],
+        ]],
+        "ThrowStatement": ["bag", [
+            ["global", "NewExpression"],
+        ]],
+        "NewExpression": ["bag", [
+            ["global", "Identifier"],
+            ["global", "StringLiteral"],
+            ["global", "CallExpression"],
+            ["global", "TemplateExpression"],
+            ["global", "NoSubstitutionTemplateLiteral"],
+        ]],
+        "SwitchStatement": ["bag", [
+            ["global", "ElementAccessExpression"],
+            ["global", "CaseBlock"],
+            ["global", "Identifier"],
+            ["global", "PropertyAccessExpression"],
+        ]],
+        "CaseBlock": ["bag", [
+            ["global", "CaseClause"],
+            ["global", "DefaultClause"],
+        ]],
+        "CaseClause": ["bag", [
+            ["global", "StringLiteral"],
+            ["global", "ExpressionStatement"],
+            ["global", "BreakStatement"],
+            ["global", "Block"],
+            ["global", "ReturnStatement"],
+            ["global", "VariableStatement"],
+            ["global", "IfStatement"],
+            ["global", "PropertyAccessExpression"],
+        ]],
+        "DefaultClause": ["bag", [
+            ["global", "ExpressionStatement"],
+            ["global", "ReturnStatement"],
+            ["global", "Block"],
+        ]],
+        "TryStatement": ["bag", [
+            ["global", "Block"],
+            ["global", "CatchClause"],
+        ]],
+        "CatchClause": ["bag", [
+            ["global", "VariableDeclaration"],
+            ["global", "Block"],
+        ]],
+        "ForStatement": ["bag", [
+            ["global", "VariableDeclarationList"],
+            ["global", "BinaryExpression"],
+            ["global", "Block"],
+        ]],
+        "LabeledStatement": ["bag", [
+            ["global", "Identifier"],
+            ["global", "WhileStatement"],
+        ]],
+        "EqualsEqualsEqualsToken": ["leaf", {}],
+        "AmpersandAmpersandToken": ["leaf", {}],
+        "PlusEqualsToken": ["leaf", {}],
+        "MinusEqualsToken": ["leaf", {}],
+        "EqualsToken": ["leaf", {}],
+        "ExclamationEqualsEqualsToken": ["leaf", {}],
+        "PlusToken": ["leaf", {}],
+        "MinusToken": ["leaf", {}],
+        "GreaterThanToken": ["leaf", {}],
+        "LessThanToken": ["leaf", {}],
+        "BarBarToken": ["leaf", {}],
+        "PostfixUnaryExpression": ["bag", [
+            ["global", "Identifier"],
+            ["global", "PropertyAccessExpression"],
+        ]],
+        "PropertyAssignment": ["bag", [
+            ["global", "Identifier"],
+            ["global", "ArrowFunction"],
+            ["global", "PropertyAccessExpression"],
+            ["global", "StringLiteral"],
+            ["global", "ElementAccessExpression"],
+            ["global", "ObjectLiteralExpression"],
+            ["global", "CallExpression"],
+            ["global", "NullKeyword"],
+            ["global", "PrefixUnaryExpression"],
+            ["global", "FalseKeyword"],
+            ["global", "TemplateExpression"],
+            ["global", "TrueKeyword"],
+            ["global", "ConditionalExpression"],
+            ["global", "ArrayLiteralExpression"],
+            ["global", "NoSubstitutionTemplateLiteral"],
+            ["global", "BinaryExpression"],
+            ["global", "ParenthesizedExpression"],
+            ["global", "NumericLiteral"],
+        ]],
+        "EqualsGreaterThanToken": ["leaf", {}],
+        "TemplateHead": ["leaf", {}],
+        "TemplateSpan": ["bag", [
+            ["global", "PropertyAccessExpression"],
+            ["global", "TemplateMiddle"],
+            ["global", "TemplateTail"],
+            ["global", "Identifier"],
+            ["global", "CallExpression"],
+            ["global", "ConditionalExpression"],
+            ["global", "ElementAccessExpression"],
+            ["global", "BinaryExpression"],
+        ]],
+        "TemplateMiddle": ["leaf", {}],
+        "TemplateTail": ["leaf", {}],
+        "OptionalType": ["bag", [
+            ["global", "NumberKeyword"],
+            ["global", "TypeReference"],
+        ]],
+        "ColonToken": ["leaf", {}],
+    },
+    "startRule": "SourceFile"
 }

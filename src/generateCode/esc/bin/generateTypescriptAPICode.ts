@@ -1,7 +1,7 @@
 
 import * as pr from "pareto-runtime"
-import { gen } from "../implementations/generateCode"
-import { grammar } from "../data/grammar"
+import { generateCode } from "../implementations/generateCode"
+import { grammar } from "../../../data/grammar"
 
 
 const [, , targetDirPath] = pr.getProcessArguments()
@@ -11,7 +11,7 @@ if (targetDirPath === undefined) {
     pr.processExit(1)
 }
 
-gen(
+generateCode(
     grammar,
     targetDirPath,
 )

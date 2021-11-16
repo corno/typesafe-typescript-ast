@@ -5,25 +5,17 @@ import * as wapi from "../interfaces/WriteAPI"
 
 import { createFile } from "./createBlock"
 
-export function gen(
+export function generateCode(
     grammar: g.Grammar,
     targetDirPath: string,
 ) {
 
-    function forEachEntry<T>(
-        dictionary: { [key: string]: T },
-        callback: (entry: T, key: string) => void,
-    ) {
-        pr.Objectkeys(dictionary).forEach((key) => {
-            callback(dictionary[key], key)
-        })
-    }
 
     function generateAPI($w: wapi.Block) {
         $w.line(($w) => {
             $w.snippet(`import * as pr from "pareto-runtime"`)
         })
-        forEachEntry(grammar.tokenRules, ($, key) => {
+        g.forEachEntry(grammar.tokenRules, ($, key) => {
             function generateType(
                 $k: string,
                 $: g.Type,
@@ -179,7 +171,7 @@ export function gen(
             $w.snippet(`): void {`)
             $w.indent(($w) => {
 
-                forEachEntry(grammar.tokenRules, ($, key) => {
+                g.forEachEntry(grammar.tokenRules, ($, key) => {
                     $w.line(($w) => {
 
                         $w.snippet(`function _${key}(`)
@@ -354,7 +346,7 @@ export function gen(
             $w.snippet(`): void {`)
             $w.indent(($w) => {
 
-                forEachEntry(grammar.tokenRules, ($, key) => {
+                g.forEachEntry(grammar.tokenRules, ($, key) => {
                     $w.line(($w) => {
 
                         $w.snippet(`function _${key}(`)

@@ -8,8 +8,9 @@
     "@types/node": "^16.11.7"
   },
   "scripts": {
+    "analyse astn": "npm run build && node ./dist/analyseCodeBase/esc/bin/analyse.js \"../astn/tsconfig.json\"",
     "build": "rm -rf ./dist && tsc",
-    "generate-ts-api": "npm run build && node ./dist/dev/esc/bin/generateTypescriptAPICode.js ./pub/esc",
+    "generate-ts-api": "npm run build && node ./dist/generateCode/esc/bin/generateTypescriptAPICode.js ./src/pub/esc",
     "copyPackage": "node ./dist/copyPackage",
     "pubMin": "npm run validatePublishReadiness && npm run copyPackage && cd ./dist/pub && npm version minor && git push && npm publish",
     "pubPatch": "npm run validatePublishReadiness && npm run copyPackage && cd ./dist/pub && npm version patch && git push && npm publish",
