@@ -1,7 +1,7 @@
 
 import * as pr from "pareto-runtime"
 import { generateCode } from "../implementations/generateCode"
-import { grammar } from "../../../data/grammar"
+import { grammar } from "../../../data/esc/grammar"
 
 
 const [, , targetDirPath] = pr.getProcessArguments()

@@ -1,0 +1,25 @@
+{
+    tokens: {
+        "SourceFile": {
+            elements: [
+                ["array", {
+                    type: {
+                        elements: [
+                            ["token", {
+                                options: {
+                                    "FunctionDeclaration": {},
+                                }
+                            }],
+                        ]
+                    }
+                }],
+                ["token", {
+                    options: {
+                        "EndOfFile": {},
+                    }
+                }],
+            ]
+        }
+    },
+    startToken: "SourceFile"
+}

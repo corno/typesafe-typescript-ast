@@ -1,4 +1,4 @@
-import * as gramm from "../generateCode/esc/interfaces/Grammar";
+import * as gramm from "../../generateCode/esc/interfaces/Grammar";
 
 export const grammar: gramm.Grammar = {
     "tokenRules": {

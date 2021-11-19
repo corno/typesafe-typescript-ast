@@ -1,4 +1,4 @@
-import { grammar } from "../../../data/grammar"
+import { newGrammar } from "../../../data/newGrammar"
 import { loadUntypedProject } from "../../../pub"
 import * as tr from "../implementations"
 
@@ -16,7 +16,7 @@ loadUntypedProject(
     ) => {
         tr.analyseCodebaseForNodeOccurences(
             project,
-            grammar,
+            newGrammar,
             getLocationInfo,
             (
                 filePath,
