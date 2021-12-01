@@ -91,6 +91,7 @@ readFileSafe(
                     $
                 )
                 packageTemplate["dependencies"] = livePackage.dependencies
+                packageTemplate["version"] = livePackage.version
                 writeFileSafe(
                     {
                         path: targetPath,
