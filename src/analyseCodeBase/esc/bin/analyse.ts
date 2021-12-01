@@ -1,5 +1,5 @@
-import { newGrammar } from "../../../data/newGrammar"
-import { loadUntypedProject } from "../../../pub"
+import { newGrammar } from "../../../data/esc/newGrammar"
+import { loadUntypedProject } from "../../../pub/esc/implementations/builder/loadUntypedProject"
 import * as tr from "../implementations"
 
 const [, , tsconfigPath] = process.argv

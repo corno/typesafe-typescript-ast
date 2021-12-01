@@ -20,10 +20,10 @@ export function build<Annotation>(
         $.children.forEach(($) => {
             switch ($.kindName) {
                 case "InterfaceDeclaration": {
-                    const callback = ($: tast.TInterfaceDeclaration<Annotation>) => {
-                        temp.push(["InterfaceDeclaration", $])
-                    }
-                    pr.cc(null, (_) => {})
+                    _InterfaceDeclaration(
+                        $,
+                        ($) => { temp.push(["InterfaceDeclaration", $]) },
+                    )
                     break
                 }
                 case "FunctionDeclaration": {
@@ -41,62 +41,24 @@ export function build<Annotation>(
                     break
                 }
                 case "EndOfFileToken": {
-                    const callback = ($: tast.TEndOfFileToken<Annotation>) => {
-                        temp.push(["EndOfFileToken", $])
-                    }
-                    pr.cc(null, (_) => {})
+                    _EndOfFileToken(
+                        $,
+                        ($) => { temp.push(["EndOfFileToken", $]) },
+                    )
                     break
                 }
                 case "ExportDeclaration": {
-                    const callback = ($: tast.TExportDeclaration<Annotation>) => {
-                        temp.push(["ExportDeclaration", $])
-                    }
-                    pr.cc(null, (_) => {
-                        const temp: tast.CExportDeclaration<Annotation>[] = []
-                        const $parent = $
-                        $.children.forEach(($) => {
-                            switch ($.kindName) {
-                                case "StringLiteral": {
-                                    _StringLiteral(
-                                        $,
-                                        ($) => { temp.push(["StringLiteral", $]) },
-                                    )
-                                    break
-                                }
-                                default: reportUnexpectedChild({ parent: $parent, child: $, })
-                            }
-                        })
-                        callback({
-                            annotation: $.annotation,
-                            children: temp
-                        })
-                    })
+                    _ExportDeclaration(
+                        $,
+                        ($) => { temp.push(["ExportDeclaration", $]) },
+                    )
                     break
                 }
                 case "ImportDeclaration": {
-                    const callback = ($: tast.TImportDeclaration<Annotation>) => {
-                        temp.push(["ImportDeclaration", $])
-                    }
-                    pr.cc(null, (_) => {
-                        const temp: tast.CImportDeclaration<Annotation>[] = []
-                        const $parent = $
-                        $.children.forEach(($) => {
-                            switch ($.kindName) {
-                                case "StringLiteral": {
-                                    _StringLiteral(
-                                        $,
-                                        ($) => { temp.push(["StringLiteral", $]) },
-                                    )
-                                    break
-                                }
-                                default: reportUnexpectedChild({ parent: $parent, child: $, })
-                            }
-                        })
-                        callback({
-                            annotation: $.annotation,
-                            children: temp
-                        })
-                    })
+                    _ImportDeclaration(
+                        $,
+                        ($) => { temp.push(["ImportDeclaration", $]) },
+                    )
                     break
                 }
                 case "TypeAliasDeclaration": {
@@ -299,10 +261,10 @@ export function build<Annotation>(
                     break
                 }
                 case "NeverKeyword": {
-                    const callback = ($: tast.TNeverKeyword<Annotation>) => {
-                        temp.push(["NeverKeyword", $])
-                    }
-                    pr.cc(null, (_) => {})
+                    _NeverKeyword(
+                        $,
+                        ($) => { temp.push(["NeverKeyword", $]) },
+                    )
                     break
                 }
                 case "TypeLiteral": {
@@ -357,29 +319,10 @@ export function build<Annotation>(
                     break
                 }
                 case "QualifiedName": {
-                    const callback = ($: tast.TQualifiedName<Annotation>) => {
-                        temp.push(["QualifiedName", $])
-                    }
-                    pr.cc(null, (_) => {
-                        const temp: tast.CQualifiedName<Annotation>[] = []
-                        const $parent = $
-                        $.children.forEach(($) => {
-                            switch ($.kindName) {
-                                case "Identifier": {
-                                    _Identifier(
-                                        $,
-                                        ($) => { temp.push(["Identifier", $]) },
-                                    )
-                                    break
-                                }
-                                default: reportUnexpectedChild({ parent: $parent, child: $, })
-                            }
-                        })
-                        callback({
-                            annotation: $.annotation,
-                            children: temp
-                        })
-                    })
+                    _QualifiedName(
+                        $,
+                        ($) => { temp.push(["QualifiedName", $]) },
+                    )
                     break
                 }
                 case "StringKeyword": {
@@ -645,10 +588,10 @@ export function build<Annotation>(
         $.children.forEach(($) => {
             switch ($.kindName) {
                 case "UndefinedKeyword": {
-                    const callback = ($: tast.TUndefinedKeyword<Annotation>) => {
-                        temp.push(["UndefinedKeyword", $])
-                    }
-                    pr.cc(null, (_) => {})
+                    _UndefinedKeyword(
+                        $,
+                        ($) => { temp.push(["UndefinedKeyword", $]) },
+                    )
                     break
                 }
                 case "TypeReference": {
@@ -701,29 +644,10 @@ export function build<Annotation>(
                     break
                 }
                 case "ParenthesizedType": {
-                    const callback = ($: tast.TParenthesizedType<Annotation>) => {
-                        temp.push(["ParenthesizedType", $])
-                    }
-                    pr.cc(null, (_) => {
-                        const temp: tast.CParenthesizedType<Annotation>[] = []
-                        const $parent = $
-                        $.children.forEach(($) => {
-                            switch ($.kindName) {
-                                case "FunctionType": {
-                                    _FunctionType(
-                                        $,
-                                        ($) => { temp.push(["FunctionType", $]) },
-                                    )
-                                    break
-                                }
-                                default: reportUnexpectedChild({ parent: $parent, child: $, })
-                            }
-                        })
-                        callback({
-                            annotation: $.annotation,
-                            children: temp
-                        })
-                    })
+                    _ParenthesizedType(
+                        $,
+                        ($) => { temp.push(["ParenthesizedType", $]) },
+                    )
                     break
                 }
                 default: reportUnexpectedChild({ parent: $parent, child: $, })
@@ -1086,76 +1010,10 @@ export function build<Annotation>(
         $.children.forEach(($) => {
             switch ($.kindName) {
                 case "ThrowStatement": {
-                    const callback = ($: tast.TThrowStatement<Annotation>) => {
-                        temp.push(["ThrowStatement", $])
-                    }
-                    pr.cc(null, (_) => {
-                        const temp: tast.CThrowStatement<Annotation>[] = []
-                        const $parent = $
-                        $.children.forEach(($) => {
-                            switch ($.kindName) {
-                                case "NewExpression": {
-                                    const callback = ($: tast.TNewExpression<Annotation>) => {
-                                        temp.push(["NewExpression", $])
-                                    }
-                                    pr.cc(null, (_) => {
-                                        const temp: tast.CNewExpression<Annotation>[] = []
-                                        const $parent = $
-                                        $.children.forEach(($) => {
-                                            switch ($.kindName) {
-                                                case "Identifier": {
-                                                    _Identifier(
-                                                        $,
-                                                        ($) => { temp.push(["Identifier", $]) },
-                                                    )
-                                                    break
-                                                }
-                                                case "StringLiteral": {
-                                                    _StringLiteral(
-                                                        $,
-                                                        ($) => { temp.push(["StringLiteral", $]) },
-                                                    )
-                                                    break
-                                                }
-                                                case "CallExpression": {
-                                                    _CallExpression(
-                                                        $,
-                                                        ($) => { temp.push(["CallExpression", $]) },
-                                                    )
-                                                    break
-                                                }
-                                                case "TemplateExpression": {
-                                                    _TemplateExpression(
-                                                        $,
-                                                        ($) => { temp.push(["TemplateExpression", $]) },
-                                                    )
-                                                    break
-                                                }
-                                                case "NoSubstitutionTemplateLiteral": {
-                                                    _NoSubstitutionTemplateLiteral(
-                                                        $,
-                                                        ($) => { temp.push(["NoSubstitutionTemplateLiteral", $]) },
-                                                    )
-                                                    break
-                                                }
-                                                default: reportUnexpectedChild({ parent: $parent, child: $, })
-                                            }
-                                        })
-                                        callback({
-                                            annotation: $.annotation,
-                                            children: temp
-                                        })
-                                    })
-                                    break
-                                }
-                                default: reportUnexpectedChild({ parent: $parent, child: $, })
-                            }
-                        })
-                        callback({
-                            annotation: $.annotation,
-                            children: temp
-                        })
-                    })
+                    _ThrowStatement(
+                        $,
+                        ($) => { temp.push(["ThrowStatement", $]) },
+                    )
                     break
                 }
                 case "ReturnStatement": {
@@ -1194,236 +1052,17 @@ export function build<Annotation>(
                     break
                 }
                 case "SwitchStatement": {
-                    const callback = ($: tast.TSwitchStatement<Annotation>) => {
-                        temp.push(["SwitchStatement", $])
-                    }
-                    pr.cc(null, (_) => {
-                        const temp: tast.CSwitchStatement<Annotation>[] = []
-                        const $parent = $
-                        $.children.forEach(($) => {
-                            switch ($.kindName) {
-                                case "ElementAccessExpression": {
-                                    _ElementAccessExpression(
-                                        $,
-                                        ($) => { temp.push(["ElementAccessExpression", $]) },
-                                    )
-                                    break
-                                }
-                                case "CaseBlock": {
-                                    const callback = ($: tast.TCaseBlock<Annotation>) => {
-                                        temp.push(["CaseBlock", $])
-                                    }
-                                    pr.cc(null, (_) => {
-                                        const temp: tast.CCaseBlock<Annotation>[] = []
-                                        const $parent = $
-                                        $.children.forEach(($) => {
-                                            switch ($.kindName) {
-                                                case "CaseClause": {
-                                                    const callback = ($: tast.TCaseClause<Annotation>) => {
-                                                        temp.push(["CaseClause", $])
-                                                    }
-                                                    pr.cc(null, (_) => {
-                                                        const temp: tast.CCaseClause<Annotation>[] = []
-                                                        const $parent = $
-                                                        $.children.forEach(($) => {
-                                                            switch ($.kindName) {
-                                                                case "StringLiteral": {
-                                                                    _StringLiteral(
-                                                                        $,
-                                                                        ($) => { temp.push(["StringLiteral", $]) },
-                                                                    )
-                                                                    break
-                                                                }
-                                                                case "ExpressionStatement": {
-                                                                    _ExpressionStatement(
-                                                                        $,
-                                                                        ($) => { temp.push(["ExpressionStatement", $]) },
-                                                                    )
-                                                                    break
-                                                                }
-                                                                case "BreakStatement": {
-                                                                    _BreakStatement(
-                                                                        $,
-                                                                        ($) => { temp.push(["BreakStatement", $]) },
-                                                                    )
-                                                                    break
-                                                                }
-                                                                case "Block": {
-                                                                    _Block(
-                                                                        $,
-                                                                        ($) => { temp.push(["Block", $]) },
-                                                                    )
-                                                                    break
-                                                                }
-                                                                case "ReturnStatement": {
-                                                                    _ReturnStatement(
-                                                                        $,
-                                                                        ($) => { temp.push(["ReturnStatement", $]) },
-                                                                    )
-                                                                    break
-                                                                }
-                                                                case "VariableStatement": {
-                                                                    _VariableStatement(
-                                                                        $,
-                                                                        ($) => { temp.push(["VariableStatement", $]) },
-                                                                    )
-                                                                    break
-                                                                }
-                                                                case "IfStatement": {
-                                                                    _IfStatement(
-                                                                        $,
-                                                                        ($) => { temp.push(["IfStatement", $]) },
-                                                                    )
-                                                                    break
-                                                                }
-                                                                case "PropertyAccessExpression": {
-                                                                    _PropertyAccessExpression(
-                                                                        $,
-                                                                        ($) => { temp.push(["PropertyAccessExpression", $]) },
-                                                                    )
-                                                                    break
-                                                                }
-                                                                default: reportUnexpectedChild({ parent: $parent, child: $, })
-                                                            }
-                                                        })
-                                                        callback({
-                                                            annotation: $.annotation,
-                                                            children: temp
-                                                        })
-                                                    })
-                                                    break
-                                                }
-                                                case "DefaultClause": {
-                                                    const callback = ($: tast.TDefaultClause<Annotation>) => {
-                                                        temp.push(["DefaultClause", $])
-                                                    }
-                                                    pr.cc(null, (_) => {
-                                                        const temp: tast.CDefaultClause<Annotation>[] = []
-                                                        const $parent = $
-                                                        $.children.forEach(($) => {
-                                                            switch ($.kindName) {
-                                                                case "ExpressionStatement": {
-                                                                    _ExpressionStatement(
-                                                                        $,
-                                                                        ($) => { temp.push(["ExpressionStatement", $]) },
-                                                                    )
-                                                                    break
-                                                                }
-                                                                case "ReturnStatement": {
-                                                                    _ReturnStatement(
-                                                                        $,
-                                                                        ($) => { temp.push(["ReturnStatement", $]) },
-                                                                    )
-                                                                    break
-                                                                }
-                                                                case "Block": {
-                                                                    _Block(
-                                                                        $,
-                                                                        ($) => { temp.push(["Block", $]) },
-                                                                    )
-                                                                    break
-                                                                }
-                                                                default: reportUnexpectedChild({ parent: $parent, child: $, })
-                                                            }
-                                                        })
-                                                        callback({
-                                                            annotation: $.annotation,
-                                                            children: temp
-                                                        })
-                                                    })
-                                                    break
-                                                }
-                                                default: reportUnexpectedChild({ parent: $parent, child: $, })
-                                            }
-                                        })
-                                        callback({
-                                            annotation: $.annotation,
-                                            children: temp
-                                        })
-                                    })
-                                    break
-                                }
-                                case "Identifier": {
-                                    _Identifier(
-                                        $,
-                                        ($) => { temp.push(["Identifier", $]) },
-                                    )
-                                    break
-                                }
-                                case "PropertyAccessExpression": {
-                                    _PropertyAccessExpression(
-                                        $,
-                                        ($) => { temp.push(["PropertyAccessExpression", $]) },
-                                    )
-                                    break
-                                }
-                                default: reportUnexpectedChild({ parent: $parent, child: $, })
-                            }
-                        })
-                        callback({
-                            annotation: $.annotation,
-                            children: temp
-                        })
-                    })
+                    _SwitchStatement(
+                        $,
+                        ($) => { temp.push(["SwitchStatement", $]) },
+                    )
                     break
                 }
                 case "TryStatement": {
-                    const callback = ($: tast.TTryStatement<Annotation>) => {
-                        temp.push(["TryStatement", $])
-                    }
-                    pr.cc(null, (_) => {
-                        const temp: tast.CTryStatement<Annotation>[] = []
-                        const $parent = $
-                        $.children.forEach(($) => {
-                            switch ($.kindName) {
-                                case "Block": {
-                                    _Block(
-                                        $,
-                                        ($) => { temp.push(["Block", $]) },
-                                    )
-                                    break
-                                }
-                                case "CatchClause": {
-                                    const callback = ($: tast.TCatchClause<Annotation>) => {
-                                        temp.push(["CatchClause", $])
-                                    }
-                                    pr.cc(null, (_) => {
-                                        const temp: tast.CCatchClause<Annotation>[] = []
-                                        const $parent = $
-                                        $.children.forEach(($) => {
-                                            switch ($.kindName) {
-                                                case "VariableDeclaration": {
-                                                    _VariableDeclaration(
-                                                        $,
-                                                        ($) => { temp.push(["VariableDeclaration", $]) },
-                                                    )
-                                                    break
-                                                }
-                                                case "Block": {
-                                                    _Block(
-                                                        $,
-                                                        ($) => { temp.push(["Block", $]) },
-                                                    )
-                                                    break
-                                                }
-                                                default: reportUnexpectedChild({ parent: $parent, child: $, })
-                                            }
-                                        })
-                                        callback({
-                                            annotation: $.annotation,
-                                            children: temp
-                                        })
-                                    })
-                                    break
-                                }
-                                default: reportUnexpectedChild({ parent: $parent, child: $, })
-                            }
-                        })
-                        callback({
-                            annotation: $.annotation,
-                            children: temp
-                        })
-                    })
+                    _TryStatement(
+                        $,
+                        ($) => { temp.push(["TryStatement", $]) },
+                    )
                     break
                 }
                 case "BreakStatement": {
@@ -1441,43 +1080,10 @@ export function build<Annotation>(
                     break
                 }
                 case "ForStatement": {
-                    const callback = ($: tast.TForStatement<Annotation>) => {
-                        temp.push(["ForStatement", $])
-                    }
-                    pr.cc(null, (_) => {
-                        const temp: tast.CForStatement<Annotation>[] = []
-                        const $parent = $
-                        $.children.forEach(($) => {
-                            switch ($.kindName) {
-                                case "VariableDeclarationList": {
-                                    _VariableDeclarationList(
-                                        $,
-                                        ($) => { temp.push(["VariableDeclarationList", $]) },
-                                    )
-                                    break
-                                }
-                                case "BinaryExpression": {
-                                    _BinaryExpression(
-                                        $,
-                                        ($) => { temp.push(["BinaryExpression", $]) },
-                                    )
-                                    break
-                                }
-                                case "Block": {
-                                    _Block(
-                                        $,
-                                        ($) => { temp.push(["Block", $]) },
-                                    )
-                                    break
-                                }
-                                default: reportUnexpectedChild({ parent: $parent, child: $, })
-                            }
-                        })
-                        callback({
-                            annotation: $.annotation,
-                            children: temp
-                        })
-                    })
+                    _ForStatement(
+                        $,
+                        ($) => { temp.push(["ForStatement", $]) },
+                    )
                     break
                 }
                 case "WhileStatement": {
@@ -1488,36 +1094,10 @@ export function build<Annotation>(
                     break
                 }
                 case "LabeledStatement": {
-                    const callback = ($: tast.TLabeledStatement<Annotation>) => {
-                        temp.push(["LabeledStatement", $])
-                    }
-                    pr.cc(null, (_) => {
-                        const temp: tast.CLabeledStatement<Annotation>[] = []
-                        const $parent = $
-                        $.children.forEach(($) => {
-                            switch ($.kindName) {
-                                case "Identifier": {
-                                    _Identifier(
-                                        $,
-                                        ($) => { temp.push(["Identifier", $]) },
-                                    )
-                                    break
-                                }
-                                case "WhileStatement": {
-                                    _WhileStatement(
-                                        $,
-                                        ($) => { temp.push(["WhileStatement", $]) },
-                                    )
-                                    break
-                                }
-                                default: reportUnexpectedChild({ parent: $parent, child: $, })
-                            }
-                        })
-                        callback({
-                            annotation: $.annotation,
-                            children: temp
-                        })
-                    })
+                    _LabeledStatement(
+                        $,
+                        ($) => { temp.push(["LabeledStatement", $]) },
+                    )
                     break
                 }
                 default: reportUnexpectedChild({ parent: $parent, child: $, })
@@ -1891,10 +1471,10 @@ export function build<Annotation>(
                     break
                 }
                 case "EqualsEqualsEqualsToken": {
-                    const callback = ($: tast.TEqualsEqualsEqualsToken<Annotation>) => {
-                        temp.push(["EqualsEqualsEqualsToken", $])
-                    }
-                    pr.cc(null, (_) => {})
+                    _EqualsEqualsEqualsToken(
+                        $,
+                        ($) => { temp.push(["EqualsEqualsEqualsToken", $]) },
+                    )
                     break
                 }
                 case "NumericLiteral": {
@@ -1905,31 +1485,31 @@ export function build<Annotation>(
                     break
                 }
                 case "AmpersandAmpersandToken": {
-                    const callback = ($: tast.TAmpersandAmpersandToken<Annotation>) => {
-                        temp.push(["AmpersandAmpersandToken", $])
-                    }
-                    pr.cc(null, (_) => {})
+                    _AmpersandAmpersandToken(
+                        $,
+                        ($) => { temp.push(["AmpersandAmpersandToken", $]) },
+                    )
                     break
                 }
                 case "PlusEqualsToken": {
-                    const callback = ($: tast.TPlusEqualsToken<Annotation>) => {
-                        temp.push(["PlusEqualsToken", $])
-                    }
-                    pr.cc(null, (_) => {})
+                    _PlusEqualsToken(
+                        $,
+                        ($) => { temp.push(["PlusEqualsToken", $]) },
+                    )
                     break
                 }
                 case "MinusEqualsToken": {
-                    const callback = ($: tast.TMinusEqualsToken<Annotation>) => {
-                        temp.push(["MinusEqualsToken", $])
-                    }
-                    pr.cc(null, (_) => {})
+                    _MinusEqualsToken(
+                        $,
+                        ($) => { temp.push(["MinusEqualsToken", $]) },
+                    )
                     break
                 }
                 case "EqualsToken": {
-                    const callback = ($: tast.TEqualsToken<Annotation>) => {
-                        temp.push(["EqualsToken", $])
-                    }
-                    pr.cc(null, (_) => {})
+                    _EqualsToken(
+                        $,
+                        ($) => { temp.push(["EqualsToken", $]) },
+                    )
                     break
                 }
                 case "TrueKeyword": {
@@ -1947,10 +1527,10 @@ export function build<Annotation>(
                     break
                 }
                 case "ExclamationEqualsEqualsToken": {
-                    const callback = ($: tast.TExclamationEqualsEqualsToken<Annotation>) => {
-                        temp.push(["ExclamationEqualsEqualsToken", $])
-                    }
-                    pr.cc(null, (_) => {})
+                    _ExclamationEqualsEqualsToken(
+                        $,
+                        ($) => { temp.push(["ExclamationEqualsEqualsToken", $]) },
+                    )
                     break
                 }
                 case "StringLiteral": {
@@ -1961,10 +1541,10 @@ export function build<Annotation>(
                     break
                 }
                 case "PlusToken": {
-                    const callback = ($: tast.TPlusToken<Annotation>) => {
-                        temp.push(["PlusToken", $])
-                    }
-                    pr.cc(null, (_) => {})
+                    _PlusToken(
+                        $,
+                        ($) => { temp.push(["PlusToken", $]) },
+                    )
                     break
                 }
                 case "PropertyAccessExpression": {
@@ -1996,17 +1576,17 @@ export function build<Annotation>(
                     break
                 }
                 case "MinusToken": {
-                    const callback = ($: tast.TMinusToken<Annotation>) => {
-                        temp.push(["MinusToken", $])
-                    }
-                    pr.cc(null, (_) => {})
+                    _MinusToken(
+                        $,
+                        ($) => { temp.push(["MinusToken", $]) },
+                    )
                     break
                 }
                 case "GreaterThanToken": {
-                    const callback = ($: tast.TGreaterThanToken<Annotation>) => {
-                        temp.push(["GreaterThanToken", $])
-                    }
-                    pr.cc(null, (_) => {})
+                    _GreaterThanToken(
+                        $,
+                        ($) => { temp.push(["GreaterThanToken", $]) },
+                    )
                     break
                 }
                 case "CallExpression": {
@@ -2024,17 +1604,17 @@ export function build<Annotation>(
                     break
                 }
                 case "LessThanToken": {
-                    const callback = ($: tast.TLessThanToken<Annotation>) => {
-                        temp.push(["LessThanToken", $])
-                    }
-                    pr.cc(null, (_) => {})
+                    _LessThanToken(
+                        $,
+                        ($) => { temp.push(["LessThanToken", $]) },
+                    )
                     break
                 }
                 case "BarBarToken": {
-                    const callback = ($: tast.TBarBarToken<Annotation>) => {
-                        temp.push(["BarBarToken", $])
-                    }
-                    pr.cc(null, (_) => {})
+                    _BarBarToken(
+                        $,
+                        ($) => { temp.push(["BarBarToken", $]) },
+                    )
                     break
                 }
                 case "ArrayLiteralExpression": {
@@ -2075,36 +1655,10 @@ export function build<Annotation>(
                     break
                 }
                 case "PostfixUnaryExpression": {
-                    const callback = ($: tast.TPostfixUnaryExpression<Annotation>) => {
-                        temp.push(["PostfixUnaryExpression", $])
-                    }
-                    pr.cc(null, (_) => {
-                        const temp: tast.CPostfixUnaryExpression<Annotation>[] = []
-                        const $parent = $
-                        $.children.forEach(($) => {
-                            switch ($.kindName) {
-                                case "Identifier": {
-                                    _Identifier(
-                                        $,
-                                        ($) => { temp.push(["Identifier", $]) },
-                                    )
-                                    break
-                                }
-                                case "PropertyAccessExpression": {
-                                    _PropertyAccessExpression(
-                                        $,
-                                        ($) => { temp.push(["PropertyAccessExpression", $]) },
-                                    )
-                                    break
-                                }
-                                default: reportUnexpectedChild({ parent: $parent, child: $, })
-                            }
-                        })
-                        callback({
-                            annotation: $.annotation,
-                            children: temp
-                        })
-                    })
+                    _PostfixUnaryExpression(
+                        $,
+                        ($) => { temp.push(["PostfixUnaryExpression", $]) },
+                    )
                     break
                 }
                 default: reportUnexpectedChild({ parent: $parent, child: $, })
@@ -2124,148 +1678,10 @@ export function build<Annotation>(
         $.children.forEach(($) => {
             switch ($.kindName) {
                 case "PropertyAssignment": {
-                    const callback = ($: tast.TPropertyAssignment<Annotation>) => {
-                        temp.push(["PropertyAssignment", $])
-                    }
-                    pr.cc(null, (_) => {
-                        const temp: tast.CPropertyAssignment<Annotation>[] = []
-                        const $parent = $
-                        $.children.forEach(($) => {
-                            switch ($.kindName) {
-                                case "Identifier": {
-                                    _Identifier(
-                                        $,
-                                        ($) => { temp.push(["Identifier", $]) },
-                                    )
-                                    break
-                                }
-                                case "ArrowFunction": {
-                                    _ArrowFunction(
-                                        $,
-                                        ($) => { temp.push(["ArrowFunction", $]) },
-                                    )
-                                    break
-                                }
-                                case "PropertyAccessExpression": {
-                                    _PropertyAccessExpression(
-                                        $,
-                                        ($) => { temp.push(["PropertyAccessExpression", $]) },
-                                    )
-                                    break
-                                }
-                                case "StringLiteral": {
-                                    _StringLiteral(
-                                        $,
-                                        ($) => { temp.push(["StringLiteral", $]) },
-                                    )
-                                    break
-                                }
-                                case "ElementAccessExpression": {
-                                    _ElementAccessExpression(
-                                        $,
-                                        ($) => { temp.push(["ElementAccessExpression", $]) },
-                                    )
-                                    break
-                                }
-                                case "ObjectLiteralExpression": {
-                                    _ObjectLiteralExpression(
-                                        $,
-                                        ($) => { temp.push(["ObjectLiteralExpression", $]) },
-                                    )
-                                    break
-                                }
-                                case "CallExpression": {
-                                    _CallExpression(
-                                        $,
-                                        ($) => { temp.push(["CallExpression", $]) },
-                                    )
-                                    break
-                                }
-                                case "NullKeyword": {
-                                    _NullKeyword(
-                                        $,
-                                        ($) => { temp.push(["NullKeyword", $]) },
-                                    )
-                                    break
-                                }
-                                case "PrefixUnaryExpression": {
-                                    _PrefixUnaryExpression(
-                                        $,
-                                        ($) => { temp.push(["PrefixUnaryExpression", $]) },
-                                    )
-                                    break
-                                }
-                                case "FalseKeyword": {
-                                    _FalseKeyword(
-                                        $,
-                                        ($) => { temp.push(["FalseKeyword", $]) },
-                                    )
-                                    break
-                                }
-                                case "TemplateExpression": {
-                                    _TemplateExpression(
-                                        $,
-                                        ($) => { temp.push(["TemplateExpression", $]) },
-                                    )
-                                    break
-                                }
-                                case "TrueKeyword": {
-                                    _TrueKeyword(
-                                        $,
-                                        ($) => { temp.push(["TrueKeyword", $]) },
-                                    )
-                                    break
-                                }
-                                case "ConditionalExpression": {
-                                    _ConditionalExpression(
-                                        $,
-                                        ($) => { temp.push(["ConditionalExpression", $]) },
-                                    )
-                                    break
-                                }
-                                case "ArrayLiteralExpression": {
-                                    _ArrayLiteralExpression(
-                                        $,
-                                        ($) => { temp.push(["ArrayLiteralExpression", $]) },
-                                    )
-                                    break
-                                }
-                                case "NoSubstitutionTemplateLiteral": {
-                                    _NoSubstitutionTemplateLiteral(
-                                        $,
-                                        ($) => { temp.push(["NoSubstitutionTemplateLiteral", $]) },
-                                    )
-                                    break
-                                }
-                                case "BinaryExpression": {
-                                    _BinaryExpression(
-                                        $,
-                                        ($) => { temp.push(["BinaryExpression", $]) },
-                                    )
-                                    break
-                                }
-                                case "ParenthesizedExpression": {
-                                    _ParenthesizedExpression(
-                                        $,
-                                        ($) => { temp.push(["ParenthesizedExpression", $]) },
-                                    )
-                                    break
-                                }
-                                case "NumericLiteral": {
-                                    _NumericLiteral(
-                                        $,
-                                        ($) => { temp.push(["NumericLiteral", $]) },
-                                    )
-                                    break
-                                }
-                                default: reportUnexpectedChild({ parent: $parent, child: $, })
-                            }
-                        })
-                        callback({
-                            annotation: $.annotation,
-                            children: temp
-                        })
-                    })
+                    _PropertyAssignment(
+                        $,
+                        ($) => { temp.push(["PropertyAssignment", $]) },
+                    )
                     break
                 }
                 default: reportUnexpectedChild({ parent: $parent, child: $, })
@@ -2292,10 +1708,10 @@ export function build<Annotation>(
                     break
                 }
                 case "EqualsGreaterThanToken": {
-                    const callback = ($: tast.TEqualsGreaterThanToken<Annotation>) => {
-                        temp.push(["EqualsGreaterThanToken", $])
-                    }
-                    pr.cc(null, (_) => {})
+                    _EqualsGreaterThanToken(
+                        $,
+                        ($) => { temp.push(["EqualsGreaterThanToken", $]) },
+                    )
                     break
                 }
                 case "Block": {
@@ -2704,10 +2120,10 @@ export function build<Annotation>(
                     break
                 }
                 case "IndexSignature": {
-                    const callback = ($: tast.TIndexSignature<Annotation>) => {
-                        temp.push(["IndexSignature", $])
-                    }
-                    pr.cc(null, (_) => {})
+                    _IndexSignature(
+                        $,
+                        ($) => { temp.push(["IndexSignature", $]) },
+                    )
                     break
                 }
                 default: reportUnexpectedChild({ parent: $parent, child: $, })
@@ -2727,85 +2143,17 @@ export function build<Annotation>(
         $.children.forEach(($) => {
             switch ($.kindName) {
                 case "TemplateHead": {
-                    const callback = ($: tast.TTemplateHead<Annotation>) => {
-                        temp.push(["TemplateHead", $])
-                    }
-                    pr.cc(null, (_) => {})
+                    _TemplateHead(
+                        $,
+                        ($) => { temp.push(["TemplateHead", $]) },
+                    )
                     break
                 }
                 case "TemplateSpan": {
-                    const callback = ($: tast.TTemplateSpan<Annotation>) => {
-                        temp.push(["TemplateSpan", $])
-                    }
-                    pr.cc(null, (_) => {
-                        const temp: tast.CTemplateSpan<Annotation>[] = []
-                        const $parent = $
-                        $.children.forEach(($) => {
-                            switch ($.kindName) {
-                                case "PropertyAccessExpression": {
-                                    _PropertyAccessExpression(
-                                        $,
-                                        ($) => { temp.push(["PropertyAccessExpression", $]) },
-                                    )
-                                    break
-                                }
-                                case "TemplateMiddle": {
-                                    const callback = ($: tast.TTemplateMiddle<Annotation>) => {
-                                        temp.push(["TemplateMiddle", $])
-                                    }
-                                    pr.cc(null, (_) => {})
-                                    break
-                                }
-                                case "TemplateTail": {
-                                    const callback = ($: tast.TTemplateTail<Annotation>) => {
-                                        temp.push(["TemplateTail", $])
-                                    }
-                                    pr.cc(null, (_) => {})
-                                    break
-                                }
-                                case "Identifier": {
-                                    _Identifier(
-                                        $,
-                                        ($) => { temp.push(["Identifier", $]) },
-                                    )
-                                    break
-                                }
-                                case "CallExpression": {
-                                    _CallExpression(
-                                        $,
-                                        ($) => { temp.push(["CallExpression", $]) },
-                                    )
-                                    break
-                                }
-                                case "ConditionalExpression": {
-                                    _ConditionalExpression(
-                                        $,
-                                        ($) => { temp.push(["ConditionalExpression", $]) },
-                                    )
-                                    break
-                                }
-                                case "ElementAccessExpression": {
-                                    _ElementAccessExpression(
-                                        $,
-                                        ($) => { temp.push(["ElementAccessExpression", $]) },
-                                    )
-                                    break
-                                }
-                                case "BinaryExpression": {
-                                    _BinaryExpression(
-                                        $,
-                                        ($) => { temp.push(["BinaryExpression", $]) },
-                                    )
-                                    break
-                                }
-                                default: reportUnexpectedChild({ parent: $parent, child: $, })
-                            }
-                        })
-                        callback({
-                            annotation: $.annotation,
-                            children: temp
-                        })
-                    })
+                    _TemplateSpan(
+                        $,
+                        ($) => { temp.push(["TemplateSpan", $]) },
+                    )
                     break
                 }
                 default: reportUnexpectedChild({ parent: $parent, child: $, })
@@ -2869,36 +2217,10 @@ export function build<Annotation>(
         $.children.forEach(($) => {
             switch ($.kindName) {
                 case "OptionalType": {
-                    const callback = ($: tast.TOptionalType<Annotation>) => {
-                        temp.push(["OptionalType", $])
-                    }
-                    pr.cc(null, (_) => {
-                        const temp: tast.COptionalType<Annotation>[] = []
-                        const $parent = $
-                        $.children.forEach(($) => {
-                            switch ($.kindName) {
-                                case "NumberKeyword": {
-                                    _NumberKeyword(
-                                        $,
-                                        ($) => { temp.push(["NumberKeyword", $]) },
-                                    )
-                                    break
-                                }
-                                case "TypeReference": {
-                                    _TypeReference(
-                                        $,
-                                        ($) => { temp.push(["TypeReference", $]) },
-                                    )
-                                    break
-                                }
-                                default: reportUnexpectedChild({ parent: $parent, child: $, })
-                            }
-                        })
-                        callback({
-                            annotation: $.annotation,
-                            children: temp
-                        })
-                    })
+                    _OptionalType(
+                        $,
+                        ($) => { temp.push(["OptionalType", $]) },
+                    )
                     break
                 }
                 case "LiteralType": {
@@ -3011,10 +2333,10 @@ export function build<Annotation>(
                     break
                 }
                 case "ColonToken": {
-                    const callback = ($: tast.TColonToken<Annotation>) => {
-                        temp.push(["ColonToken", $])
-                    }
-                    pr.cc(null, (_) => {})
+                    _ColonToken(
+                        $,
+                        ($) => { temp.push(["ColonToken", $]) },
+                    )
                     break
                 }
                 case "PropertyAccessExpression": {
@@ -3180,5 +2502,1125 @@ export function build<Annotation>(
             children: temp
         })
     }
+    function _InterfaceDeclaration(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TInterfaceDeclaration<Annotation>) => void,
+    ) {
+        const temp: tast.CInterfaceDeclaration<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "Identifier": {
+                    _Identifier(
+                        $,
+                        ($) => { temp.push(["Identifier", $]) },
+                    )
+                    break
+                }
+                case "TypeParameter": {
+                    _TypeParameter(
+                        $,
+                        ($) => { temp.push(["TypeParameter", $]) },
+                    )
+                    break
+                }
+                case "MethodSignature": {
+                    _MethodSignature(
+                        $,
+                        ($) => { temp.push(["MethodSignature", $]) },
+                    )
+                    break
+                }
+                case "MethodSignature": {
+                    _MethodSignature(
+                        $,
+                        ($) => { temp.push(["MethodSignature", $]) },
+                    )
+                    break
+                }
+                case "MethodSignature": {
+                    _MethodSignature(
+                        $,
+                        ($) => { temp.push(["MethodSignature", $]) },
+                    )
+                    break
+                }
+                case "MethodSignature": {
+                    _MethodSignature(
+                        $,
+                        ($) => { temp.push(["MethodSignature", $]) },
+                    )
+                    break
+                }
+                case "PropertySignature": {
+                    _PropertySignature(
+                        $,
+                        ($) => { temp.push(["PropertySignature", $]) },
+                    )
+                    break
+                }
+                case "MethodSignature": {
+                    _MethodSignature(
+                        $,
+                        ($) => { temp.push(["MethodSignature", $]) },
+                    )
+                    break
+                }
+                case "MethodSignature": {
+                    _MethodSignature(
+                        $,
+                        ($) => { temp.push(["MethodSignature", $]) },
+                    )
+                    break
+                }
+                case "MethodSignature": {
+                    _MethodSignature(
+                        $,
+                        ($) => { temp.push(["MethodSignature", $]) },
+                    )
+                    break
+                }
+                case "MethodSignature": {
+                    _MethodSignature(
+                        $,
+                        ($) => { temp.push(["MethodSignature", $]) },
+                    )
+                    break
+                }
+                case "MethodSignature": {
+                    _MethodSignature(
+                        $,
+                        ($) => { temp.push(["MethodSignature", $]) },
+                    )
+                    break
+                }
+                case "IndexSignature": {
+                    _IndexSignature(
+                        $,
+                        ($) => { temp.push(["IndexSignature", $]) },
+                    )
+                    break
+                }
+                case "ConstructSignature": {
+                    _ConstructSignature(
+                        $,
+                        ($) => { temp.push(["ConstructSignature", $]) },
+                    )
+                    break
+                }
+                case "ExportKeyword": {
+                    _ExportKeyword(
+                        $,
+                        ($) => { temp.push(["ExportKeyword", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _QualifiedName(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TQualifiedName<Annotation>) => void,
+    ) {
+        const temp: tast.CQualifiedName<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "Identifier": {
+                    _Identifier(
+                        $,
+                        ($) => { temp.push(["Identifier", $]) },
+                    )
+                    break
+                }
+                case "Identifier": {
+                    _Identifier(
+                        $,
+                        ($) => { temp.push(["Identifier", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _UndefinedKeyword(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TUndefinedKeyword<Annotation>) => void,
+    ) {}
+    function _IndexSignature(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TIndexSignature<Annotation>) => void,
+    ) {
+        const temp: tast.CIndexSignature<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "Parameter": {
+                    _Parameter(
+                        $,
+                        ($) => { temp.push(["Parameter", $]) },
+                    )
+                    break
+                }
+                case "TypeReference": {
+                    _TypeReference(
+                        $,
+                        ($) => { temp.push(["TypeReference", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _ConstructSignature(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TConstructSignature<Annotation>) => void,
+    ) {
+        const temp: tast.CConstructSignature<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "Parameter": {
+                    _Parameter(
+                        $,
+                        ($) => { temp.push(["Parameter", $]) },
+                    )
+                    break
+                }
+                case "TypeReference": {
+                    _TypeReference(
+                        $,
+                        ($) => { temp.push(["TypeReference", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _EndOfFileToken(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TEndOfFileToken<Annotation>) => void,
+    ) {}
+    function _ExportDeclaration(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TExportDeclaration<Annotation>) => void,
+    ) {
+        const temp: tast.CExportDeclaration<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "StringLiteral": {
+                    _StringLiteral(
+                        $,
+                        ($) => { temp.push(["StringLiteral", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _ImportDeclaration(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TImportDeclaration<Annotation>) => void,
+    ) {
+        const temp: tast.CImportDeclaration<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "StringLiteral": {
+                    _StringLiteral(
+                        $,
+                        ($) => { temp.push(["StringLiteral", $]) },
+                    )
+                    break
+                }
+                case "ImportClause": {
+                    _ImportClause(
+                        $,
+                        ($) => { temp.push(["ImportClause", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _ImportClause(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TImportClause<Annotation>) => void,
+    ) {
+        const temp: tast.CImportClause<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "NamespaceImport": {
+                    _NamespaceImport(
+                        $,
+                        ($) => { temp.push(["NamespaceImport", $]) },
+                    )
+                    break
+                }
+                case "NamedImports": {
+                    _NamedImports(
+                        $,
+                        ($) => { temp.push(["NamedImports", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _NamespaceImport(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TNamespaceImport<Annotation>) => void,
+    ) {
+        const temp: tast.CNamespaceImport<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "Identifier": {
+                    _Identifier(
+                        $,
+                        ($) => { temp.push(["Identifier", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _NamedImports(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TNamedImports<Annotation>) => void,
+    ) {
+        const temp: tast.CNamedImports<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "ImportSpecifier": {
+                    _ImportSpecifier(
+                        $,
+                        ($) => { temp.push(["ImportSpecifier", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _ImportSpecifier(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TImportSpecifier<Annotation>) => void,
+    ) {
+        const temp: tast.CImportSpecifier<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "Identifier": {
+                    _Identifier(
+                        $,
+                        ($) => { temp.push(["Identifier", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _NeverKeyword(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TNeverKeyword<Annotation>) => void,
+    ) {}
+    function _ParenthesizedType(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TParenthesizedType<Annotation>) => void,
+    ) {
+        const temp: tast.CParenthesizedType<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "FunctionType": {
+                    _FunctionType(
+                        $,
+                        ($) => { temp.push(["FunctionType", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _ThrowStatement(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TThrowStatement<Annotation>) => void,
+    ) {
+        const temp: tast.CThrowStatement<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "NewExpression": {
+                    _NewExpression(
+                        $,
+                        ($) => { temp.push(["NewExpression", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _NewExpression(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TNewExpression<Annotation>) => void,
+    ) {
+        const temp: tast.CNewExpression<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "Identifier": {
+                    _Identifier(
+                        $,
+                        ($) => { temp.push(["Identifier", $]) },
+                    )
+                    break
+                }
+                case "StringLiteral": {
+                    _StringLiteral(
+                        $,
+                        ($) => { temp.push(["StringLiteral", $]) },
+                    )
+                    break
+                }
+                case "CallExpression": {
+                    _CallExpression(
+                        $,
+                        ($) => { temp.push(["CallExpression", $]) },
+                    )
+                    break
+                }
+                case "TemplateExpression": {
+                    _TemplateExpression(
+                        $,
+                        ($) => { temp.push(["TemplateExpression", $]) },
+                    )
+                    break
+                }
+                case "NoSubstitutionTemplateLiteral": {
+                    _NoSubstitutionTemplateLiteral(
+                        $,
+                        ($) => { temp.push(["NoSubstitutionTemplateLiteral", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _SwitchStatement(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TSwitchStatement<Annotation>) => void,
+    ) {
+        const temp: tast.CSwitchStatement<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "ElementAccessExpression": {
+                    _ElementAccessExpression(
+                        $,
+                        ($) => { temp.push(["ElementAccessExpression", $]) },
+                    )
+                    break
+                }
+                case "CaseBlock": {
+                    _CaseBlock(
+                        $,
+                        ($) => { temp.push(["CaseBlock", $]) },
+                    )
+                    break
+                }
+                case "Identifier": {
+                    _Identifier(
+                        $,
+                        ($) => { temp.push(["Identifier", $]) },
+                    )
+                    break
+                }
+                case "PropertyAccessExpression": {
+                    _PropertyAccessExpression(
+                        $,
+                        ($) => { temp.push(["PropertyAccessExpression", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _CaseBlock(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TCaseBlock<Annotation>) => void,
+    ) {
+        const temp: tast.CCaseBlock<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "CaseClause": {
+                    _CaseClause(
+                        $,
+                        ($) => { temp.push(["CaseClause", $]) },
+                    )
+                    break
+                }
+                case "DefaultClause": {
+                    _DefaultClause(
+                        $,
+                        ($) => { temp.push(["DefaultClause", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _CaseClause(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TCaseClause<Annotation>) => void,
+    ) {
+        const temp: tast.CCaseClause<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "StringLiteral": {
+                    _StringLiteral(
+                        $,
+                        ($) => { temp.push(["StringLiteral", $]) },
+                    )
+                    break
+                }
+                case "ExpressionStatement": {
+                    _ExpressionStatement(
+                        $,
+                        ($) => { temp.push(["ExpressionStatement", $]) },
+                    )
+                    break
+                }
+                case "BreakStatement": {
+                    _BreakStatement(
+                        $,
+                        ($) => { temp.push(["BreakStatement", $]) },
+                    )
+                    break
+                }
+                case "Block": {
+                    _Block(
+                        $,
+                        ($) => { temp.push(["Block", $]) },
+                    )
+                    break
+                }
+                case "ReturnStatement": {
+                    _ReturnStatement(
+                        $,
+                        ($) => { temp.push(["ReturnStatement", $]) },
+                    )
+                    break
+                }
+                case "VariableStatement": {
+                    _VariableStatement(
+                        $,
+                        ($) => { temp.push(["VariableStatement", $]) },
+                    )
+                    break
+                }
+                case "IfStatement": {
+                    _IfStatement(
+                        $,
+                        ($) => { temp.push(["IfStatement", $]) },
+                    )
+                    break
+                }
+                case "PropertyAccessExpression": {
+                    _PropertyAccessExpression(
+                        $,
+                        ($) => { temp.push(["PropertyAccessExpression", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _DefaultClause(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TDefaultClause<Annotation>) => void,
+    ) {
+        const temp: tast.CDefaultClause<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "ExpressionStatement": {
+                    _ExpressionStatement(
+                        $,
+                        ($) => { temp.push(["ExpressionStatement", $]) },
+                    )
+                    break
+                }
+                case "ReturnStatement": {
+                    _ReturnStatement(
+                        $,
+                        ($) => { temp.push(["ReturnStatement", $]) },
+                    )
+                    break
+                }
+                case "Block": {
+                    _Block(
+                        $,
+                        ($) => { temp.push(["Block", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _TryStatement(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TTryStatement<Annotation>) => void,
+    ) {
+        const temp: tast.CTryStatement<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "Block": {
+                    _Block(
+                        $,
+                        ($) => { temp.push(["Block", $]) },
+                    )
+                    break
+                }
+                case "CatchClause": {
+                    _CatchClause(
+                        $,
+                        ($) => { temp.push(["CatchClause", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _CatchClause(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TCatchClause<Annotation>) => void,
+    ) {
+        const temp: tast.CCatchClause<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "VariableDeclaration": {
+                    _VariableDeclaration(
+                        $,
+                        ($) => { temp.push(["VariableDeclaration", $]) },
+                    )
+                    break
+                }
+                case "Block": {
+                    _Block(
+                        $,
+                        ($) => { temp.push(["Block", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _ForStatement(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TForStatement<Annotation>) => void,
+    ) {
+        const temp: tast.CForStatement<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "VariableDeclarationList": {
+                    _VariableDeclarationList(
+                        $,
+                        ($) => { temp.push(["VariableDeclarationList", $]) },
+                    )
+                    break
+                }
+                case "BinaryExpression": {
+                    _BinaryExpression(
+                        $,
+                        ($) => { temp.push(["BinaryExpression", $]) },
+                    )
+                    break
+                }
+                case "Block": {
+                    _Block(
+                        $,
+                        ($) => { temp.push(["Block", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _LabeledStatement(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TLabeledStatement<Annotation>) => void,
+    ) {
+        const temp: tast.CLabeledStatement<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "Identifier": {
+                    _Identifier(
+                        $,
+                        ($) => { temp.push(["Identifier", $]) },
+                    )
+                    break
+                }
+                case "WhileStatement": {
+                    _WhileStatement(
+                        $,
+                        ($) => { temp.push(["WhileStatement", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _EqualsEqualsEqualsToken(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TEqualsEqualsEqualsToken<Annotation>) => void,
+    ) {}
+    function _AmpersandAmpersandToken(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TAmpersandAmpersandToken<Annotation>) => void,
+    ) {}
+    function _PlusEqualsToken(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TPlusEqualsToken<Annotation>) => void,
+    ) {}
+    function _MinusEqualsToken(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TMinusEqualsToken<Annotation>) => void,
+    ) {}
+    function _EqualsToken(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TEqualsToken<Annotation>) => void,
+    ) {}
+    function _ExclamationEqualsEqualsToken(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TExclamationEqualsEqualsToken<Annotation>) => void,
+    ) {}
+    function _PlusToken(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TPlusToken<Annotation>) => void,
+    ) {}
+    function _MinusToken(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TMinusToken<Annotation>) => void,
+    ) {}
+    function _GreaterThanToken(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TGreaterThanToken<Annotation>) => void,
+    ) {}
+    function _LessThanToken(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TLessThanToken<Annotation>) => void,
+    ) {}
+    function _BarBarToken(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TBarBarToken<Annotation>) => void,
+    ) {}
+    function _PostfixUnaryExpression(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TPostfixUnaryExpression<Annotation>) => void,
+    ) {
+        const temp: tast.CPostfixUnaryExpression<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "Identifier": {
+                    _Identifier(
+                        $,
+                        ($) => { temp.push(["Identifier", $]) },
+                    )
+                    break
+                }
+                case "PropertyAccessExpression": {
+                    _PropertyAccessExpression(
+                        $,
+                        ($) => { temp.push(["PropertyAccessExpression", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _PropertyAssignment(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TPropertyAssignment<Annotation>) => void,
+    ) {
+        const temp: tast.CPropertyAssignment<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "Identifier": {
+                    _Identifier(
+                        $,
+                        ($) => { temp.push(["Identifier", $]) },
+                    )
+                    break
+                }
+                case "ArrowFunction": {
+                    _ArrowFunction(
+                        $,
+                        ($) => { temp.push(["ArrowFunction", $]) },
+                    )
+                    break
+                }
+                case "PropertyAccessExpression": {
+                    _PropertyAccessExpression(
+                        $,
+                        ($) => { temp.push(["PropertyAccessExpression", $]) },
+                    )
+                    break
+                }
+                case "StringLiteral": {
+                    _StringLiteral(
+                        $,
+                        ($) => { temp.push(["StringLiteral", $]) },
+                    )
+                    break
+                }
+                case "ElementAccessExpression": {
+                    _ElementAccessExpression(
+                        $,
+                        ($) => { temp.push(["ElementAccessExpression", $]) },
+                    )
+                    break
+                }
+                case "ObjectLiteralExpression": {
+                    _ObjectLiteralExpression(
+                        $,
+                        ($) => { temp.push(["ObjectLiteralExpression", $]) },
+                    )
+                    break
+                }
+                case "CallExpression": {
+                    _CallExpression(
+                        $,
+                        ($) => { temp.push(["CallExpression", $]) },
+                    )
+                    break
+                }
+                case "NullKeyword": {
+                    _NullKeyword(
+                        $,
+                        ($) => { temp.push(["NullKeyword", $]) },
+                    )
+                    break
+                }
+                case "PrefixUnaryExpression": {
+                    _PrefixUnaryExpression(
+                        $,
+                        ($) => { temp.push(["PrefixUnaryExpression", $]) },
+                    )
+                    break
+                }
+                case "FalseKeyword": {
+                    _FalseKeyword(
+                        $,
+                        ($) => { temp.push(["FalseKeyword", $]) },
+                    )
+                    break
+                }
+                case "TemplateExpression": {
+                    _TemplateExpression(
+                        $,
+                        ($) => { temp.push(["TemplateExpression", $]) },
+                    )
+                    break
+                }
+                case "TrueKeyword": {
+                    _TrueKeyword(
+                        $,
+                        ($) => { temp.push(["TrueKeyword", $]) },
+                    )
+                    break
+                }
+                case "ConditionalExpression": {
+                    _ConditionalExpression(
+                        $,
+                        ($) => { temp.push(["ConditionalExpression", $]) },
+                    )
+                    break
+                }
+                case "ArrayLiteralExpression": {
+                    _ArrayLiteralExpression(
+                        $,
+                        ($) => { temp.push(["ArrayLiteralExpression", $]) },
+                    )
+                    break
+                }
+                case "NoSubstitutionTemplateLiteral": {
+                    _NoSubstitutionTemplateLiteral(
+                        $,
+                        ($) => { temp.push(["NoSubstitutionTemplateLiteral", $]) },
+                    )
+                    break
+                }
+                case "BinaryExpression": {
+                    _BinaryExpression(
+                        $,
+                        ($) => { temp.push(["BinaryExpression", $]) },
+                    )
+                    break
+                }
+                case "ParenthesizedExpression": {
+                    _ParenthesizedExpression(
+                        $,
+                        ($) => { temp.push(["ParenthesizedExpression", $]) },
+                    )
+                    break
+                }
+                case "NumericLiteral": {
+                    _NumericLiteral(
+                        $,
+                        ($) => { temp.push(["NumericLiteral", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _EqualsGreaterThanToken(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TEqualsGreaterThanToken<Annotation>) => void,
+    ) {}
+    function _TemplateHead(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TTemplateHead<Annotation>) => void,
+    ) {}
+    function _TemplateSpan(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TTemplateSpan<Annotation>) => void,
+    ) {
+        const temp: tast.CTemplateSpan<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "PropertyAccessExpression": {
+                    _PropertyAccessExpression(
+                        $,
+                        ($) => { temp.push(["PropertyAccessExpression", $]) },
+                    )
+                    break
+                }
+                case "TemplateMiddle": {
+                    _TemplateMiddle(
+                        $,
+                        ($) => { temp.push(["TemplateMiddle", $]) },
+                    )
+                    break
+                }
+                case "TemplateTail": {
+                    _TemplateTail(
+                        $,
+                        ($) => { temp.push(["TemplateTail", $]) },
+                    )
+                    break
+                }
+                case "Identifier": {
+                    _Identifier(
+                        $,
+                        ($) => { temp.push(["Identifier", $]) },
+                    )
+                    break
+                }
+                case "CallExpression": {
+                    _CallExpression(
+                        $,
+                        ($) => { temp.push(["CallExpression", $]) },
+                    )
+                    break
+                }
+                case "ConditionalExpression": {
+                    _ConditionalExpression(
+                        $,
+                        ($) => { temp.push(["ConditionalExpression", $]) },
+                    )
+                    break
+                }
+                case "ElementAccessExpression": {
+                    _ElementAccessExpression(
+                        $,
+                        ($) => { temp.push(["ElementAccessExpression", $]) },
+                    )
+                    break
+                }
+                case "BinaryExpression": {
+                    _BinaryExpression(
+                        $,
+                        ($) => { temp.push(["BinaryExpression", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _TemplateMiddle(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TTemplateMiddle<Annotation>) => void,
+    ) {}
+    function _TemplateTail(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TTemplateTail<Annotation>) => void,
+    ) {}
+    function _OptionalType(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TOptionalType<Annotation>) => void,
+    ) {
+        const temp: tast.COptionalType<Annotation>[] = []
+        const $parent = $
+        $.children.forEach(($) => {
+            switch ($.kindName) {
+                case "NumberKeyword": {
+                    _NumberKeyword(
+                        $,
+                        ($) => { temp.push(["NumberKeyword", $]) },
+                    )
+                    break
+                }
+                case "TypeReference": {
+                    _TypeReference(
+                        $,
+                        ($) => { temp.push(["TypeReference", $]) },
+                    )
+                    break
+                }
+                default: reportUnexpectedChild({ parent: $parent, child: $, })
+            }
+        })
+        callback({
+            annotation: $.annotation,
+            children: temp
+        })
+    }
+    function _ColonToken(
+        $: uast.Node<Annotation>,
+        callback: ($: tast.TColonToken<Annotation>) => void,
+    ) {}
     return _SourceFile($, callback)
 }

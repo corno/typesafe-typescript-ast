@@ -13,9 +13,7 @@ export function visit<Annotation>(
             switch ($[0]) {
                 case "InterfaceDeclaration": {
                     pr.cc($[1], ($) => {
-                        //report($.annotation)//LEAF
-                        //FIXME
-
+                        _InterfaceDeclaration($)
                     })
                     break
                 }
@@ -33,45 +31,19 @@ export function visit<Annotation>(
                 }
                 case "EndOfFileToken": {
                     pr.cc($[1], ($) => {
-                        //report($.annotation)//LEAF
-                        //FIXME
-
+                        _EndOfFileToken($)
                     })
                     break
                 }
                 case "ExportDeclaration": {
                     pr.cc($[1], ($) => {
-                        report($.annotation)
-                        $.children.forEach(($) => {
-                            switch ($[0]) {
-                                case "StringLiteral": {
-                                    pr.cc($[1], ($) => {
-                                        _StringLiteral($)
-                                    })
-                                    break
-                                }
-                                default: pr.au($[0])
-                            }
-                        })
-
+                        _ExportDeclaration($)
                     })
                     break
                 }
                 case "ImportDeclaration": {
                     pr.cc($[1], ($) => {
-                        report($.annotation)
-                        $.children.forEach(($) => {
-                            switch ($[0]) {
-                                case "StringLiteral": {
-                                    pr.cc($[1], ($) => {
-                                        _StringLiteral($)
-                                    })
-                                    break
-                                }
-                                default: pr.au($[0])
-                            }
-                        })
-
+                        _ImportDeclaration($)
                     })
                     break
                 }
@@ -239,9 +211,7 @@ export function visit<Annotation>(
                 }
                 case "NeverKeyword": {
                     pr.cc($[1], ($) => {
-                        //report($.annotation)//LEAF
-                        //FIXME
-
+                        _NeverKeyword($)
                     })
                     break
                 }
@@ -287,19 +257,7 @@ export function visit<Annotation>(
                 }
                 case "QualifiedName": {
                     pr.cc($[1], ($) => {
-                        report($.annotation)
-                        $.children.forEach(($) => {
-                            switch ($[0]) {
-                                case "Identifier": {
-                                    pr.cc($[1], ($) => {
-                                        _Identifier($)
-                                    })
-                                    break
-                                }
-                                default: pr.au($[0])
-                            }
-                        })
-
+                        _QualifiedName($)
                     })
                     break
                 }
@@ -525,9 +483,7 @@ export function visit<Annotation>(
             switch ($[0]) {
                 case "UndefinedKeyword": {
                     pr.cc($[1], ($) => {
-                        //report($.annotation)//LEAF
-                        //FIXME
-
+                        _UndefinedKeyword($)
                     })
                     break
                 }
@@ -575,19 +531,7 @@ export function visit<Annotation>(
                 }
                 case "ParenthesizedType": {
                     pr.cc($[1], ($) => {
-                        report($.annotation)
-                        $.children.forEach(($) => {
-                            switch ($[0]) {
-                                case "FunctionType": {
-                                    pr.cc($[1], ($) => {
-                                        _FunctionType($)
-                                    })
-                                    break
-                                }
-                                default: pr.au($[0])
-                            }
-                        })
-
+                        _ParenthesizedType($)
                     })
                     break
                 }
@@ -895,55 +839,7 @@ export function visit<Annotation>(
             switch ($[0]) {
                 case "ThrowStatement": {
                     pr.cc($[1], ($) => {
-                        report($.annotation)
-                        $.children.forEach(($) => {
-                            switch ($[0]) {
-                                case "NewExpression": {
-                                    pr.cc($[1], ($) => {
-                                        report($.annotation)
-                                        $.children.forEach(($) => {
-                                            switch ($[0]) {
-                                                case "Identifier": {
-                                                    pr.cc($[1], ($) => {
-                                                        _Identifier($)
-                                                    })
-                                                    break
-                                                }
-                                                case "StringLiteral": {
-                                                    pr.cc($[1], ($) => {
-                                                        _StringLiteral($)
-                                                    })
-                                                    break
-                                                }
-                                                case "CallExpression": {
-                                                    pr.cc($[1], ($) => {
-                                                        _CallExpression($)
-                                                    })
-                                                    break
-                                                }
-                                                case "TemplateExpression": {
-                                                    pr.cc($[1], ($) => {
-                                                        _TemplateExpression($)
-                                                    })
-                                                    break
-                                                }
-                                                case "NoSubstitutionTemplateLiteral": {
-                                                    pr.cc($[1], ($) => {
-                                                        _NoSubstitutionTemplateLiteral($)
-                                                    })
-                                                    break
-                                                }
-                                                default: pr.au($[0])
-                                            }
-                                        })
-
-                                    })
-                                    break
-                                }
-                                default: pr.au($[0])
-                            }
-                        })
-
+                        _ThrowStatement($)
                     })
                     break
                 }
@@ -979,175 +875,13 @@ export function visit<Annotation>(
                 }
                 case "SwitchStatement": {
                     pr.cc($[1], ($) => {
-                        report($.annotation)
-                        $.children.forEach(($) => {
-                            switch ($[0]) {
-                                case "ElementAccessExpression": {
-                                    pr.cc($[1], ($) => {
-                                        _ElementAccessExpression($)
-                                    })
-                                    break
-                                }
-                                case "CaseBlock": {
-                                    pr.cc($[1], ($) => {
-                                        report($.annotation)
-                                        $.children.forEach(($) => {
-                                            switch ($[0]) {
-                                                case "CaseClause": {
-                                                    pr.cc($[1], ($) => {
-                                                        report($.annotation)
-                                                        $.children.forEach(($) => {
-                                                            switch ($[0]) {
-                                                                case "StringLiteral": {
-                                                                    pr.cc($[1], ($) => {
-                                                                        _StringLiteral($)
-                                                                    })
-                                                                    break
-                                                                }
-                                                                case "ExpressionStatement": {
-                                                                    pr.cc($[1], ($) => {
-                                                                        _ExpressionStatement($)
-                                                                    })
-                                                                    break
-                                                                }
-                                                                case "BreakStatement": {
-                                                                    pr.cc($[1], ($) => {
-                                                                        _BreakStatement($)
-                                                                    })
-                                                                    break
-                                                                }
-                                                                case "Block": {
-                                                                    pr.cc($[1], ($) => {
-                                                                        _Block($)
-                                                                    })
-                                                                    break
-                                                                }
-                                                                case "ReturnStatement": {
-                                                                    pr.cc($[1], ($) => {
-                                                                        _ReturnStatement($)
-                                                                    })
-                                                                    break
-                                                                }
-                                                                case "VariableStatement": {
-                                                                    pr.cc($[1], ($) => {
-                                                                        _VariableStatement($)
-                                                                    })
-                                                                    break
-                                                                }
-                                                                case "IfStatement": {
-                                                                    pr.cc($[1], ($) => {
-                                                                        _IfStatement($)
-                                                                    })
-                                                                    break
-                                                                }
-                                                                case "PropertyAccessExpression": {
-                                                                    pr.cc($[1], ($) => {
-                                                                        _PropertyAccessExpression($)
-                                                                    })
-                                                                    break
-                                                                }
-                                                                default: pr.au($[0])
-                                                            }
-                                                        })
-
-                                                    })
-                                                    break
-                                                }
-                                                case "DefaultClause": {
-                                                    pr.cc($[1], ($) => {
-                                                        report($.annotation)
-                                                        $.children.forEach(($) => {
-                                                            switch ($[0]) {
-                                                                case "ExpressionStatement": {
-                                                                    pr.cc($[1], ($) => {
-                                                                        _ExpressionStatement($)
-                                                                    })
-                                                                    break
-                                                                }
-                                                                case "ReturnStatement": {
-                                                                    pr.cc($[1], ($) => {
-                                                                        _ReturnStatement($)
-                                                                    })
-                                                                    break
-                                                                }
-                                                                case "Block": {
-                                                                    pr.cc($[1], ($) => {
-                                                                        _Block($)
-                                                                    })
-                                                                    break
-                                                                }
-                                                                default: pr.au($[0])
-                                                            }
-                                                        })
-
-                                                    })
-                                                    break
-                                                }
-                                                default: pr.au($[0])
-                                            }
-                                        })
-
-                                    })
-                                    break
-                                }
-                                case "Identifier": {
-                                    pr.cc($[1], ($) => {
-                                        _Identifier($)
-                                    })
-                                    break
-                                }
-                                case "PropertyAccessExpression": {
-                                    pr.cc($[1], ($) => {
-                                        _PropertyAccessExpression($)
-                                    })
-                                    break
-                                }
-                                default: pr.au($[0])
-                            }
-                        })
-
+                        _SwitchStatement($)
                     })
                     break
                 }
                 case "TryStatement": {
                     pr.cc($[1], ($) => {
-                        report($.annotation)
-                        $.children.forEach(($) => {
-                            switch ($[0]) {
-                                case "Block": {
-                                    pr.cc($[1], ($) => {
-                                        _Block($)
-                                    })
-                                    break
-                                }
-                                case "CatchClause": {
-                                    pr.cc($[1], ($) => {
-                                        report($.annotation)
-                                        $.children.forEach(($) => {
-                                            switch ($[0]) {
-                                                case "VariableDeclaration": {
-                                                    pr.cc($[1], ($) => {
-                                                        _VariableDeclaration($)
-                                                    })
-                                                    break
-                                                }
-                                                case "Block": {
-                                                    pr.cc($[1], ($) => {
-                                                        _Block($)
-                                                    })
-                                                    break
-                                                }
-                                                default: pr.au($[0])
-                                            }
-                                        })
-
-                                    })
-                                    break
-                                }
-                                default: pr.au($[0])
-                            }
-                        })
-
+                        _TryStatement($)
                     })
                     break
                 }
@@ -1165,31 +899,7 @@ export function visit<Annotation>(
                 }
                 case "ForStatement": {
                     pr.cc($[1], ($) => {
-                        report($.annotation)
-                        $.children.forEach(($) => {
-                            switch ($[0]) {
-                                case "VariableDeclarationList": {
-                                    pr.cc($[1], ($) => {
-                                        _VariableDeclarationList($)
-                                    })
-                                    break
-                                }
-                                case "BinaryExpression": {
-                                    pr.cc($[1], ($) => {
-                                        _BinaryExpression($)
-                                    })
-                                    break
-                                }
-                                case "Block": {
-                                    pr.cc($[1], ($) => {
-                                        _Block($)
-                                    })
-                                    break
-                                }
-                                default: pr.au($[0])
-                            }
-                        })
-
+                        _ForStatement($)
                     })
                     break
                 }
@@ -1201,25 +911,7 @@ export function visit<Annotation>(
                 }
                 case "LabeledStatement": {
                     pr.cc($[1], ($) => {
-                        report($.annotation)
-                        $.children.forEach(($) => {
-                            switch ($[0]) {
-                                case "Identifier": {
-                                    pr.cc($[1], ($) => {
-                                        _Identifier($)
-                                    })
-                                    break
-                                }
-                                case "WhileStatement": {
-                                    pr.cc($[1], ($) => {
-                                        _WhileStatement($)
-                                    })
-                                    break
-                                }
-                                default: pr.au($[0])
-                            }
-                        })
-
+                        _LabeledStatement($)
                     })
                     break
                 }
@@ -1535,9 +1227,7 @@ export function visit<Annotation>(
                 }
                 case "EqualsEqualsEqualsToken": {
                     pr.cc($[1], ($) => {
-                        //report($.annotation)//LEAF
-                        //FIXME
-
+                        _EqualsEqualsEqualsToken($)
                     })
                     break
                 }
@@ -1549,33 +1239,25 @@ export function visit<Annotation>(
                 }
                 case "AmpersandAmpersandToken": {
                     pr.cc($[1], ($) => {
-                        //report($.annotation)//LEAF
-                        //FIXME
-
+                        _AmpersandAmpersandToken($)
                     })
                     break
                 }
                 case "PlusEqualsToken": {
                     pr.cc($[1], ($) => {
-                        //report($.annotation)//LEAF
-                        //FIXME
-
+                        _PlusEqualsToken($)
                     })
                     break
                 }
                 case "MinusEqualsToken": {
                     pr.cc($[1], ($) => {
-                        //report($.annotation)//LEAF
-                        //FIXME
-
+                        _MinusEqualsToken($)
                     })
                     break
                 }
                 case "EqualsToken": {
                     pr.cc($[1], ($) => {
-                        //report($.annotation)//LEAF
-                        //FIXME
-
+                        _EqualsToken($)
                     })
                     break
                 }
@@ -1593,9 +1275,7 @@ export function visit<Annotation>(
                 }
                 case "ExclamationEqualsEqualsToken": {
                     pr.cc($[1], ($) => {
-                        //report($.annotation)//LEAF
-                        //FIXME
-
+                        _ExclamationEqualsEqualsToken($)
                     })
                     break
                 }
@@ -1607,9 +1287,7 @@ export function visit<Annotation>(
                 }
                 case "PlusToken": {
                     pr.cc($[1], ($) => {
-                        //report($.annotation)//LEAF
-                        //FIXME
-
+                        _PlusToken($)
                     })
                     break
                 }
@@ -1639,17 +1317,13 @@ export function visit<Annotation>(
                 }
                 case "MinusToken": {
                     pr.cc($[1], ($) => {
-                        //report($.annotation)//LEAF
-                        //FIXME
-
+                        _MinusToken($)
                     })
                     break
                 }
                 case "GreaterThanToken": {
                     pr.cc($[1], ($) => {
-                        //report($.annotation)//LEAF
-                        //FIXME
-
+                        _GreaterThanToken($)
                     })
                     break
                 }
@@ -1667,17 +1341,13 @@ export function visit<Annotation>(
                 }
                 case "LessThanToken": {
                     pr.cc($[1], ($) => {
-                        //report($.annotation)//LEAF
-                        //FIXME
-
+                        _LessThanToken($)
                     })
                     break
                 }
                 case "BarBarToken": {
                     pr.cc($[1], ($) => {
-                        //report($.annotation)//LEAF
-                        //FIXME
-
+                        _BarBarToken($)
                     })
                     break
                 }
@@ -1711,25 +1381,7 @@ export function visit<Annotation>(
                 }
                 case "PostfixUnaryExpression": {
                     pr.cc($[1], ($) => {
-                        report($.annotation)
-                        $.children.forEach(($) => {
-                            switch ($[0]) {
-                                case "Identifier": {
-                                    pr.cc($[1], ($) => {
-                                        _Identifier($)
-                                    })
-                                    break
-                                }
-                                case "PropertyAccessExpression": {
-                                    pr.cc($[1], ($) => {
-                                        _PropertyAccessExpression($)
-                                    })
-                                    break
-                                }
-                                default: pr.au($[0])
-                            }
-                        })
-
+                        _PostfixUnaryExpression($)
                     })
                     break
                 }
@@ -1745,121 +1397,7 @@ export function visit<Annotation>(
             switch ($[0]) {
                 case "PropertyAssignment": {
                     pr.cc($[1], ($) => {
-                        report($.annotation)
-                        $.children.forEach(($) => {
-                            switch ($[0]) {
-                                case "Identifier": {
-                                    pr.cc($[1], ($) => {
-                                        _Identifier($)
-                                    })
-                                    break
-                                }
-                                case "ArrowFunction": {
-                                    pr.cc($[1], ($) => {
-                                        _ArrowFunction($)
-                                    })
-                                    break
-                                }
-                                case "PropertyAccessExpression": {
-                                    pr.cc($[1], ($) => {
-                                        _PropertyAccessExpression($)
-                                    })
-                                    break
-                                }
-                                case "StringLiteral": {
-                                    pr.cc($[1], ($) => {
-                                        _StringLiteral($)
-                                    })
-                                    break
-                                }
-                                case "ElementAccessExpression": {
-                                    pr.cc($[1], ($) => {
-                                        _ElementAccessExpression($)
-                                    })
-                                    break
-                                }
-                                case "ObjectLiteralExpression": {
-                                    pr.cc($[1], ($) => {
-                                        _ObjectLiteralExpression($)
-                                    })
-                                    break
-                                }
-                                case "CallExpression": {
-                                    pr.cc($[1], ($) => {
-                                        _CallExpression($)
-                                    })
-                                    break
-                                }
-                                case "NullKeyword": {
-                                    pr.cc($[1], ($) => {
-                                        _NullKeyword($)
-                                    })
-                                    break
-                                }
-                                case "PrefixUnaryExpression": {
-                                    pr.cc($[1], ($) => {
-                                        _PrefixUnaryExpression($)
-                                    })
-                                    break
-                                }
-                                case "FalseKeyword": {
-                                    pr.cc($[1], ($) => {
-                                        _FalseKeyword($)
-                                    })
-                                    break
-                                }
-                                case "TemplateExpression": {
-                                    pr.cc($[1], ($) => {
-                                        _TemplateExpression($)
-                                    })
-                                    break
-                                }
-                                case "TrueKeyword": {
-                                    pr.cc($[1], ($) => {
-                                        _TrueKeyword($)
-                                    })
-                                    break
-                                }
-                                case "ConditionalExpression": {
-                                    pr.cc($[1], ($) => {
-                                        _ConditionalExpression($)
-                                    })
-                                    break
-                                }
-                                case "ArrayLiteralExpression": {
-                                    pr.cc($[1], ($) => {
-                                        _ArrayLiteralExpression($)
-                                    })
-                                    break
-                                }
-                                case "NoSubstitutionTemplateLiteral": {
-                                    pr.cc($[1], ($) => {
-                                        _NoSubstitutionTemplateLiteral($)
-                                    })
-                                    break
-                                }
-                                case "BinaryExpression": {
-                                    pr.cc($[1], ($) => {
-                                        _BinaryExpression($)
-                                    })
-                                    break
-                                }
-                                case "ParenthesizedExpression": {
-                                    pr.cc($[1], ($) => {
-                                        _ParenthesizedExpression($)
-                                    })
-                                    break
-                                }
-                                case "NumericLiteral": {
-                                    pr.cc($[1], ($) => {
-                                        _NumericLiteral($)
-                                    })
-                                    break
-                                }
-                                default: pr.au($[0])
-                            }
-                        })
-
+                        _PropertyAssignment($)
                     })
                     break
                 }
@@ -1881,9 +1419,7 @@ export function visit<Annotation>(
                 }
                 case "EqualsGreaterThanToken": {
                     pr.cc($[1], ($) => {
-                        //report($.annotation)//LEAF
-                        //FIXME
-
+                        _EqualsGreaterThanToken($)
                     })
                     break
                 }
@@ -2219,9 +1755,7 @@ export function visit<Annotation>(
                 }
                 case "IndexSignature": {
                     pr.cc($[1], ($) => {
-                        //report($.annotation)//LEAF
-                        //FIXME
-
+                        _IndexSignature($)
                     })
                     break
                 }
@@ -2237,73 +1771,13 @@ export function visit<Annotation>(
             switch ($[0]) {
                 case "TemplateHead": {
                     pr.cc($[1], ($) => {
-                        //report($.annotation)//LEAF
-                        //FIXME
-
+                        _TemplateHead($)
                     })
                     break
                 }
                 case "TemplateSpan": {
                     pr.cc($[1], ($) => {
-                        report($.annotation)
-                        $.children.forEach(($) => {
-                            switch ($[0]) {
-                                case "PropertyAccessExpression": {
-                                    pr.cc($[1], ($) => {
-                                        _PropertyAccessExpression($)
-                                    })
-                                    break
-                                }
-                                case "TemplateMiddle": {
-                                    pr.cc($[1], ($) => {
-                                        //report($.annotation)//LEAF
-                                        //FIXME
-
-                                    })
-                                    break
-                                }
-                                case "TemplateTail": {
-                                    pr.cc($[1], ($) => {
-                                        //report($.annotation)//LEAF
-                                        //FIXME
-
-                                    })
-                                    break
-                                }
-                                case "Identifier": {
-                                    pr.cc($[1], ($) => {
-                                        _Identifier($)
-                                    })
-                                    break
-                                }
-                                case "CallExpression": {
-                                    pr.cc($[1], ($) => {
-                                        _CallExpression($)
-                                    })
-                                    break
-                                }
-                                case "ConditionalExpression": {
-                                    pr.cc($[1], ($) => {
-                                        _ConditionalExpression($)
-                                    })
-                                    break
-                                }
-                                case "ElementAccessExpression": {
-                                    pr.cc($[1], ($) => {
-                                        _ElementAccessExpression($)
-                                    })
-                                    break
-                                }
-                                case "BinaryExpression": {
-                                    pr.cc($[1], ($) => {
-                                        _BinaryExpression($)
-                                    })
-                                    break
-                                }
-                                default: pr.au($[0])
-                            }
-                        })
-
+                        _TemplateSpan($)
                     })
                     break
                 }
@@ -2353,25 +1827,7 @@ export function visit<Annotation>(
             switch ($[0]) {
                 case "OptionalType": {
                     pr.cc($[1], ($) => {
-                        report($.annotation)
-                        $.children.forEach(($) => {
-                            switch ($[0]) {
-                                case "NumberKeyword": {
-                                    pr.cc($[1], ($) => {
-                                        _NumberKeyword($)
-                                    })
-                                    break
-                                }
-                                case "TypeReference": {
-                                    pr.cc($[1], ($) => {
-                                        _TypeReference($)
-                                    })
-                                    break
-                                }
-                                default: pr.au($[0])
-                            }
-                        })
-
+                        _OptionalType($)
                     })
                     break
                 }
@@ -2463,9 +1919,7 @@ export function visit<Annotation>(
                 }
                 case "ColonToken": {
                     pr.cc($[1], ($) => {
-                        //report($.annotation)//LEAF
-                        //FIXME
-
+                        _ColonToken($)
                     })
                     break
                 }
@@ -2600,6 +2054,922 @@ export function visit<Annotation>(
                 default: pr.au($[0])
             }
         })
+    }
+    function _InterfaceDeclaration(
+        $: api.TInterfaceDeclaration<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "Identifier": {
+                    pr.cc($[1], ($) => {
+                        _Identifier($)
+                    })
+                    break
+                }
+                case "TypeParameter": {
+                    pr.cc($[1], ($) => {
+                        _TypeParameter($)
+                    })
+                    break
+                }
+                case "MethodSignature": {
+                    pr.cc($[1], ($) => {
+                        _MethodSignature($)
+                    })
+                    break
+                }
+                case "MethodSignature": {
+                    pr.cc($[1], ($) => {
+                        _MethodSignature($)
+                    })
+                    break
+                }
+                case "MethodSignature": {
+                    pr.cc($[1], ($) => {
+                        _MethodSignature($)
+                    })
+                    break
+                }
+                case "MethodSignature": {
+                    pr.cc($[1], ($) => {
+                        _MethodSignature($)
+                    })
+                    break
+                }
+                case "PropertySignature": {
+                    pr.cc($[1], ($) => {
+                        _PropertySignature($)
+                    })
+                    break
+                }
+                case "MethodSignature": {
+                    pr.cc($[1], ($) => {
+                        _MethodSignature($)
+                    })
+                    break
+                }
+                case "MethodSignature": {
+                    pr.cc($[1], ($) => {
+                        _MethodSignature($)
+                    })
+                    break
+                }
+                case "MethodSignature": {
+                    pr.cc($[1], ($) => {
+                        _MethodSignature($)
+                    })
+                    break
+                }
+                case "MethodSignature": {
+                    pr.cc($[1], ($) => {
+                        _MethodSignature($)
+                    })
+                    break
+                }
+                case "MethodSignature": {
+                    pr.cc($[1], ($) => {
+                        _MethodSignature($)
+                    })
+                    break
+                }
+                case "IndexSignature": {
+                    pr.cc($[1], ($) => {
+                        _IndexSignature($)
+                    })
+                    break
+                }
+                case "ConstructSignature": {
+                    pr.cc($[1], ($) => {
+                        _ConstructSignature($)
+                    })
+                    break
+                }
+                case "ExportKeyword": {
+                    pr.cc($[1], ($) => {
+                        _ExportKeyword($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _QualifiedName(
+        $: api.TQualifiedName<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "Identifier": {
+                    pr.cc($[1], ($) => {
+                        _Identifier($)
+                    })
+                    break
+                }
+                case "Identifier": {
+                    pr.cc($[1], ($) => {
+                        _Identifier($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _UndefinedKeyword(
+        $: api.TUndefinedKeyword<Annotation>,
+    ) {
+        //report($.annotation)//LEAF
+        //FIXME
+    }
+    function _IndexSignature(
+        $: api.TIndexSignature<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "Parameter": {
+                    pr.cc($[1], ($) => {
+                        _Parameter($)
+                    })
+                    break
+                }
+                case "TypeReference": {
+                    pr.cc($[1], ($) => {
+                        _TypeReference($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _ConstructSignature(
+        $: api.TConstructSignature<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "Parameter": {
+                    pr.cc($[1], ($) => {
+                        _Parameter($)
+                    })
+                    break
+                }
+                case "TypeReference": {
+                    pr.cc($[1], ($) => {
+                        _TypeReference($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _EndOfFileToken(
+        $: api.TEndOfFileToken<Annotation>,
+    ) {
+        //report($.annotation)//LEAF
+        //FIXME
+    }
+    function _ExportDeclaration(
+        $: api.TExportDeclaration<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "StringLiteral": {
+                    pr.cc($[1], ($) => {
+                        _StringLiteral($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _ImportDeclaration(
+        $: api.TImportDeclaration<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "StringLiteral": {
+                    pr.cc($[1], ($) => {
+                        _StringLiteral($)
+                    })
+                    break
+                }
+                case "ImportClause": {
+                    pr.cc($[1], ($) => {
+                        _ImportClause($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _ImportClause(
+        $: api.TImportClause<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "NamespaceImport": {
+                    pr.cc($[1], ($) => {
+                        _NamespaceImport($)
+                    })
+                    break
+                }
+                case "NamedImports": {
+                    pr.cc($[1], ($) => {
+                        _NamedImports($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _NamespaceImport(
+        $: api.TNamespaceImport<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "Identifier": {
+                    pr.cc($[1], ($) => {
+                        _Identifier($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _NamedImports(
+        $: api.TNamedImports<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "ImportSpecifier": {
+                    pr.cc($[1], ($) => {
+                        _ImportSpecifier($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _ImportSpecifier(
+        $: api.TImportSpecifier<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "Identifier": {
+                    pr.cc($[1], ($) => {
+                        _Identifier($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _NeverKeyword(
+        $: api.TNeverKeyword<Annotation>,
+    ) {
+        //report($.annotation)//LEAF
+        //FIXME
+    }
+    function _ParenthesizedType(
+        $: api.TParenthesizedType<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "FunctionType": {
+                    pr.cc($[1], ($) => {
+                        _FunctionType($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _ThrowStatement(
+        $: api.TThrowStatement<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "NewExpression": {
+                    pr.cc($[1], ($) => {
+                        _NewExpression($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _NewExpression(
+        $: api.TNewExpression<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "Identifier": {
+                    pr.cc($[1], ($) => {
+                        _Identifier($)
+                    })
+                    break
+                }
+                case "StringLiteral": {
+                    pr.cc($[1], ($) => {
+                        _StringLiteral($)
+                    })
+                    break
+                }
+                case "CallExpression": {
+                    pr.cc($[1], ($) => {
+                        _CallExpression($)
+                    })
+                    break
+                }
+                case "TemplateExpression": {
+                    pr.cc($[1], ($) => {
+                        _TemplateExpression($)
+                    })
+                    break
+                }
+                case "NoSubstitutionTemplateLiteral": {
+                    pr.cc($[1], ($) => {
+                        _NoSubstitutionTemplateLiteral($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _SwitchStatement(
+        $: api.TSwitchStatement<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "ElementAccessExpression": {
+                    pr.cc($[1], ($) => {
+                        _ElementAccessExpression($)
+                    })
+                    break
+                }
+                case "CaseBlock": {
+                    pr.cc($[1], ($) => {
+                        _CaseBlock($)
+                    })
+                    break
+                }
+                case "Identifier": {
+                    pr.cc($[1], ($) => {
+                        _Identifier($)
+                    })
+                    break
+                }
+                case "PropertyAccessExpression": {
+                    pr.cc($[1], ($) => {
+                        _PropertyAccessExpression($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _CaseBlock(
+        $: api.TCaseBlock<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "CaseClause": {
+                    pr.cc($[1], ($) => {
+                        _CaseClause($)
+                    })
+                    break
+                }
+                case "DefaultClause": {
+                    pr.cc($[1], ($) => {
+                        _DefaultClause($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _CaseClause(
+        $: api.TCaseClause<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "StringLiteral": {
+                    pr.cc($[1], ($) => {
+                        _StringLiteral($)
+                    })
+                    break
+                }
+                case "ExpressionStatement": {
+                    pr.cc($[1], ($) => {
+                        _ExpressionStatement($)
+                    })
+                    break
+                }
+                case "BreakStatement": {
+                    pr.cc($[1], ($) => {
+                        _BreakStatement($)
+                    })
+                    break
+                }
+                case "Block": {
+                    pr.cc($[1], ($) => {
+                        _Block($)
+                    })
+                    break
+                }
+                case "ReturnStatement": {
+                    pr.cc($[1], ($) => {
+                        _ReturnStatement($)
+                    })
+                    break
+                }
+                case "VariableStatement": {
+                    pr.cc($[1], ($) => {
+                        _VariableStatement($)
+                    })
+                    break
+                }
+                case "IfStatement": {
+                    pr.cc($[1], ($) => {
+                        _IfStatement($)
+                    })
+                    break
+                }
+                case "PropertyAccessExpression": {
+                    pr.cc($[1], ($) => {
+                        _PropertyAccessExpression($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _DefaultClause(
+        $: api.TDefaultClause<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "ExpressionStatement": {
+                    pr.cc($[1], ($) => {
+                        _ExpressionStatement($)
+                    })
+                    break
+                }
+                case "ReturnStatement": {
+                    pr.cc($[1], ($) => {
+                        _ReturnStatement($)
+                    })
+                    break
+                }
+                case "Block": {
+                    pr.cc($[1], ($) => {
+                        _Block($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _TryStatement(
+        $: api.TTryStatement<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "Block": {
+                    pr.cc($[1], ($) => {
+                        _Block($)
+                    })
+                    break
+                }
+                case "CatchClause": {
+                    pr.cc($[1], ($) => {
+                        _CatchClause($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _CatchClause(
+        $: api.TCatchClause<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "VariableDeclaration": {
+                    pr.cc($[1], ($) => {
+                        _VariableDeclaration($)
+                    })
+                    break
+                }
+                case "Block": {
+                    pr.cc($[1], ($) => {
+                        _Block($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _ForStatement(
+        $: api.TForStatement<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "VariableDeclarationList": {
+                    pr.cc($[1], ($) => {
+                        _VariableDeclarationList($)
+                    })
+                    break
+                }
+                case "BinaryExpression": {
+                    pr.cc($[1], ($) => {
+                        _BinaryExpression($)
+                    })
+                    break
+                }
+                case "Block": {
+                    pr.cc($[1], ($) => {
+                        _Block($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _LabeledStatement(
+        $: api.TLabeledStatement<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "Identifier": {
+                    pr.cc($[1], ($) => {
+                        _Identifier($)
+                    })
+                    break
+                }
+                case "WhileStatement": {
+                    pr.cc($[1], ($) => {
+                        _WhileStatement($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _EqualsEqualsEqualsToken(
+        $: api.TEqualsEqualsEqualsToken<Annotation>,
+    ) {
+        //report($.annotation)//LEAF
+        //FIXME
+    }
+    function _AmpersandAmpersandToken(
+        $: api.TAmpersandAmpersandToken<Annotation>,
+    ) {
+        //report($.annotation)//LEAF
+        //FIXME
+    }
+    function _PlusEqualsToken(
+        $: api.TPlusEqualsToken<Annotation>,
+    ) {
+        //report($.annotation)//LEAF
+        //FIXME
+    }
+    function _MinusEqualsToken(
+        $: api.TMinusEqualsToken<Annotation>,
+    ) {
+        //report($.annotation)//LEAF
+        //FIXME
+    }
+    function _EqualsToken(
+        $: api.TEqualsToken<Annotation>,
+    ) {
+        //report($.annotation)//LEAF
+        //FIXME
+    }
+    function _ExclamationEqualsEqualsToken(
+        $: api.TExclamationEqualsEqualsToken<Annotation>,
+    ) {
+        //report($.annotation)//LEAF
+        //FIXME
+    }
+    function _PlusToken(
+        $: api.TPlusToken<Annotation>,
+    ) {
+        //report($.annotation)//LEAF
+        //FIXME
+    }
+    function _MinusToken(
+        $: api.TMinusToken<Annotation>,
+    ) {
+        //report($.annotation)//LEAF
+        //FIXME
+    }
+    function _GreaterThanToken(
+        $: api.TGreaterThanToken<Annotation>,
+    ) {
+        //report($.annotation)//LEAF
+        //FIXME
+    }
+    function _LessThanToken(
+        $: api.TLessThanToken<Annotation>,
+    ) {
+        //report($.annotation)//LEAF
+        //FIXME
+    }
+    function _BarBarToken(
+        $: api.TBarBarToken<Annotation>,
+    ) {
+        //report($.annotation)//LEAF
+        //FIXME
+    }
+    function _PostfixUnaryExpression(
+        $: api.TPostfixUnaryExpression<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "Identifier": {
+                    pr.cc($[1], ($) => {
+                        _Identifier($)
+                    })
+                    break
+                }
+                case "PropertyAccessExpression": {
+                    pr.cc($[1], ($) => {
+                        _PropertyAccessExpression($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _PropertyAssignment(
+        $: api.TPropertyAssignment<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "Identifier": {
+                    pr.cc($[1], ($) => {
+                        _Identifier($)
+                    })
+                    break
+                }
+                case "ArrowFunction": {
+                    pr.cc($[1], ($) => {
+                        _ArrowFunction($)
+                    })
+                    break
+                }
+                case "PropertyAccessExpression": {
+                    pr.cc($[1], ($) => {
+                        _PropertyAccessExpression($)
+                    })
+                    break
+                }
+                case "StringLiteral": {
+                    pr.cc($[1], ($) => {
+                        _StringLiteral($)
+                    })
+                    break
+                }
+                case "ElementAccessExpression": {
+                    pr.cc($[1], ($) => {
+                        _ElementAccessExpression($)
+                    })
+                    break
+                }
+                case "ObjectLiteralExpression": {
+                    pr.cc($[1], ($) => {
+                        _ObjectLiteralExpression($)
+                    })
+                    break
+                }
+                case "CallExpression": {
+                    pr.cc($[1], ($) => {
+                        _CallExpression($)
+                    })
+                    break
+                }
+                case "NullKeyword": {
+                    pr.cc($[1], ($) => {
+                        _NullKeyword($)
+                    })
+                    break
+                }
+                case "PrefixUnaryExpression": {
+                    pr.cc($[1], ($) => {
+                        _PrefixUnaryExpression($)
+                    })
+                    break
+                }
+                case "FalseKeyword": {
+                    pr.cc($[1], ($) => {
+                        _FalseKeyword($)
+                    })
+                    break
+                }
+                case "TemplateExpression": {
+                    pr.cc($[1], ($) => {
+                        _TemplateExpression($)
+                    })
+                    break
+                }
+                case "TrueKeyword": {
+                    pr.cc($[1], ($) => {
+                        _TrueKeyword($)
+                    })
+                    break
+                }
+                case "ConditionalExpression": {
+                    pr.cc($[1], ($) => {
+                        _ConditionalExpression($)
+                    })
+                    break
+                }
+                case "ArrayLiteralExpression": {
+                    pr.cc($[1], ($) => {
+                        _ArrayLiteralExpression($)
+                    })
+                    break
+                }
+                case "NoSubstitutionTemplateLiteral": {
+                    pr.cc($[1], ($) => {
+                        _NoSubstitutionTemplateLiteral($)
+                    })
+                    break
+                }
+                case "BinaryExpression": {
+                    pr.cc($[1], ($) => {
+                        _BinaryExpression($)
+                    })
+                    break
+                }
+                case "ParenthesizedExpression": {
+                    pr.cc($[1], ($) => {
+                        _ParenthesizedExpression($)
+                    })
+                    break
+                }
+                case "NumericLiteral": {
+                    pr.cc($[1], ($) => {
+                        _NumericLiteral($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _EqualsGreaterThanToken(
+        $: api.TEqualsGreaterThanToken<Annotation>,
+    ) {
+        //report($.annotation)//LEAF
+        //FIXME
+    }
+    function _TemplateHead(
+        $: api.TTemplateHead<Annotation>,
+    ) {
+        //report($.annotation)//LEAF
+        //FIXME
+    }
+    function _TemplateSpan(
+        $: api.TTemplateSpan<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "PropertyAccessExpression": {
+                    pr.cc($[1], ($) => {
+                        _PropertyAccessExpression($)
+                    })
+                    break
+                }
+                case "TemplateMiddle": {
+                    pr.cc($[1], ($) => {
+                        _TemplateMiddle($)
+                    })
+                    break
+                }
+                case "TemplateTail": {
+                    pr.cc($[1], ($) => {
+                        _TemplateTail($)
+                    })
+                    break
+                }
+                case "Identifier": {
+                    pr.cc($[1], ($) => {
+                        _Identifier($)
+                    })
+                    break
+                }
+                case "CallExpression": {
+                    pr.cc($[1], ($) => {
+                        _CallExpression($)
+                    })
+                    break
+                }
+                case "ConditionalExpression": {
+                    pr.cc($[1], ($) => {
+                        _ConditionalExpression($)
+                    })
+                    break
+                }
+                case "ElementAccessExpression": {
+                    pr.cc($[1], ($) => {
+                        _ElementAccessExpression($)
+                    })
+                    break
+                }
+                case "BinaryExpression": {
+                    pr.cc($[1], ($) => {
+                        _BinaryExpression($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _TemplateMiddle(
+        $: api.TTemplateMiddle<Annotation>,
+    ) {
+        //report($.annotation)//LEAF
+        //FIXME
+    }
+    function _TemplateTail(
+        $: api.TTemplateTail<Annotation>,
+    ) {
+        //report($.annotation)//LEAF
+        //FIXME
+    }
+    function _OptionalType(
+        $: api.TOptionalType<Annotation>,
+    ) {
+        report($.annotation)
+        $.children.forEach(($) => {
+            switch ($[0]) {
+                case "NumberKeyword": {
+                    pr.cc($[1], ($) => {
+                        _NumberKeyword($)
+                    })
+                    break
+                }
+                case "TypeReference": {
+                    pr.cc($[1], ($) => {
+                        _TypeReference($)
+                    })
+                    break
+                }
+                default: pr.au($[0])
+            }
+        })
+    }
+    function _ColonToken(
+        $: api.TColonToken<Annotation>,
+    ) {
+        //report($.annotation)//LEAF
+        //FIXME
     }
     return _SourceFile($)
 }

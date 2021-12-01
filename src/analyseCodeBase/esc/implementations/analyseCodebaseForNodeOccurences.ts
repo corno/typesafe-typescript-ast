@@ -164,7 +164,6 @@ export function analyseCodebaseForNodeOccurences<Annotation>(
                                     if ($r.options[$.kindName] !== undefined) {
                                         //nothing to do except increment counter
                                         position++
-                                        break
                                     } else {
 
                                     }

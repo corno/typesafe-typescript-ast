@@ -1,25 +1,5 @@
 import * as pr from "pareto-runtime"
 
-export type CInterfaceDeclaration<Annotation> = number
-export type TInterfaceDeclaration<Annotation> = number
-
-export type CEndOfFileToken<Annotation> = number
-export type TEndOfFileToken<Annotation> = number
-
-export type CExportDeclaration<Annotation> =
-    | ["StringLiteral", TStringLiteral<Annotation>]
-export type TExportDeclaration<Annotation> = {
-    readonly annotation: Annotation
-    readonly children: pr.IReadonlyArray<CExportDeclaration<Annotation>>
-}
-
-export type CImportDeclaration<Annotation> =
-    | ["StringLiteral", TStringLiteral<Annotation>]
-export type TImportDeclaration<Annotation> = {
-    readonly annotation: Annotation
-    readonly children: pr.IReadonlyArray<CImportDeclaration<Annotation>>
-}
-
 export type CSourceFile<Annotation> =
     | ["InterfaceDeclaration", TInterfaceDeclaration<Annotation>]
     | ["FunctionDeclaration", TFunctionDeclaration<Annotation>]
@@ -60,9 +40,6 @@ export type TMethodSignature<Annotation> = {
     readonly children: pr.IReadonlyArray<CMethodSignature<Annotation>>
 }
 
-export type CNeverKeyword<Annotation> = number
-export type TNeverKeyword<Annotation> = number
-
 export type CParameter<Annotation> =
     | ["Identifier", TIdentifier<Annotation>]
     | ["TypeReference", TTypeReference<Annotation>]
@@ -79,13 +56,6 @@ export type CParameter<Annotation> =
 export type TParameter<Annotation> = {
     readonly annotation: Annotation
     readonly children: pr.IReadonlyArray<CParameter<Annotation>>
-}
-
-export type CQualifiedName<Annotation> =
-    | ["Identifier", TIdentifier<Annotation>]
-export type TQualifiedName<Annotation> = {
-    readonly annotation: Annotation
-    readonly children: pr.IReadonlyArray<CQualifiedName<Annotation>>
 }
 
 export type CTypeReference<Annotation> =
@@ -152,16 +122,6 @@ export type TPropertySignature<Annotation> = {
 
 export type CStringKeyword<Annotation> = number
 export type TStringKeyword<Annotation> = number
-
-export type CUndefinedKeyword<Annotation> = number
-export type TUndefinedKeyword<Annotation> = number
-
-export type CParenthesizedType<Annotation> =
-    | ["FunctionType", TFunctionType<Annotation>]
-export type TParenthesizedType<Annotation> = {
-    readonly annotation: Annotation
-    readonly children: pr.IReadonlyArray<CParenthesizedType<Annotation>>
-}
 
 export type CUnionType<Annotation> =
     | ["UndefinedKeyword", TUndefinedKeyword<Annotation>]
@@ -254,98 +214,6 @@ export type TVariableDeclaration<Annotation> = {
 export type CStringLiteral<Annotation> = number
 export type TStringLiteral<Annotation> = number
 
-export type CNewExpression<Annotation> =
-    | ["Identifier", TIdentifier<Annotation>]
-    | ["StringLiteral", TStringLiteral<Annotation>]
-    | ["CallExpression", TCallExpression<Annotation>]
-    | ["TemplateExpression", TTemplateExpression<Annotation>]
-    | ["NoSubstitutionTemplateLiteral", TNoSubstitutionTemplateLiteral<Annotation>]
-export type TNewExpression<Annotation> = {
-    readonly annotation: Annotation
-    readonly children: pr.IReadonlyArray<CNewExpression<Annotation>>
-}
-
-export type CThrowStatement<Annotation> =
-    | ["NewExpression", TNewExpression<Annotation>]
-export type TThrowStatement<Annotation> = {
-    readonly annotation: Annotation
-    readonly children: pr.IReadonlyArray<CThrowStatement<Annotation>>
-}
-
-export type CCaseClause<Annotation> =
-    | ["StringLiteral", TStringLiteral<Annotation>]
-    | ["ExpressionStatement", TExpressionStatement<Annotation>]
-    | ["BreakStatement", TBreakStatement<Annotation>]
-    | ["Block", TBlock<Annotation>]
-    | ["ReturnStatement", TReturnStatement<Annotation>]
-    | ["VariableStatement", TVariableStatement<Annotation>]
-    | ["IfStatement", TIfStatement<Annotation>]
-    | ["PropertyAccessExpression", TPropertyAccessExpression<Annotation>]
-export type TCaseClause<Annotation> = {
-    readonly annotation: Annotation
-    readonly children: pr.IReadonlyArray<CCaseClause<Annotation>>
-}
-
-export type CDefaultClause<Annotation> =
-    | ["ExpressionStatement", TExpressionStatement<Annotation>]
-    | ["ReturnStatement", TReturnStatement<Annotation>]
-    | ["Block", TBlock<Annotation>]
-export type TDefaultClause<Annotation> = {
-    readonly annotation: Annotation
-    readonly children: pr.IReadonlyArray<CDefaultClause<Annotation>>
-}
-
-export type CCaseBlock<Annotation> =
-    | ["CaseClause", TCaseClause<Annotation>]
-    | ["DefaultClause", TDefaultClause<Annotation>]
-export type TCaseBlock<Annotation> = {
-    readonly annotation: Annotation
-    readonly children: pr.IReadonlyArray<CCaseBlock<Annotation>>
-}
-
-export type CSwitchStatement<Annotation> =
-    | ["ElementAccessExpression", TElementAccessExpression<Annotation>]
-    | ["CaseBlock", TCaseBlock<Annotation>]
-    | ["Identifier", TIdentifier<Annotation>]
-    | ["PropertyAccessExpression", TPropertyAccessExpression<Annotation>]
-export type TSwitchStatement<Annotation> = {
-    readonly annotation: Annotation
-    readonly children: pr.IReadonlyArray<CSwitchStatement<Annotation>>
-}
-
-export type CCatchClause<Annotation> =
-    | ["VariableDeclaration", TVariableDeclaration<Annotation>]
-    | ["Block", TBlock<Annotation>]
-export type TCatchClause<Annotation> = {
-    readonly annotation: Annotation
-    readonly children: pr.IReadonlyArray<CCatchClause<Annotation>>
-}
-
-export type CTryStatement<Annotation> =
-    | ["Block", TBlock<Annotation>]
-    | ["CatchClause", TCatchClause<Annotation>]
-export type TTryStatement<Annotation> = {
-    readonly annotation: Annotation
-    readonly children: pr.IReadonlyArray<CTryStatement<Annotation>>
-}
-
-export type CForStatement<Annotation> =
-    | ["VariableDeclarationList", TVariableDeclarationList<Annotation>]
-    | ["BinaryExpression", TBinaryExpression<Annotation>]
-    | ["Block", TBlock<Annotation>]
-export type TForStatement<Annotation> = {
-    readonly annotation: Annotation
-    readonly children: pr.IReadonlyArray<CForStatement<Annotation>>
-}
-
-export type CLabeledStatement<Annotation> =
-    | ["Identifier", TIdentifier<Annotation>]
-    | ["WhileStatement", TWhileStatement<Annotation>]
-export type TLabeledStatement<Annotation> = {
-    readonly annotation: Annotation
-    readonly children: pr.IReadonlyArray<CLabeledStatement<Annotation>>
-}
-
 export type CBlock<Annotation> =
     | ["ThrowStatement", TThrowStatement<Annotation>]
     | ["ReturnStatement", TReturnStatement<Annotation>]
@@ -432,39 +300,6 @@ export type TIfStatement<Annotation> = {
     readonly children: pr.IReadonlyArray<CIfStatement<Annotation>>
 }
 
-export type CEqualsEqualsEqualsToken<Annotation> = number
-export type TEqualsEqualsEqualsToken<Annotation> = number
-
-export type CAmpersandAmpersandToken<Annotation> = number
-export type TAmpersandAmpersandToken<Annotation> = number
-
-export type CPlusEqualsToken<Annotation> = number
-export type TPlusEqualsToken<Annotation> = number
-
-export type CMinusEqualsToken<Annotation> = number
-export type TMinusEqualsToken<Annotation> = number
-
-export type CEqualsToken<Annotation> = number
-export type TEqualsToken<Annotation> = number
-
-export type CExclamationEqualsEqualsToken<Annotation> = number
-export type TExclamationEqualsEqualsToken<Annotation> = number
-
-export type CPlusToken<Annotation> = number
-export type TPlusToken<Annotation> = number
-
-export type CMinusToken<Annotation> = number
-export type TMinusToken<Annotation> = number
-
-export type CGreaterThanToken<Annotation> = number
-export type TGreaterThanToken<Annotation> = number
-
-export type CLessThanToken<Annotation> = number
-export type TLessThanToken<Annotation> = number
-
-export type CBarBarToken<Annotation> = number
-export type TBarBarToken<Annotation> = number
-
 export type CBinaryExpression<Annotation> =
     | ["BinaryExpression", TBinaryExpression<Annotation>]
     | ["Identifier", TIdentifier<Annotation>]
@@ -495,14 +330,6 @@ export type TBinaryExpression<Annotation> = {
     readonly children: pr.IReadonlyArray<CBinaryExpression<Annotation>>
 }
 
-export type CPostfixUnaryExpression<Annotation> =
-    | ["Identifier", TIdentifier<Annotation>]
-    | ["PropertyAccessExpression", TPropertyAccessExpression<Annotation>]
-export type TPostfixUnaryExpression<Annotation> = {
-    readonly annotation: Annotation
-    readonly children: pr.IReadonlyArray<CPostfixUnaryExpression<Annotation>>
-}
-
 export type CExpressionStatement<Annotation> =
     | ["CallExpression", TCallExpression<Annotation>]
     | ["BinaryExpression", TBinaryExpression<Annotation>]
@@ -512,39 +339,12 @@ export type TExpressionStatement<Annotation> = {
     readonly children: pr.IReadonlyArray<CExpressionStatement<Annotation>>
 }
 
-export type CPropertyAssignment<Annotation> =
-    | ["Identifier", TIdentifier<Annotation>]
-    | ["ArrowFunction", TArrowFunction<Annotation>]
-    | ["PropertyAccessExpression", TPropertyAccessExpression<Annotation>]
-    | ["StringLiteral", TStringLiteral<Annotation>]
-    | ["ElementAccessExpression", TElementAccessExpression<Annotation>]
-    | ["ObjectLiteralExpression", TObjectLiteralExpression<Annotation>]
-    | ["CallExpression", TCallExpression<Annotation>]
-    | ["NullKeyword", TNullKeyword<Annotation>]
-    | ["PrefixUnaryExpression", TPrefixUnaryExpression<Annotation>]
-    | ["FalseKeyword", TFalseKeyword<Annotation>]
-    | ["TemplateExpression", TTemplateExpression<Annotation>]
-    | ["TrueKeyword", TTrueKeyword<Annotation>]
-    | ["ConditionalExpression", TConditionalExpression<Annotation>]
-    | ["ArrayLiteralExpression", TArrayLiteralExpression<Annotation>]
-    | ["NoSubstitutionTemplateLiteral", TNoSubstitutionTemplateLiteral<Annotation>]
-    | ["BinaryExpression", TBinaryExpression<Annotation>]
-    | ["ParenthesizedExpression", TParenthesizedExpression<Annotation>]
-    | ["NumericLiteral", TNumericLiteral<Annotation>]
-export type TPropertyAssignment<Annotation> = {
-    readonly annotation: Annotation
-    readonly children: pr.IReadonlyArray<CPropertyAssignment<Annotation>>
-}
-
 export type CObjectLiteralExpression<Annotation> =
     | ["PropertyAssignment", TPropertyAssignment<Annotation>]
 export type TObjectLiteralExpression<Annotation> = {
     readonly annotation: Annotation
     readonly children: pr.IReadonlyArray<CObjectLiteralExpression<Annotation>>
 }
-
-export type CEqualsGreaterThanToken<Annotation> = number
-export type TEqualsGreaterThanToken<Annotation> = number
 
 export type CArrowFunction<Annotation> =
     | ["Parameter", TParameter<Annotation>]
@@ -631,9 +431,6 @@ export type TTypeAliasDeclaration<Annotation> = {
     readonly children: pr.IReadonlyArray<CTypeAliasDeclaration<Annotation>>
 }
 
-export type CIndexSignature<Annotation> = number
-export type TIndexSignature<Annotation> = number
-
 export type CTypeLiteral<Annotation> =
     | ["PropertySignature", TPropertySignature<Annotation>]
     | ["MethodSignature", TMethodSignature<Annotation>]
@@ -641,29 +438,6 @@ export type CTypeLiteral<Annotation> =
 export type TTypeLiteral<Annotation> = {
     readonly annotation: Annotation
     readonly children: pr.IReadonlyArray<CTypeLiteral<Annotation>>
-}
-
-export type CTemplateHead<Annotation> = number
-export type TTemplateHead<Annotation> = number
-
-export type CTemplateMiddle<Annotation> = number
-export type TTemplateMiddle<Annotation> = number
-
-export type CTemplateTail<Annotation> = number
-export type TTemplateTail<Annotation> = number
-
-export type CTemplateSpan<Annotation> =
-    | ["PropertyAccessExpression", TPropertyAccessExpression<Annotation>]
-    | ["TemplateMiddle", TTemplateMiddle<Annotation>]
-    | ["TemplateTail", TTemplateTail<Annotation>]
-    | ["Identifier", TIdentifier<Annotation>]
-    | ["CallExpression", TCallExpression<Annotation>]
-    | ["ConditionalExpression", TConditionalExpression<Annotation>]
-    | ["ElementAccessExpression", TElementAccessExpression<Annotation>]
-    | ["BinaryExpression", TBinaryExpression<Annotation>]
-export type TTemplateSpan<Annotation> = {
-    readonly annotation: Annotation
-    readonly children: pr.IReadonlyArray<CTemplateSpan<Annotation>>
 }
 
 export type CTemplateExpression<Annotation> =
@@ -682,14 +456,6 @@ export type CPrefixUnaryExpression<Annotation> =
 export type TPrefixUnaryExpression<Annotation> = {
     readonly annotation: Annotation
     readonly children: pr.IReadonlyArray<CPrefixUnaryExpression<Annotation>>
-}
-
-export type COptionalType<Annotation> =
-    | ["NumberKeyword", TNumberKeyword<Annotation>]
-    | ["TypeReference", TTypeReference<Annotation>]
-export type TOptionalType<Annotation> = {
-    readonly annotation: Annotation
-    readonly children: pr.IReadonlyArray<COptionalType<Annotation>>
 }
 
 export type CTupleType<Annotation> =
@@ -712,9 +478,6 @@ export type TLiteralType<Annotation> = {
     readonly annotation: Annotation
     readonly children: pr.IReadonlyArray<CLiteralType<Annotation>>
 }
-
-export type CColonToken<Annotation> = number
-export type TColonToken<Annotation> = number
 
 export type CConditionalExpression<Annotation> =
     | ["BinaryExpression", TBinaryExpression<Annotation>]
@@ -757,4 +520,303 @@ export type TWhileStatement<Annotation> = {
     readonly annotation: Annotation
     readonly children: pr.IReadonlyArray<CWhileStatement<Annotation>>
 }
+
+export type CInterfaceDeclaration<Annotation> =
+    | ["Identifier", TIdentifier<Annotation>]
+    | ["TypeParameter", TTypeParameter<Annotation>]
+    | ["MethodSignature", TMethodSignature<Annotation>]
+    | ["MethodSignature", TMethodSignature<Annotation>]
+    | ["MethodSignature", TMethodSignature<Annotation>]
+    | ["MethodSignature", TMethodSignature<Annotation>]
+    | ["PropertySignature", TPropertySignature<Annotation>]
+    | ["MethodSignature", TMethodSignature<Annotation>]
+    | ["MethodSignature", TMethodSignature<Annotation>]
+    | ["MethodSignature", TMethodSignature<Annotation>]
+    | ["MethodSignature", TMethodSignature<Annotation>]
+    | ["MethodSignature", TMethodSignature<Annotation>]
+    | ["IndexSignature", TIndexSignature<Annotation>]
+    | ["ConstructSignature", TConstructSignature<Annotation>]
+    | ["ExportKeyword", TExportKeyword<Annotation>]
+export type TInterfaceDeclaration<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CInterfaceDeclaration<Annotation>>
+}
+
+export type CQualifiedName<Annotation> =
+    | ["Identifier", TIdentifier<Annotation>]
+    | ["Identifier", TIdentifier<Annotation>]
+export type TQualifiedName<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CQualifiedName<Annotation>>
+}
+
+export type CUndefinedKeyword<Annotation> = number
+export type TUndefinedKeyword<Annotation> = number
+
+export type CIndexSignature<Annotation> =
+    | ["Parameter", TParameter<Annotation>]
+    | ["TypeReference", TTypeReference<Annotation>]
+export type TIndexSignature<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CIndexSignature<Annotation>>
+}
+
+export type CConstructSignature<Annotation> =
+    | ["Parameter", TParameter<Annotation>]
+    | ["TypeReference", TTypeReference<Annotation>]
+export type TConstructSignature<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CConstructSignature<Annotation>>
+}
+
+export type CEndOfFileToken<Annotation> = number
+export type TEndOfFileToken<Annotation> = number
+
+export type CExportDeclaration<Annotation> =
+    | ["StringLiteral", TStringLiteral<Annotation>]
+export type TExportDeclaration<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CExportDeclaration<Annotation>>
+}
+
+export type CImportDeclaration<Annotation> =
+    | ["StringLiteral", TStringLiteral<Annotation>]
+    | ["ImportClause", TImportClause<Annotation>]
+export type TImportDeclaration<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CImportDeclaration<Annotation>>
+}
+
+export type CImportClause<Annotation> =
+    | ["NamespaceImport", TNamespaceImport<Annotation>]
+    | ["NamedImports", TNamedImports<Annotation>]
+export type TImportClause<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CImportClause<Annotation>>
+}
+
+export type CNamespaceImport<Annotation> =
+    | ["Identifier", TIdentifier<Annotation>]
+export type TNamespaceImport<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CNamespaceImport<Annotation>>
+}
+
+export type CNamedImports<Annotation> =
+    | ["ImportSpecifier", TImportSpecifier<Annotation>]
+export type TNamedImports<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CNamedImports<Annotation>>
+}
+
+export type CImportSpecifier<Annotation> =
+    | ["Identifier", TIdentifier<Annotation>]
+export type TImportSpecifier<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CImportSpecifier<Annotation>>
+}
+
+export type CNeverKeyword<Annotation> = number
+export type TNeverKeyword<Annotation> = number
+
+export type CParenthesizedType<Annotation> =
+    | ["FunctionType", TFunctionType<Annotation>]
+export type TParenthesizedType<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CParenthesizedType<Annotation>>
+}
+
+export type CThrowStatement<Annotation> =
+    | ["NewExpression", TNewExpression<Annotation>]
+export type TThrowStatement<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CThrowStatement<Annotation>>
+}
+
+export type CNewExpression<Annotation> =
+    | ["Identifier", TIdentifier<Annotation>]
+    | ["StringLiteral", TStringLiteral<Annotation>]
+    | ["CallExpression", TCallExpression<Annotation>]
+    | ["TemplateExpression", TTemplateExpression<Annotation>]
+    | ["NoSubstitutionTemplateLiteral", TNoSubstitutionTemplateLiteral<Annotation>]
+export type TNewExpression<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CNewExpression<Annotation>>
+}
+
+export type CSwitchStatement<Annotation> =
+    | ["ElementAccessExpression", TElementAccessExpression<Annotation>]
+    | ["CaseBlock", TCaseBlock<Annotation>]
+    | ["Identifier", TIdentifier<Annotation>]
+    | ["PropertyAccessExpression", TPropertyAccessExpression<Annotation>]
+export type TSwitchStatement<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CSwitchStatement<Annotation>>
+}
+
+export type CCaseBlock<Annotation> =
+    | ["CaseClause", TCaseClause<Annotation>]
+    | ["DefaultClause", TDefaultClause<Annotation>]
+export type TCaseBlock<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CCaseBlock<Annotation>>
+}
+
+export type CCaseClause<Annotation> =
+    | ["StringLiteral", TStringLiteral<Annotation>]
+    | ["ExpressionStatement", TExpressionStatement<Annotation>]
+    | ["BreakStatement", TBreakStatement<Annotation>]
+    | ["Block", TBlock<Annotation>]
+    | ["ReturnStatement", TReturnStatement<Annotation>]
+    | ["VariableStatement", TVariableStatement<Annotation>]
+    | ["IfStatement", TIfStatement<Annotation>]
+    | ["PropertyAccessExpression", TPropertyAccessExpression<Annotation>]
+export type TCaseClause<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CCaseClause<Annotation>>
+}
+
+export type CDefaultClause<Annotation> =
+    | ["ExpressionStatement", TExpressionStatement<Annotation>]
+    | ["ReturnStatement", TReturnStatement<Annotation>]
+    | ["Block", TBlock<Annotation>]
+export type TDefaultClause<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CDefaultClause<Annotation>>
+}
+
+export type CTryStatement<Annotation> =
+    | ["Block", TBlock<Annotation>]
+    | ["CatchClause", TCatchClause<Annotation>]
+export type TTryStatement<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CTryStatement<Annotation>>
+}
+
+export type CCatchClause<Annotation> =
+    | ["VariableDeclaration", TVariableDeclaration<Annotation>]
+    | ["Block", TBlock<Annotation>]
+export type TCatchClause<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CCatchClause<Annotation>>
+}
+
+export type CForStatement<Annotation> =
+    | ["VariableDeclarationList", TVariableDeclarationList<Annotation>]
+    | ["BinaryExpression", TBinaryExpression<Annotation>]
+    | ["Block", TBlock<Annotation>]
+export type TForStatement<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CForStatement<Annotation>>
+}
+
+export type CLabeledStatement<Annotation> =
+    | ["Identifier", TIdentifier<Annotation>]
+    | ["WhileStatement", TWhileStatement<Annotation>]
+export type TLabeledStatement<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CLabeledStatement<Annotation>>
+}
+
+export type CEqualsEqualsEqualsToken<Annotation> = number
+export type TEqualsEqualsEqualsToken<Annotation> = number
+
+export type CAmpersandAmpersandToken<Annotation> = number
+export type TAmpersandAmpersandToken<Annotation> = number
+
+export type CPlusEqualsToken<Annotation> = number
+export type TPlusEqualsToken<Annotation> = number
+
+export type CMinusEqualsToken<Annotation> = number
+export type TMinusEqualsToken<Annotation> = number
+
+export type CEqualsToken<Annotation> = number
+export type TEqualsToken<Annotation> = number
+
+export type CExclamationEqualsEqualsToken<Annotation> = number
+export type TExclamationEqualsEqualsToken<Annotation> = number
+
+export type CPlusToken<Annotation> = number
+export type TPlusToken<Annotation> = number
+
+export type CMinusToken<Annotation> = number
+export type TMinusToken<Annotation> = number
+
+export type CGreaterThanToken<Annotation> = number
+export type TGreaterThanToken<Annotation> = number
+
+export type CLessThanToken<Annotation> = number
+export type TLessThanToken<Annotation> = number
+
+export type CBarBarToken<Annotation> = number
+export type TBarBarToken<Annotation> = number
+
+export type CPostfixUnaryExpression<Annotation> =
+    | ["Identifier", TIdentifier<Annotation>]
+    | ["PropertyAccessExpression", TPropertyAccessExpression<Annotation>]
+export type TPostfixUnaryExpression<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CPostfixUnaryExpression<Annotation>>
+}
+
+export type CPropertyAssignment<Annotation> =
+    | ["Identifier", TIdentifier<Annotation>]
+    | ["ArrowFunction", TArrowFunction<Annotation>]
+    | ["PropertyAccessExpression", TPropertyAccessExpression<Annotation>]
+    | ["StringLiteral", TStringLiteral<Annotation>]
+    | ["ElementAccessExpression", TElementAccessExpression<Annotation>]
+    | ["ObjectLiteralExpression", TObjectLiteralExpression<Annotation>]
+    | ["CallExpression", TCallExpression<Annotation>]
+    | ["NullKeyword", TNullKeyword<Annotation>]
+    | ["PrefixUnaryExpression", TPrefixUnaryExpression<Annotation>]
+    | ["FalseKeyword", TFalseKeyword<Annotation>]
+    | ["TemplateExpression", TTemplateExpression<Annotation>]
+    | ["TrueKeyword", TTrueKeyword<Annotation>]
+    | ["ConditionalExpression", TConditionalExpression<Annotation>]
+    | ["ArrayLiteralExpression", TArrayLiteralExpression<Annotation>]
+    | ["NoSubstitutionTemplateLiteral", TNoSubstitutionTemplateLiteral<Annotation>]
+    | ["BinaryExpression", TBinaryExpression<Annotation>]
+    | ["ParenthesizedExpression", TParenthesizedExpression<Annotation>]
+    | ["NumericLiteral", TNumericLiteral<Annotation>]
+export type TPropertyAssignment<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CPropertyAssignment<Annotation>>
+}
+
+export type CEqualsGreaterThanToken<Annotation> = number
+export type TEqualsGreaterThanToken<Annotation> = number
+
+export type CTemplateHead<Annotation> = number
+export type TTemplateHead<Annotation> = number
+
+export type CTemplateSpan<Annotation> =
+    | ["PropertyAccessExpression", TPropertyAccessExpression<Annotation>]
+    | ["TemplateMiddle", TTemplateMiddle<Annotation>]
+    | ["TemplateTail", TTemplateTail<Annotation>]
+    | ["Identifier", TIdentifier<Annotation>]
+    | ["CallExpression", TCallExpression<Annotation>]
+    | ["ConditionalExpression", TConditionalExpression<Annotation>]
+    | ["ElementAccessExpression", TElementAccessExpression<Annotation>]
+    | ["BinaryExpression", TBinaryExpression<Annotation>]
+export type TTemplateSpan<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<CTemplateSpan<Annotation>>
+}
+
+export type CTemplateMiddle<Annotation> = number
+export type TTemplateMiddle<Annotation> = number
+
+export type CTemplateTail<Annotation> = number
+export type TTemplateTail<Annotation> = number
+
+export type COptionalType<Annotation> =
+    | ["NumberKeyword", TNumberKeyword<Annotation>]
+    | ["TypeReference", TTypeReference<Annotation>]
+export type TOptionalType<Annotation> = {
+    readonly annotation: Annotation
+    readonly children: pr.IReadonlyArray<COptionalType<Annotation>>
+}
+
+export type CColonToken<Annotation> = number
+export type TColonToken<Annotation> = number
 export type Root<Annotation> = TSourceFile<Annotation>
