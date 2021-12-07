@@ -9,10 +9,11 @@
   },
   "name": "typesafe-typescript-ast",
   "scripts": {
-    "analyse astn": "npm run build && node ./dist/analyseCodeBase/esc/bin/analyse.js \"../astn/tsconfig.json\"",
-    "build": "rm -rf ./dist && tsc",
+    "analyse astn": "npm run build && ./dist/analyseCodeBase/esc/bin/analyse.js \"../astn/tsconfig.json\"",
+    "build": "rm -rf ./dist && tsc && npm run makeEscBinExecutable",
     "generate-ts-api": "npm run build && node ./dist/generateCode/esc/bin/generateTypescriptAPICode.js ./src/pub/esc",
     "copyPackage": "npx copyPackage",
+    "makeEscBinExecutable": "find ./dist/*/esc/bin/ -type f -name \"*.js\" -exec chmod 777 {} +",
     "pubMin": "npm run validatePublishReadiness && npm version minor && npm run copyPackage && cd ./dist/pub && git push && npm publish",
     "pubPatch": "npm run validatePublishReadiness && npm version patch && npm run copyPackage && cd ./dist/pub && git push && npm publish",
     "test": "echo \"Error: no test specified\" && exit 1",

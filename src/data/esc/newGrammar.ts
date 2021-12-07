@@ -1,4 +1,4 @@
-import { NewGrammar } from "../../generateCode/esc/interfaces/NewGrammar"
+import { NewGrammar } from "../../grammar/esc/interfaces"
 
 export const newGrammar: NewGrammar = {
     tokens: {

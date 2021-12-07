@@ -1,6 +1,6 @@
 import * as pr from "pareto-runtime"
 
-import * as wapi from "../WriteAPI"
+import * as wapi from "../interfaces"
 
 export function createBlock(
     indentation: string,

@@ -1,112 +1,9 @@
 import * as pr from "pareto-runtime"
-import * as newGrm from "../../../generateCode/esc/interfaces/NewGrammar"
+import { serialize } from "../../../grammar/esc/implementations"
+import * as newGrm from "../../../grammar/esc/interfaces"
 import * as uastAPI from "../../../pub/esc/interfaces/untypedAST"
-import { createBlock } from "./createBlock"
-import * as wapi from "./WriteAPI"
+import { createBlock } from "../../../write/esc/implementations"
 
-
-function serialize(
-    grammar: newGrm.NewGrammar,
-    $w: wapi.Block,
-) {
-
-    $w.line(($w) => {
-        $w.snippet(`{`)
-        $w.indent(($w) => {
-            $w.line(($w) => {
-                $w.snippet(`tokens: {`)
-                $w.indent(($w) => {
-                    let isFirst = true
-                    newGrm.forEachEntry(
-                        grammar.tokens,
-                        ($, key) => {
-                            $w.line(($w) => {
-                                $w.snippet(`"${key}": `)
-                                function doRule(
-                                    $: newGrm.Rule,
-                                    $w: wapi.Line,
-                                ) {
-                                    $w.snippet(`{`)
-                                    $w.indent(($w) => {
-                                        $w.line(($w) => {
-                                            $w.snippet(`elements: [`)
-                                            $w.indent(($w) => {
-                                                $.symbols.forEach(($) => {
-                                                    $w.line(($w) => {
-                                                        $w.snippet(`[`)
-                                                        switch ($[0]) {
-                                                            case "token":
-                                                                pr.cc($[1], ($) => {
-                                                                    $w.snippet(`"token", {`)
-                                                                    $w.indent(($w) => {
-                                                                        $w.line(($w) => {
-                                                                            $w.snippet(`optional: ${$.optional},`)
-                                                                        })
-                                                                        $w.line(($w) => {
-                                                                            $w.snippet(`options: {`)
-                                                                            $w.indent(($w) => {
-                                                                                newGrm.forEachEntry($.options, ($, key) => {
-                                                                                    $w.line(($w) => {
-                                                                                        $w.snippet(`"${key}": {},`)
-                                                                                    })
-                                                                                })
-                                                                            })
-                                                                            $w.snippet(`}`)
-                                                                        })
-                                                                    })
-                                                                    $w.snippet(`}`)
-                                                                })
-                                                                break
-                                                            case "array":
-                                                                pr.cc($[1], ($) => {
-                                                                    $w.snippet(`"array", {`)
-                                                                    $w.indent(($w) => {
-                                                                        $w.line(($w) => {
-                                                                            $w.snippet(`type: `)
-
-                                                                            doRule(
-                                                                                $.type,
-                                                                                $w,
-                                                                            )
-                                                                        })
-                                                                    })
-                                                                    $w.snippet(`}`)
-                                                                })
-                                                                break
-                                                            default:
-                                                                pr.au($[0])
-                                                        }
-
-                                                        $w.snippet(`]`)
-                                                        $w.snippet(`,`)
-                                                    })
-                                                })
-                                            })
-                                            $w.snippet(`]`)
-                                        })
-                                    })
-                                    $w.snippet(`}`)
-                                }
-                                doRule(
-                                    $,
-                                    $w,
-                                )
-                                $w.snippet(`${isFirst ? "" : ","}`)
-                                isFirst = false
-                            })
-                        }
-                    )
-                })
-                $w.snippet(`},`)
-            })
-            $w.line(($w) => {
-                $w.snippet(`startToken: "${grammar.startToken}"`)
-            })
-        })
-        $w.snippet(`}`)
-    })
-
-}
 
 export function analyseCodebaseForNodeOccurences<Annotation>(
     project: uastAPI.Project<Annotation>,
@@ -130,61 +27,60 @@ export function analyseCodebaseForNodeOccurences<Annotation>(
 
         function parseNode(
             $: uastAPI.Node<Annotation>,
-            rule: newGrm.Rule,
         ) {
+            if (grammar.tokens[$.kindName] === undefined) {
+                grammar.tokens[$.kindName] = {
+                    symbols: []
+                }
+            }
+            const rule = grammar.tokens[$.kindName]
             let position = 0
 
             $.children.forEach(($) => {
                 let currentSymbol = rule.symbols[position]
-                while (true) {
-                    if (currentSymbol === undefined) {
-                        //No symbol, create one
-                        const options: newGrm.Options = {}
-                        options[$.kindName] = {}
-                        rule.symbols.push(["array", {
-                            type: {
-                                "symbols": [
-                                    ["token", {
-                                        "optional": false,
-                                        "options": options
-                                    }]
-                                ]
-                            }
-                        }])
-                    } else {
-                        switch (currentSymbol[0]) {
-                            case "array":
-                                pr.cc(currentSymbol[1], ($r) => {
-                                    //FIXME
-                                })
-                                break
-                            case "token":
-                                pr.cc(currentSymbol[1], ($r) => {
+                // while (true) {
+                //     if (currentSymbol === undefined) {
+                //         //No symbol, create one
+                //         const options: newGrm.Options = {}
+                //         options[$.kindName] = {}
+                //         rule.symbols.push(["array", {
+                //             type: {
+                //                 "symbols": [
+                //                     ["token", {
+                //                         "optional": false,
+                //                         "options": options
+                //                     }]
+                //                 ]
+                //             }
+                //         }])
+                //     } else {
+                //         switch (currentSymbol[0]) {
+                //             case "array":
+                //                 pr.cc(currentSymbol[1], ($r) => {
+                //                     //FIXME
+                //                 })
+                //                 break
+                //             case "token":
+                //                 pr.cc(currentSymbol[1], ($r) => {
 
-                                    if ($r.options[$.kindName] !== undefined) {
-                                        //nothing to do except increment counter
-                                        position++
-                                    } else {
+                //                     if ($r.options[$.kindName] !== undefined) {
+                //                         //nothing to do except increment counter
+                //                         position++
+                //                     } else {
 
-                                    }
-                                    // && !$r.optional) {
-                                    //     $r.options[$.kindName] = {}
-                                    // }
-                                })
-                                break
-                            default:
-                                pr.au(currentSymbol[0])
-                        }
-                    }
-                }
-                if (grammar.tokens[$.kindName] === undefined) {
-                    grammar.tokens[$.kindName] = {
-                        symbols: []
-                    }
-                }
+                //                     }
+                //                     // && !$r.optional) {
+                //                     //     $r.options[$.kindName] = {}
+                //                     // }
+                //                 })
+                //                 break
+                //             default:
+                //                 pr.au(currentSymbol[0])
+                //         }
+                //     }
+                // }
                 parseNode(
                     $,
-                    grammar.tokens[$.kindName],
                 )
             })
 
@@ -250,7 +146,6 @@ export function analyseCodebaseForNodeOccurences<Annotation>(
         }
         parseNode(
             $.node,
-            grammar.tokens[grammar.startToken]
         )
 
     })

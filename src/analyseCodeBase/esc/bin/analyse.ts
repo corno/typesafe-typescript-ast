@@ -1,6 +1,8 @@
+#!/usr/bin/env node
+
 import * as tsmorph from "ts-morph"
 import { newGrammar } from "../../../data/esc/newGrammar"
-import { loadUntypedProject } from "../../../pub/esc/implementations/builder/loadUntypedProject"
+import * as xx from "../../../pub/esc/implementations"
 import * as tr from "../implementations"
 
 const [, , tsconfigPath] = process.argv
@@ -9,7 +11,7 @@ if (tsconfigPath === undefined) {
     throw new Error("missing tsconfig path")
 }
 
-loadUntypedProject<tsmorph.Node>(
+xx.loadUntypedProject<tsmorph.Node>(
     tsconfigPath,
     (
         project,

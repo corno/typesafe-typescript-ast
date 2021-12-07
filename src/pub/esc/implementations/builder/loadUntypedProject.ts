@@ -18,32 +18,7 @@ export function loadUntypedProject<Annotation>(
 
     //SKIP: project.resolveSourceFileDependencies()
 
-    class XNode implements uast.Node<Annotation> {
-        private imp: tsm.Node<ts.Node>
-        private _annotation: Annotation
-        constructor(
-            imp: tsm.Node<ts.Node>,
-            annotation: Annotation,
-        ) {
-            this.imp = imp
-            this._annotation = annotation
-        }
-        get kindName() {
-            return this.imp.getKindName()
-        }
-        get children() {
-            return {
-                forEach: (callback: ($: uast.Node<Annotation>) => void) => {
-                    this.imp.forEachChild((x) => {
-                        callback(wrapNode(x))
-                    })
-                }
-            }
-        }
-        get annotation() {
-            return this._annotation
-        }
-    }
+
 
     function wrapNode($: tsm.Node<ts.Node>): uast.Node<Annotation> {
         // return {
@@ -67,16 +42,31 @@ export function loadUntypedProject<Annotation>(
         //         return $
         //     },
         // }
-        return new XNode(
-            $,
-            // {
-            //     getLineInfo: () => {
-            //         const lp = $.getSourceFile().getLineAndColumnAtPos($.getStart())
-            //         return `[${lp.line}, ${lp.column}]`
-            //     }
-            // },
-            createAnnotation($)
-        )
+
+        // {
+        //     getLineInfo: () => {
+        //         const lp = $.getSourceFile().getLineAndColumnAtPos($.getStart())
+        //         return `[${lp.line}, ${lp.column}]`
+        //     }
+        // },
+        class WrappedNode implements uast.Node<Annotation> {
+            get kindName() {
+                return $.getKindName()
+            }
+            get children() {
+                return {
+                    forEach: (callback: ($: uast.Node<Annotation>) => void) => {
+                        $.forEachChild((x) => {
+                            callback(wrapNode(x))
+                        })
+                    }
+                }
+            }
+            get annotation() {
+                return createAnnotation($)
+            }
+        }
+        return new WrappedNode()
     }
     callback(
         {
