@@ -1,3 +1,4 @@
+import * as tsmorph from "ts-morph"
 import { newGrammar } from "../../../data/esc/newGrammar"
 import { loadUntypedProject } from "../../../pub/esc/implementations/builder/loadUntypedProject"
 import * as tr from "../implementations"
@@ -8,7 +9,7 @@ if (tsconfigPath === undefined) {
     throw new Error("missing tsconfig path")
 }
 
-loadUntypedProject(
+loadUntypedProject<tsmorph.Node>(
     tsconfigPath,
     (
         project,
