@@ -31,51 +31,75 @@ export function serialize(
                                             $w.indent(($w) => {
                                                 $.symbols.forEach(($) => {
                                                     $w.line(($w) => {
-                                                        $w.snippet(`[`)
-                                                        switch ($[0]) {
-                                                            case "token":
-                                                                pr.cc($[1], ($) => {
-                                                                    $w.snippet(`"token", {`)
-                                                                    $w.indent(($w) => {
-                                                                        $w.line(($w) => {
-                                                                            $w.snippet(`optional: ${$.optional},`)
-                                                                        })
-                                                                        $w.line(($w) => {
-                                                                            $w.snippet(`options: {`)
+                                                        $w.snippet(`{`)
+                                                        $w.indent(($w) => {
+                                                            $w.line(($w) => {
+                                                                $w.snippet(`name: "${$.name}",`)
+                                                            })
+                                                            $w.line(($w) => {
+                                                                $w.snippet(`type: `)
+                                                                $w.snippet(`[`)
+                                                                switch ($.type[0]) {
+                                                                    case "token":
+                                                                        pr.cc($.type[1], ($) => {
+                                                                            $w.snippet(`"token", {`)
                                                                             $w.indent(($w) => {
-                                                                                newGrm.forEachEntry($.options, ($, key) => {
-                                                                                    $w.line(($w) => {
-                                                                                        $w.snippet(`"${key}": {},`)
-                                                                                    })
+                                                                                // $w.line(($w) => {
+                                                                                //     $w.snippet(`optional: ${$.optional},`)
+                                                                                // })
+                                                                                $w.line(($w) => {
+                                                                                    $w.snippet(`name: ${$.name}`)
                                                                                 })
                                                                             })
                                                                             $w.snippet(`}`)
                                                                         })
-                                                                    })
-                                                                    $w.snippet(`}`)
-                                                                })
-                                                                break
-                                                            case "array":
-                                                                pr.cc($[1], ($) => {
-                                                                    $w.snippet(`"array", {`)
-                                                                    $w.indent(($w) => {
-                                                                        $w.line(($w) => {
-                                                                            $w.snippet(`type: `)
-
-                                                                            doRule(
-                                                                                $.type,
-                                                                                $w,
-                                                                            )
+                                                                        break
+                                                                    case "choice":
+                                                                        pr.cc($.type[1], ($) => {
+                                                                            $w.snippet(`"choice", {`)
+                                                                            $w.indent(($w) => {
+                                                                                // $w.line(($w) => {
+                                                                                //     $w.snippet(`optional: ${$.optional},`)
+                                                                                // })
+                                                                                $w.line(($w) => {
+                                                                                    $w.snippet(`options: {`)
+                                                                                    $w.indent(($w) => {
+                                                                                        newGrm.forEachEntry($.options, ($, key) => {
+                                                                                            $w.line(($w) => {
+                                                                                                $w.snippet(`"${key}": {},`)
+                                                                                            })
+                                                                                        })
+                                                                                    })
+                                                                                    $w.snippet(`}`)
+                                                                                })
+                                                                            })
+                                                                            $w.snippet(`}`)
                                                                         })
-                                                                    })
-                                                                    $w.snippet(`}`)
-                                                                })
-                                                                break
-                                                            default:
-                                                                pr.au($[0])
-                                                        }
-
-                                                        $w.snippet(`]`)
+                                                                        break
+                                                                    case "array":
+                                                                        pr.cc($.type[1], ($) => {
+                                                                            $w.snippet(`"array", {`)
+                                                                            $w.indent(($w) => {
+                                                                                $w.line(($w) => {
+                                                                                    $w.snippet(`type: `)
+        
+                                                                                    doRule(
+                                                                                        $.rule,
+                                                                                        $w,
+                                                                                    )
+                                                                                })
+                                                                            })
+                                                                            $w.snippet(`}`)
+                                                                        })
+                                                                        break
+                                                                    default:
+                                                                        pr.au($.type[0])
+                                                                }
+        
+                                                                $w.snippet(`],`)
+                                                            })
+                                                        })
+                                                        $w.snippet(`}`)
                                                         $w.snippet(`,`)
                                                     })
                                                 })

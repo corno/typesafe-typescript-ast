@@ -4,16 +4,23 @@ export type Rule = {
     symbols: Symbol[]
 }
 
-export type Options = { [key: string]: {} }
+export type Options = { [key: string]: Rule }
 
-export type Symbol =
+export type Symbol = {
+    name: string
+    type: 
     | ["array", {
-        type: Rule
+        rule: Rule
     }]
-    | ["token", {
-        "optional": boolean
+    | ["choice", {
+        //"optional": boolean
         "options": Options
     }]
+    | ["token", {
+        //"optional": boolean
+        "name": string
+    }]
+}
 
 export type NewGrammar = {
     tokens: { [key: string]: Rule }

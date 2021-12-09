@@ -1,4 +1,5 @@
 import * as pr from "pareto-runtime"
+import { findNextPossibleTokens, SymbolIterator } from "../../../generateCode/esc/implementations/findNextPossibleTokens"
 import { serialize } from "../../../grammar/esc/implementations"
 import * as newGrm from "../../../grammar/esc/interfaces"
 import * as uastAPI from "../../../pub/esc/interfaces/untypedAST"
@@ -8,13 +9,13 @@ import { createBlock } from "../../../write/esc/implementations"
 export function analyseCodebaseForNodeOccurences<Annotation>(
     project: uastAPI.Project<Annotation>,
     grammar: newGrm.NewGrammar,
-    getLocationInfo: (annotation: Annotation) => string,
     reportExistence: (
         filePath: string,
         annotation: Annotation,
     ) => void,
 ): void {
 
+    let changed = false
     project.sourceFiles.forEach(($) => {
         const filePath = $.path
 
@@ -25,19 +26,74 @@ export function analyseCodebaseForNodeOccurences<Annotation>(
             throw new Error("unexpected")
         }
 
-        function parseNode(
-            $: uastAPI.Node<Annotation>,
+        function getToken(
+            name: string
         ) {
-            if (grammar.tokens[$.kindName] === undefined) {
-                grammar.tokens[$.kindName] = {
+            if (grammar.tokens[name] === undefined) {
+                grammar.tokens[name] = {
                     symbols: []
                 }
             }
-            const rule = grammar.tokens[$.kindName]
-            let position = 0
+            return grammar.tokens[name]
+        }
+        function parseNode(
+            rule: newGrm.Rule,
+            $: uastAPI.Node<Annotation>,
+        ) {
+            let si: SymbolIterator = {
+                symbols: rule.symbols,
+                position: 0,
+            }
+            //let position = 0
 
             $.children.forEach(($) => {
-                let currentSymbol = rule.symbols[position]
+                const child = $
+                if (si.symbols.length <= si.position) {
+                    console.error("Unexpected token!!!!")
+                } else {
+                    let currentSymbol = si.symbols[si.position]
+                    switch (currentSymbol.type[0]) {
+                        case "array":
+                            pr.cc(currentSymbol.type[1], ($) => {
+                                console.log("FIXME!!!!!!!!!!!!!!")
+                                // findNextToken(
+                                //     {
+                                //         symbols: rule.symbols,
+                                //         position: 0,
+                                //     },
+                                //     (token) => {
+                                //         console.log("FIXME!!")
+                                //     },
+                                //     () => {
+                                //         console.log("FIXME!!!")
+                    
+                                //     }
+                                // )
+                            })
+                            break
+                        case "choice":
+                            pr.cc(currentSymbol.type[1], ($) => {
+                                console.log("FIXME!!!!!!!XXXXX!!!!!!!")
+
+                            })
+                            break
+                        case "token":
+                            pr.cc(currentSymbol.type[1], ($) => {
+                                if ($.name !== child.kindName) {
+                                    console.error("MISMATCH")
+                                }
+                                parseNode(
+                                    getToken(child.kindName),
+                                    child,
+                                )
+                                si.position += 1
+                            })
+                            break
+                        default:
+                            pr.au(currentSymbol.type[0])
+                    }
+                }
+                // if (currentSymbol)
                 // while (true) {
                 //     if (currentSymbol === undefined) {
                 //         //No symbol, create one
@@ -79,10 +135,13 @@ export function analyseCodebaseForNodeOccurences<Annotation>(
                 //         }
                 //     }
                 // }
-                parseNode(
-                    $,
-                )
+                // parseNode(
+                //     $,
+                // )
             })
+            if (si.symbols.length > si.position) {
+                console.error("Missing token!!!!")
+            }
 
             //         if (type === undefined) {
             //             //console.log("FIXME TYPE")
@@ -145,20 +204,25 @@ export function analyseCodebaseForNodeOccurences<Annotation>(
             //         // }
         }
         parseNode(
+            getToken(grammar.startToken),
             $.node,
         )
 
     })
 
-    serialize(
-        grammar,
-        createBlock(
-            "    ",
-            "\r\n",
-            ($) => {
-                process.stdout.write($)
-            }
+    if (changed) {
+        serialize(
+            grammar,
+            createBlock(
+                "    ",
+                "\r\n",
+                ($) => {
+                    process.stdout.write($)
+                }
+            )
         )
-    )
+    } else {
+        console.warn("codebase conforms to grammar")
+    }
 }
 

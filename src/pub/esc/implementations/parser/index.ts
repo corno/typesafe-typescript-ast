@@ -1,2 +1,2 @@
-export * from "./builder.generated"
+export * from "./parser.generated"
 export * from "./loadUntypedProject"

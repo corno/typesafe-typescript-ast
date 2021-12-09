@@ -1,7 +1,8 @@
+#!/usr/bin/env node
 
 import * as pr from "pareto-runtime"
 import { generateCode } from "../implementations/generateCode"
-import { grammar } from "../../../data/esc/grammar"
+import { newGrammar } from "../../../dev/data/esc/newGrammar"
 
 
 const [, , targetDirPath] = pr.getProcessArguments()
@@ -12,6 +13,6 @@ if (targetDirPath === undefined) {
 }
 
 generateCode(
-    grammar,
+    newGrammar,
     targetDirPath,
 )

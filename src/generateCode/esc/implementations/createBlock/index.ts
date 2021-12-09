@@ -2,7 +2,7 @@ import * as pr from "pareto-runtime"
 
 import * as wapi from "../../interfaces/WriteAPI"
 
-export function createFile(
+export function createBlock(
     indentation: string,
     newline: string,
     write: (

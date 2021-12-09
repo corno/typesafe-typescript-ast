@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import * as tsmorph from "ts-morph"
-import { newGrammar } from "../../../data/esc/newGrammar"
+import { newGrammar } from "../../../dev/data/esc/newGrammar"
 import * as xx from "../../../pub/esc/implementations"
 import * as tr from "../implementations"
 
@@ -11,16 +11,14 @@ if (tsconfigPath === undefined) {
     throw new Error("missing tsconfig path")
 }
 
-xx.loadUntypedProject<tsmorph.Node>(
-    tsconfigPath,
-    (
+xx.loadUntypedProject<tsmorph.Node>({
+    tsconfigPath: tsconfigPath,
+    callback: (
         project,
-        getLocationInfo,
     ) => {
         tr.analyseCodebaseForNodeOccurences(
             project,
             newGrammar,
-            getLocationInfo,
             (
                 filePath,
                 $,
@@ -31,10 +29,7 @@ xx.loadUntypedProject<tsmorph.Node>(
             },
         )
     },
-    ($) => {
+    createAnnotation: ($) => {
         return $
     },
-    ($) => {
-        return "FIXME"
-    }
-)
+})

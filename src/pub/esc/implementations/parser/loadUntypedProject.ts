@@ -3,18 +3,17 @@ import * as ts from "typescript"
 import * as uast from "../../interfaces/untypedAST"
 import * as path from "path"
 
-export function loadUntypedProject<Annotation>(
+export function loadUntypedProject<Annotation>($p: {
     tsconfigPath: string,
     callback: (
         project: uast.Project<Annotation>,
-        getLineInfo: ($: Annotation) => string,
+        //getLineInfo: ($: Annotation) => string,
     ) => void,
     createAnnotation: ($: tsm.Node) => Annotation,
-    getLineInfo: ($: Annotation) => string,
-) {
+}) {
     const project = new tsm.Project({})
 
-    project.addSourceFilesFromTsConfig(tsconfigPath)
+    project.addSourceFilesFromTsConfig($p.tsconfigPath)
 
     //SKIP: project.resolveSourceFileDependencies()
 
@@ -63,15 +62,15 @@ export function loadUntypedProject<Annotation>(
                 }
             }
             get annotation() {
-                return createAnnotation($)
+                return $p.createAnnotation($)
             }
         }
         return new WrappedNode()
     }
-    callback(
+    $p.callback(
         {
             get path() {
-                return path.dirname(path.resolve(tsconfigPath))
+                return path.dirname(path.resolve($p.tsconfigPath))
             },
             sourceFiles: {
                 forEach: ((callback) => {
@@ -84,10 +83,10 @@ export function loadUntypedProject<Annotation>(
                 })
             }
         },
-        ($) => {
-            return getLineInfo($)
-            // const lp = $.getSourceFile().getLineAndColumnAtPos($.getStart())
-            // return `[${lp.line}, ${lp.column}]`
-        },
+        // ($) => {
+        //     return $p.getLineInfo($)
+        //     // const lp = $.getSourceFile().getLineAndColumnAtPos($.getStart())
+        //     // return `[${lp.line}, ${lp.column}]`
+        // },
     )
 }
