@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { testTypedProjectLoading } from "../implementations/testTypedProjectLoading";
+import { testTypedProjectLoading } from "../implementation/testTypedProjectLoading";
 
 const [, , tsconfigPath] = process.argv
 

@@ -1,31 +1,37 @@
 import * as tsm from "ts-morph"
-import { createParser } from "./parser.generated"
+import { parse } from "./parser.generated"
 import * as tast from "../../interfaces/typedAST"
 import * as uast from "../../interfaces/untypedAST"
 
-import { loadUntypedProject } from "./loadUntypedProject"
-import { Consumer, createDummyConsumer, Node } from "./Consumer"
-
 export function loadTypedProject<Annotation>($p: {
-    tsconfigPath: string,
     callback: (
         project: tast.Project<Annotation>,
     ) => void,
     createAnnotation: ($: tsm.Node) => Annotation,
-    reportUnexpectedChild: ($: {
-        parentKindName: string,
+    reportUnexpectedRoot: ($: {
         child: Annotation,
         path: string,
     }) => void,
-    reportMissingSymbol: ($: {
-        parentAnnotation: Annotation | null,
-        parentKindName: string,
-        symbolName: string,
-        path: string,
+    reportUnexpectedChild: ($: {
+        filePath: string,
+        nodePath: string,
+        child: Annotation,
     }) => void,
+    reportMissingSymbol: ($: {
+        filePath: string,
+        parentAnnotation: Annotation,
+        nodePath: string,
+        kindNameOptions: string[],
+    }) => void,
+    loadUntypedProject: ($p: {
+        callback: (
+            project: uast.Project<Annotation>,
+            //getLineInfo: ($: Annotation) => string,
+        ) => void,
+        createAnnotation: ($: tsm.Node) => Annotation,
+    }) => void
 }) {
-    loadUntypedProject<Annotation>({
-        tsconfigPath: $p.tsconfigPath,
+    $p.loadUntypedProject({
         callback: (
             project,
         ) => {
@@ -35,47 +41,36 @@ export function loadTypedProject<Annotation>($p: {
                         forEach: (callback) => {
                             project.sourceFiles.forEach(($) => {
                                 const path = $.path
-                                function doNode(
-                                    $: uast.Node<Annotation>,
-                                    parser: Consumer<Annotation>,
-                                ) {
 
-                                    $.children.forEach(($) => {
-                                        doNode(
-                                            $,
-                                            parser.onNode({
-                                                kindName: $.kindName,
-                                                annotation: $.annotation,
-                                            }),
-                                        )
-                                    })
-                                    parser.onEnd()
-                                }
-                                doNode(
+                                parse<Annotation>(
                                     $.node,
-                                    createParser(
-                                        ($) => {
-                                            callback({
-                                                root: $
-                                            })
-                                        },
-                                        ($) => {
-                                            $p.reportUnexpectedChild({
-                                                parentKindName: $.parentKindName,
-                                                child: $.child.annotation,
-                                                path: path
-                                            })
-                                            return createDummyConsumer()
-                                        },
-                                        ($) => {
-                                            $p.reportMissingSymbol({
-                                                parentAnnotation: $.parentAnnotation,
-                                                parentKindName: $.parentKindName,
-                                                symbolName: $.symbolName,
-                                                path: path
-                                            })
-                                        }
-                                    ),
+                                    ($) => {
+                                        callback({
+                                            path: path,
+                                            root: $
+                                        })
+                                    },
+                                    ($) => {
+                                        $p.reportUnexpectedRoot({
+                                            child: $.root.annotation,
+                                            path: path
+                                        })
+                                    },
+                                    ($) => {
+                                        $p.reportUnexpectedChild({
+                                            nodePath: $.path,
+                                            child: $.child.annotation,
+                                            filePath: path
+                                        })
+                                    },
+                                    ($) => {
+                                        $p.reportMissingSymbol({
+                                            filePath: path,
+                                            parentAnnotation: $.parentAnnotation,
+                                            nodePath: $.path,
+                                            kindNameOptions: $.kindNameOptions,
+                                        })
+                                    }
                                 )
                             })
                         },

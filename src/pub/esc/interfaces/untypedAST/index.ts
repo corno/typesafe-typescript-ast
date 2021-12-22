@@ -4,6 +4,7 @@ export type Node<Annotation> = {
     readonly kindName: string
     readonly children: pr.IReadonlyArray<Node<Annotation>>
     readonly annotation: Annotation
+    readonly value: string
 }
 
 export type SourceFile<Annotation> = {

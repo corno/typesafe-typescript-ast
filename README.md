@@ -1,7 +1,7 @@
 
 
 # analyseCodeBase
-starts from the current grammar and analyses a codebase to see if it conforms to the grammar. If not, an updated grammar is generated. This can be copy/pasted over the current grammar.
+...
 
 # generateCode
 

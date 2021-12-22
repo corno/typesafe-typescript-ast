@@ -1,8 +1,7 @@
 #!/usr/bin/env node
-
 import * as pr from "pareto-runtime"
-import { generateCode } from "../implementations/generateCode"
-import { newGrammar } from "../../../dev/data/esc/newGrammar"
+import * as tsg from "../data/typescriptGrammar"
+import * as gta from "generate-typesafe-ast/esc/implementations"
 
 
 const [, , targetDirPath] = pr.getProcessArguments()
@@ -12,7 +11,7 @@ if (targetDirPath === undefined) {
     pr.processExit(1)
 }
 
-generateCode(
-    newGrammar,
-    targetDirPath,
+gta.generateCode(
+    tsg.typeScriptGrammar,
+    targetDirPath
 )
