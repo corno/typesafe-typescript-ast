@@ -46,29 +46,6 @@ export function testTypedProjectLoading(
             const project = new tsmorph.Project({})
             project.addSourceFilesFromTsConfig(tsconfigPath)
 
-            function wrapNode($: tsmorph.Node): uast.Node<tsmorph.Node> {
-                class WrappedNode implements uast.Node<tsmorph.Node> {
-                    get kindName() {
-                        return $.getKindName()
-                    }
-                    get value() {
-                        return $.getText()
-                    }
-                    get children() {
-                        return {
-                            forEach: (callback: ($: uast.Node<tsmorph.Node>) => void) => {
-                                $.forEachChild((x) => {
-                                    callback(wrapNode(x))
-                                })
-                            }
-                        }
-                    }
-                    get annotation() {
-                        return $p.createAnnotation($)
-                    }
-                }
-                return new WrappedNode()
-            }
             $p.callback(
                 {
                     get path() {
@@ -77,6 +54,29 @@ export function testTypedProjectLoading(
                     sourceFiles: {
                         forEach: ((callback) => {
                             project.getSourceFiles().forEach(($) => {
+                                function wrapNode($: tsmorph.Node): uast.Node<tsmorph.Node> {
+                                    class WrappedNode implements uast.Node<tsmorph.Node> {
+                                        get kindName() {
+                                            return $.getKindName()
+                                        }
+                                        get value() {
+                                            return $.getText()
+                                        }
+                                        get children() {
+                                            return {
+                                                forEach: (callback: ($: uast.Node<tsmorph.Node>) => void) => {
+                                                    $.forEachChild((x) => {
+                                                        callback(wrapNode(x))
+                                                    })
+                                                }
+                                            }
+                                        }
+                                        get annotation() {
+                                            return $p.createAnnotation($)
+                                        }
+                                    }
+                                    return new WrappedNode()
+                                }
                                 callback({
                                     path: $.getFilePath(),
                                     node: wrapNode($)

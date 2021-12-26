@@ -1,6 +1,6 @@
-import { Grammar } from "generate-typesafe-ast/esc/interfaces"
+import * as gr from "generate-typesafe-ast/esc/interfaces"
 
-export const typeScriptGrammar: Grammar = {
+export const typeScriptGrammar: gr.Grammar = {
     valueTypes: {
         expression: ["choice", {
             options: {
@@ -1324,7 +1324,7 @@ export const typeScriptGrammar: Grammar = {
             }]
         },
         NullKeyword: { type: ["leaf", { hasTextContent: false }] },
-        NoSubstitutionTemplateLiteral: { type: ["leaf", { hasTextContent: false }] },
+        NoSubstitutionTemplateLiteral: { type: ["leaf", { hasTextContent: true }] },
         ObjectLiteralExpression: {
             type: ["composite", {
                 cardinality: ["array", {}],
