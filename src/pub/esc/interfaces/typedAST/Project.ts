@@ -1,9 +1,9 @@
 import * as pr from "pareto-runtime"
-import { TSourceFile } from "./ts_api.generated"
+import { Root } from "../../typescriptAST/interface/ts_api.generated"
 
 export type SourceFile<Annotation> = {
     path: string
-    root: TSourceFile<Annotation>
+    root: Root<Annotation>
 }
 
 export type Project<Annotation> = {

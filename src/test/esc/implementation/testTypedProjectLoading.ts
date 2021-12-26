@@ -2,9 +2,9 @@ import * as pr from "pareto-runtime"
 import * as tsmorph from "ts-morph";
 import * as uast from "../../../pub/esc/interfaces/untypedAST"
 import { loadTypedProject } from "../../../pub/esc/implementations/parser/loadTypedProject";
-import { visit } from "../../../pub/esc/implementations/visitor_template.generated";
 import { createFoo } from "./foo";
 import * as path from "path"
+import { visit } from "../../../pub/esc/typescriptAST/implementation/visitor_template.generated";
 
 function getLineInfo(
     $: tsmorph.Node,
@@ -24,7 +24,7 @@ export function testTypedProjectLoading(
                     $.root,
                     createFoo(
                         (str) => {
-                            console.log(`    ${str}`)
+                            //console.log(`    ${str}`)
                         }
                     ),
                 )

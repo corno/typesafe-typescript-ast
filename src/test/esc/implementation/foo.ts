@@ -1,280 +1,309 @@
-import { FOO } from "../../../pub/esc/implementations/visitor_template.generated"
 import { Node } from "ts-morph";
+import { FOO } from "../../../pub/esc/typescriptAST/implementation/visitor_template.generated";
 
 export function createFoo(
     write: (str: string) => void
 ): FOO<Node> {
     return {
-        "AnyKeyword": ($) => { write("any") },
-        "ArrayLiteralExpression": {
-            begin: ($) => { write("ArrayLiteralExpression begin") },
-            end: ($) => { write("ArrayLiteralExpression end") },
+        "Gblock$": {
+            begin: ($) => { write("Gblock$ begin") },
+            end: ($) => { write("Gblock$ end") },
         },
-        "ArrayType": {
-            begin: ($) => { write("ArrayType begin") },
-            end: ($) => { write("ArrayType end") },
+        "Gexpression_arrayLiteral$": {
+            begin: ($) => { write("Gexpression_arrayLiteral$ begin") },
+            end: ($) => { write("Gexpression_arrayLiteral$ end") },
         },
-        "ArrowFunction": {
-            begin: ($) => { write("ArrowFunction begin") },
-            end: ($) => { write("ArrowFunction end") },
+        "Gexpression_arrowFunction$_equalsGreaterThan$": ($) => { write("Gexpression_arrowFunction$_equalsGreaterThan$") },
+        "Gexpression_arrowFunction$": {
+            begin: ($) => { write("Gexpression_arrowFunction$ begin") },
+            end: ($) => { write("Gexpression_arrowFunction$ end") },
         },
-        "BinaryExpression": {
-            begin: ($) => { write("BinaryExpression begin") },
-            end: ($) => { write("BinaryExpression end") },
+        "Gexpression_binary$_operator_ampersandAmpersand$": ($) => { write("Gexpression_binary$_operator_ampersandAmpersand$") },
+        "Gexpression_binary$_operator_barBar$": ($) => { write("Gexpression_binary$_operator_barBar$") },
+        "Gexpression_binary$_operator_equals$": ($) => { write("Gexpression_binary$_operator_equals$") },
+        "Gexpression_binary$_operator_equalsEqualsEquals$": ($) => { write("Gexpression_binary$_operator_equalsEqualsEquals$") },
+        "Gexpression_binary$_operator_exclamationEqualsEquals$": ($) => { write("Gexpression_binary$_operator_exclamationEqualsEquals$") },
+        "Gexpression_binary$_operator_greaterThan$": ($) => { write("Gexpression_binary$_operator_greaterThan$") },
+        "Gexpression_binary$_operator_lessThan$": ($) => { write("Gexpression_binary$_operator_lessThan$") },
+        "Gexpression_binary$_operator_minus$": ($) => { write("Gexpression_binary$_operator_minus$") },
+        "Gexpression_binary$_operator_minusEquals$": ($) => { write("Gexpression_binary$_operator_minusEquals$") },
+        "Gexpression_binary$_operator_plus$": ($) => { write("Gexpression_binary$_operator_plus$") },
+        "Gexpression_binary$_operator_plusEquals$": ($) => { write("Gexpression_binary$_operator_plusEquals$") },
+        "Gexpression_binary$": {
+            begin: ($) => { write("Gexpression_binary$ begin") },
+            end: ($) => { write("Gexpression_binary$ end") },
         },
-        "AmpersandAmpersandToken": ($) => { write("AmpersandAmpersandToken") },
-        "BarBarToken": ($) => { write("BarBarToken") },
-        "BreakStatement": {
-            begin: ($) => { write("BreakStatement begin") },
-            end: ($) => { write("BreakStatement end") },
+        "Gexpression_call$": {
+            begin: ($) => { write("Gexpression_call$ begin") },
+            end: ($) => { write("Gexpression_call$ end") },
         },
-        "EqualsEqualsEqualsToken": ($) => { write("EqualsEqualsEqualsToken") },
-        "EqualsToken": ($) => { write("EqualsToken") },
-        "ExclamationEqualsEqualsToken": ($) => { write("ExclamationEqualsEqualsToken") },
-        "GreaterThanToken": ($) => { write("GreaterThanToken") },
-        "LessThanToken": ($) => { write("LessThanToken") },
-        "MinusToken": ($) => { write("MinusToken") },
-        "MinusEqualsToken": ($) => { write("MinusEqualsToken") },
-        "PlusToken": ($) => { write("PlusToken") },
-        "PlusEqualsToken": ($) => { write("PlusEqualsToken") },
-        "BooleanKeyword": ($) => { write("BooleanKeyword") },
-        "Block": {
-            begin: ($) => { write("Block begin") },
-            end: ($) => { write("Block end") },
+        "Gexpression_conditional$_questionToken$": ($) => { write("Gexpression_conditional$_questionToken$") },
+        "Gexpression_conditional$_colonToken$": ($) => { write("Gexpression_conditional$_colonToken$") },
+        "Gexpression_conditional$": {
+            begin: ($) => { write("Gexpression_conditional$ begin") },
+            end: ($) => { write("Gexpression_conditional$ end") },
         },
-        "CallExpression": {
-            begin: ($) => { write("CallExpression begin") },
-            end: ($) => { write("CallExpression end") },
+        "Gexpression_elementAccess$": {
+            begin: ($) => { write("Gexpression_elementAccess$ begin") },
+            end: ($) => { write("Gexpression_elementAccess$ end") },
         },
-        "CaseBlock": {
-            begin: ($) => { write("CaseBlock begin") },
-            end: ($) => { write("CaseBlock end") },
+        "Gexpression_false$": ($) => { write("Gexpression_false$") },
+        "Gexpression_new$": {
+            begin: ($) => { write("Gexpression_new$ begin") },
+            end: ($) => { write("Gexpression_new$ end") },
         },
-        "CaseClause": {
-            begin: ($) => { write("CaseClause begin") },
-            end: ($) => { write("CaseClause end") },
+        "Gexpression_noSubstitutionTemplateLiteral$": ($) => { write("Gexpression_noSubstitutionTemplateLiteral$") },
+        "Gexpression_nullKeyword$": ($) => { write("Gexpression_nullKeyword$") },
+        "Gexpression_objectLiteral$_propertyAssignment$": {
+            begin: ($) => { write("Gexpression_objectLiteral$_propertyAssignment$ begin") },
+            end: ($) => { write("Gexpression_objectLiteral$_propertyAssignment$ end") },
         },
-        "CatchClause": {
-            begin: ($) => { write("CatchClause begin") },
-            end: ($) => { write("CatchClause end") },
+        "Gexpression_objectLiteral$": {
+            begin: ($) => { write("Gexpression_objectLiteral$ begin") },
+            end: ($) => { write("Gexpression_objectLiteral$ end") },
         },
-        "ColonToken": ($) => { write("ColonToken") },
-        "ConditionalExpression": {
-            begin: ($) => { write("ConditionalExpression begin") },
-            end: ($) => { write("ConditionalExpression end") },
+        "Gexpression_parenthesizedExpression$": {
+            begin: ($) => { write("Gexpression_parenthesizedExpression$ begin") },
+            end: ($) => { write("Gexpression_parenthesizedExpression$ end") },
         },
-        "ConstructSignature": {
-            begin: ($) => { write("ConstructSignature begin") },
-            end: ($) => { write("ConstructSignature end") },
+        "Gexpression_postfixUnary$": {
+            begin: ($) => { write("Gexpression_postfixUnary$ begin") },
+            end: ($) => { write("Gexpression_postfixUnary$ end") },
         },
-        "DeclareKeyword": ($) => { write("DeclareKeyword") },
-        "DefaultClause": {
-            begin: ($) => { write("DefaultClause begin") },
-            end: ($) => { write("DefaultClause end") },
+        "Gexpression_prefixUnary$": {
+            begin: ($) => { write("Gexpression_prefixUnary$ begin") },
+            end: ($) => { write("Gexpression_prefixUnary$ end") },
         },
-        "ElementAccessExpression": {
-            begin: ($) => { write("ElementAccessExpression begin") },
-            end: ($) => { write("ElementAccessExpression end") },
+        "Gexpression_propertyAccess$": {
+            begin: ($) => { write("Gexpression_propertyAccess$ begin") },
+            end: ($) => { write("Gexpression_propertyAccess$ end") },
         },
-        "EndOfFileToken": ($) => { write("EndOfFileToken") },
-        "EqualsGreaterThanToken": ($) => { write("EqualsGreaterThanToken") },
-        "ExportDeclaration": {
-            begin: ($) => { write("ExportDeclaration begin") },
-            end: ($) => { write("ExportDeclaration end") },
+        "Gexpression_template$_head$": ($) => { write("Gexpression_template$_head$") },
+        "Gexpression_template$_spans$_x_middle$": ($) => { write("Gexpression_template$_spans$_x_middle$") },
+        "Gexpression_template$_spans$_x_tail$": ($) => { write("Gexpression_template$_spans$_x_tail$") },
+        "Gexpression_template$_spans$": {
+            begin: ($) => { write("Gexpression_template$_spans$ begin") },
+            end: ($) => { write("Gexpression_template$_spans$ end") },
         },
-        "ExportKeyword": ($) => { write("ExportKeyword") },
-        "ExpressionStatement": {
-            begin: ($) => { write("ExpressionStatement begin") },
-            end: ($) => { write("ExpressionStatement end") },
+        "Gexpression_template$": {
+            begin: ($) => { write("Gexpression_template$ begin") },
+            end: ($) => { write("Gexpression_template$ end") },
         },
-        "FalseKeyword": ($) => { write("FalseKeyword") },
-        "ForStatement": {
-            begin: ($) => { write("ForStatement begin") },
-            end: ($) => { write("ForStatement end") },
+        "Gexpression_true$": ($) => { write("Gexpression_true$") },
+        "GgetAccessor$": {
+            begin: ($) => { write("GgetAccessor$ begin") },
+            end: ($) => { write("GgetAccessor$ end") },
         },
-        "FunctionDeclaration": {
-            begin: ($) => { write("FunctionDeclaration begin") },
-            end: ($) => { write("FunctionDeclaration end") },
+        "Gidentifier$": ($) => { write("Gidentifier$") },
+        "Gmodifier_declare$": ($) => { write("Gmodifier_declare$") },
+        "Gmodifier_export$": ($) => { write("Gmodifier_export$") },
+        "Gmodifier_readonly$": ($) => { write("Gmodifier_readonly$") },
+        "GnumericLiteral$": ($) => { write("GnumericLiteral$") },
+        "Gparameter$_questionToken$": ($) => { write("Gparameter$_questionToken$") },
+        "Gparameter$": {
+            begin: ($) => { write("Gparameter$ begin") },
+            end: ($) => { write("Gparameter$ end") },
         },
-        "Identifier": ($) => { write("Identifier") },
-        "IfStatement": {
-            begin: ($) => { write("IfStatement begin") },
-            end: ($) => { write("IfStatement end") },
+        "Gstatement_break$": {
+            begin: ($) => { write("Gstatement_break$ begin") },
+            end: ($) => { write("Gstatement_break$ end") },
         },
-        "FunctionType": {
-            begin: ($) => { write("FunctionType begin") },
-            end: ($) => { write("FunctionType end") },
+        "Gstatement_class$_heritageClause$$": {
+            begin: ($) => { write("Gstatement_class$_heritageClause$$ begin") },
+            end: ($) => { write("Gstatement_class$_heritageClause$$ end") },
         },
-        "ImportClause": {
-            begin: ($) => { write("ImportClause begin") },
-            end: ($) => { write("ImportClause end") },
+        "Gstatement_class$_heritageClause$": {
+            begin: ($) => { write("Gstatement_class$_heritageClause$ begin") },
+            end: ($) => { write("Gstatement_class$_heritageClause$ end") },
         },
-        "ImportDeclaration": {
-            begin: ($) => { write("ImportDeclaration begin") },
-            end: ($) => { write("ImportDeclaration end") },
+        "Gstatement_class$": {
+            begin: ($) => { write("Gstatement_class$ begin") },
+            end: ($) => { write("Gstatement_class$ end") },
         },
-        "IndexSignature": {
-            begin: ($) => { write("IndexSignature begin") },
-            end: ($) => { write("IndexSignature end") },
+        "Gstatement_export$": {
+            begin: ($) => { write("Gstatement_export$ begin") },
+            end: ($) => { write("Gstatement_export$ end") },
         },
-        "InterfaceDeclaration": {
-            begin: ($) => { write("InterfaceDeclaration begin") },
-            end: ($) => { write("InterfaceDeclaration end") },
+        "Gstatement_expression$": {
+            begin: ($) => { write("Gstatement_expression$ begin") },
+            end: ($) => { write("Gstatement_expression$ end") },
         },
-        "ImportSpecifier": {
-            begin: ($) => { write("ImportSpecifier begin") },
-            end: ($) => { write("ImportSpecifier end") },
+        "Gstatement_for$": {
+            begin: ($) => { write("Gstatement_for$ begin") },
+            end: ($) => { write("Gstatement_for$ end") },
         },
-        "LabeledStatement": {
-            begin: ($) => { write("LabeledStatement begin") },
-            end: ($) => { write("LabeledStatement end") },
+        "Gstatement_function$": {
+            begin: ($) => { write("Gstatement_function$ begin") },
+            end: ($) => { write("Gstatement_function$ end") },
         },
-        "LiteralType": {
-            begin: ($) => { write("LiteralType begin") },
-            end: ($) => { write("LiteralType end") },
+        "Gstatement_if$": {
+            begin: ($) => { write("Gstatement_if$ begin") },
+            end: ($) => { write("Gstatement_if$ end") },
         },
-        "MethodSignature": {
-            begin: ($) => { write("MethodSignature begin") },
-            end: ($) => { write("MethodSignature end") },
+        "Gstatement_import$_clause$_namespace$": {
+            begin: ($) => { write("Gstatement_import$_clause$_namespace$ begin") },
+            end: ($) => { write("Gstatement_import$_clause$_namespace$ end") },
         },
-        "NamespaceImport": {
-            begin: ($) => { write("NamespaceImport begin") },
-            end: ($) => { write("NamespaceImport end") },
+        "Gstatement_import$_clause$_named$$": {
+            begin: ($) => { write("Gstatement_import$_clause$_named$$ begin") },
+            end: ($) => { write("Gstatement_import$_clause$_named$$ end") },
         },
-        "NamedImports": {
-            begin: ($) => { write("NamedImports begin") },
-            end: ($) => { write("NamedImports end") },
+        "Gstatement_import$_clause$_named$": {
+            begin: ($) => { write("Gstatement_import$_clause$_named$ begin") },
+            end: ($) => { write("Gstatement_import$_clause$_named$ end") },
         },
-        "NeverKeyword": ($) => { write("NeverKeyword") },
-        "NumberKeyword": ($) => { write("NumberKeyword") },
-        "NumericLiteral": ($) => { write("NumericLiteral") },
-        "NewExpression": {
-            begin: ($) => { write("NewExpression begin") },
-            end: ($) => { write("NewExpression end") },
+        "Gstatement_import$_clause$": {
+            begin: ($) => { write("Gstatement_import$_clause$ begin") },
+            end: ($) => { write("Gstatement_import$_clause$ end") },
         },
-        "NullKeyword": ($) => { write("NullKeyword") },
-        "NoSubstitutionTemplateLiteral": ($) => { write("NoSubstitutionTemplateLiteral") },
-        "ObjectLiteralExpression": {
-            begin: ($) => { write("ObjectLiteralExpression begin") },
-            end: ($) => { write("ObjectLiteralExpression end") },
+        "Gstatement_import$": {
+            begin: ($) => { write("Gstatement_import$ begin") },
+            end: ($) => { write("Gstatement_import$ end") },
         },
-        "OptionalType": {
-            begin: ($) => { write("OptionalType begin") },
-            end: ($) => { write("OptionalType end") },
+        "Gstatement_interface$": {
+            begin: ($) => { write("Gstatement_interface$ begin") },
+            end: ($) => { write("Gstatement_interface$ end") },
         },
-        "Parameter": {
-            begin: ($) => { write("Parameter begin") },
-            end: ($) => { write("Parameter end") },
+        "Gstatement_labeled$": {
+            begin: ($) => { write("Gstatement_labeled$ begin") },
+            end: ($) => { write("Gstatement_labeled$ end") },
         },
-        "ParenthesizedExpression": {
-            begin: ($) => { write("ParenthesizedExpression begin") },
-            end: ($) => { write("ParenthesizedExpression end") },
+        "Gstatement_return$": {
+            begin: ($) => { write("Gstatement_return$ begin") },
+            end: ($) => { write("Gstatement_return$ end") },
         },
-        "ParenthesizedType": {
-            begin: ($) => { write("ParenthesizedType begin") },
-            end: ($) => { write("ParenthesizedType end") },
+        "Gstatement_switch$_caseBlock$_case$": {
+            begin: ($) => { write("Gstatement_switch$_caseBlock$_case$ begin") },
+            end: ($) => { write("Gstatement_switch$_caseBlock$_case$ end") },
         },
-        "PostfixUnaryExpression": {
-            begin: ($) => { write("PostfixUnaryExpression begin") },
-            end: ($) => { write("PostfixUnaryExpression end") },
+        "Gstatement_switch$_caseBlock$_default$": {
+            begin: ($) => { write("Gstatement_switch$_caseBlock$_default$ begin") },
+            end: ($) => { write("Gstatement_switch$_caseBlock$_default$ end") },
         },
-        "PrefixUnaryExpression": {
-            begin: ($) => { write("PrefixUnaryExpression begin") },
-            end: ($) => { write("PrefixUnaryExpression end") },
+        "Gstatement_switch$_caseBlock$": {
+            begin: ($) => { write("Gstatement_switch$_caseBlock$ begin") },
+            end: ($) => { write("Gstatement_switch$_caseBlock$ end") },
         },
-        "PropertyAccessExpression": {
-            begin: ($) => { write("PropertyAccessExpression begin") },
-            end: ($) => { write("PropertyAccessExpression end") },
+        "Gstatement_switch$": {
+            begin: ($) => { write("Gstatement_switch$ begin") },
+            end: ($) => { write("Gstatement_switch$ end") },
         },
-        "PropertyAssignment": {
-            begin: ($) => { write("PropertyAssignment begin") },
-            end: ($) => { write("PropertyAssignment end") },
+        "Gstatement_throw$": {
+            begin: ($) => { write("Gstatement_throw$ begin") },
+            end: ($) => { write("Gstatement_throw$ end") },
         },
-        "PropertySignature": {
-            begin: ($) => { write("PropertySignature begin") },
-            end: ($) => { write("PropertySignature end") },
+        "Gstatement_try$_catchClause$": {
+            begin: ($) => { write("Gstatement_try$_catchClause$ begin") },
+            end: ($) => { write("Gstatement_try$_catchClause$ end") },
         },
-        "QualifiedName": {
-            begin: ($) => { write("QualifiedName begin") },
-            end: ($) => { write("QualifiedName end") },
+        "Gstatement_try$": {
+            begin: ($) => { write("Gstatement_try$ begin") },
+            end: ($) => { write("Gstatement_try$ end") },
         },
-        "QuestionToken": ($) => { write("QuestionToken") },
-        "ReadonlyKeyword": ($) => { write("ReadonlyKeyword") },
-        "ReturnStatement": {
-            begin: ($) => { write("ReturnStatement begin") },
-            end: ($) => { write("ReturnStatement end") },
+        "Gstatement_typeAlias$": {
+            begin: ($) => { write("Gstatement_typeAlias$ begin") },
+            end: ($) => { write("Gstatement_typeAlias$ end") },
         },
-        "SourceFile": {
-            begin: ($) => { write("SourceFile begin") },
-            end: ($) => { write("SourceFile end") },
+        "Gstatement_variable$": {
+            begin: ($) => { write("Gstatement_variable$ begin") },
+            end: ($) => { write("Gstatement_variable$ end") },
         },
-        "StringKeyword": ($) => { write("StringKeyword") },
-        "StringLiteral": ($) => { write("StringLiteral") },
-        "SwitchStatement": {
-            begin: ($) => { write("SwitchStatement begin") },
-            end: ($) => { write("SwitchStatement end") },
+        "Gstatement_while$": {
+            begin: ($) => { write("Gstatement_while$ begin") },
+            end: ($) => { write("Gstatement_while$ end") },
         },
-        "TemplateExpression": {
-            begin: ($) => { write("TemplateExpression begin") },
-            end: ($) => { write("TemplateExpression end") },
+        "GstringLiteral$": ($) => { write("GstringLiteral$") },
+        "Gtype_any$": ($) => { write("Gtype_any$") },
+        "Gtype_array$": {
+            begin: ($) => { write("Gtype_array$ begin") },
+            end: ($) => { write("Gtype_array$ end") },
         },
-        "TemplateHead": ($) => { write("TemplateHead") },
-        "TemplateMiddle": ($) => { write("TemplateMiddle") },
-        "TemplateSpan": {
-            begin: ($) => { write("TemplateSpan begin") },
-            end: ($) => { write("TemplateSpan end") },
+        "Gtype_boolean$": ($) => { write("Gtype_boolean$") },
+        "Gtype_function$": {
+            begin: ($) => { write("Gtype_function$ begin") },
+            end: ($) => { write("Gtype_function$ end") },
         },
-        "TemplateTail": ($) => { write("TemplateTail") },
-        "ThrowStatement": {
-            begin: ($) => { write("ThrowStatement begin") },
-            end: ($) => { write("ThrowStatement end") },
+        "Gtype_literal$_null$": ($) => { write("Gtype_literal$_null$") },
+        "Gtype_literal$": {
+            begin: ($) => { write("Gtype_literal$ begin") },
+            end: ($) => { write("Gtype_literal$ end") },
         },
-        "TrueKeyword": ($) => { write("TrueKeyword") },
-        "TryStatement": {
-            begin: ($) => { write("TryStatement begin") },
-            end: ($) => { write("TryStatement end") },
+        "Gtype_parenthesized$": {
+            begin: ($) => { write("Gtype_parenthesized$ begin") },
+            end: ($) => { write("Gtype_parenthesized$ end") },
         },
-        "TupleType": {
-            begin: ($) => { write("TupleType begin") },
-            end: ($) => { write("TupleType end") },
+        "Gtype_never$": ($) => { write("Gtype_never$") },
+        "Gtype_number$": ($) => { write("Gtype_number$") },
+        "Gtype_optional$": {
+            begin: ($) => { write("Gtype_optional$ begin") },
+            end: ($) => { write("Gtype_optional$ end") },
         },
-        "TypeAliasDeclaration": {
-            begin: ($) => { write("TypeAliasDeclaration begin") },
-            end: ($) => { write("TypeAliasDeclaration end") },
+        "Gtype_tuple$": {
+            begin: ($) => { write("Gtype_tuple$ begin") },
+            end: ($) => { write("Gtype_tuple$ end") },
         },
-        "TypeLiteral": {
-            begin: ($) => { write("TypeLiteral begin") },
-            end: ($) => { write("TypeLiteral end") },
+        "Gtype_typeLiteral$": {
+            begin: ($) => { write("Gtype_typeLiteral$ begin") },
+            end: ($) => { write("Gtype_typeLiteral$ end") },
         },
-        "TypeParameter": {
-            begin: ($) => { write("TypeParameter begin") },
-            end: ($) => { write("TypeParameter end") },
+        "Gtype_string$": ($) => { write("Gtype_string$") },
+        "Gtype_typeReference$_x_qualifiedName$": {
+            begin: ($) => { write("Gtype_typeReference$_x_qualifiedName$ begin") },
+            end: ($) => { write("Gtype_typeReference$_x_qualifiedName$ end") },
         },
-        "TypeReference": {
-            begin: ($) => { write("TypeReference begin") },
-            end: ($) => { write("TypeReference end") },
+        "Gtype_typeReference$": {
+            begin: ($) => { write("Gtype_typeReference$ begin") },
+            end: ($) => { write("Gtype_typeReference$ end") },
         },
-        "UndefinedKeyword": ($) => { write("UndefinedKeyword") },
-        "UnionType": {
-            begin: ($) => { write("UnionType begin") },
-            end: ($) => { write("UnionType end") },
+        "Gtype_undefined$": ($) => { write("Gtype_undefined$") },
+        "Gtype_union$": {
+            begin: ($) => { write("Gtype_union$ begin") },
+            end: ($) => { write("Gtype_union$ end") },
         },
-        "VariableDeclaration": {
-            begin: ($) => { write("VariableDeclaration begin") },
-            end: ($) => { write("VariableDeclaration end") },
+        "Gtype_void$": ($) => { write("Gtype_void$") },
+        "GtypeParameter$": {
+            begin: ($) => { write("GtypeParameter$ begin") },
+            end: ($) => { write("GtypeParameter$ end") },
         },
-        "VariableDeclarationList": {
-            begin: ($) => { write("VariableDeclarationList begin") },
-            end: ($) => { write("VariableDeclarationList end") },
+        "GtypeSignature_construct$": {
+            begin: ($) => { write("GtypeSignature_construct$ begin") },
+            end: ($) => { write("GtypeSignature_construct$ end") },
         },
-        "VariableStatement": {
-            begin: ($) => { write("VariableStatement begin") },
-            end: ($) => { write("VariableStatement end") },
+        "GtypeSignature_index$": {
+            begin: ($) => { write("GtypeSignature_index$ begin") },
+            end: ($) => { write("GtypeSignature_index$ end") },
         },
-        "VoidKeyword": ($) => { write("VoidKeyword") },
-        "WhileStatement": {
-            begin: ($) => { write("WhileStatement begin") },
-            end: ($) => { write("WhileStatement end") },
+        "GtypeSignature_method$": {
+            begin: ($) => { write("GtypeSignature_method$ begin") },
+            end: ($) => { write("GtypeSignature_method$ end") },
+        },
+        "GtypeSignature_property$_quesionToken$": ($) => { write("GtypeSignature_property$_quesionToken$") },
+        "GtypeSignature_property$": {
+            begin: ($) => { write("GtypeSignature_property$ begin") },
+            end: ($) => { write("GtypeSignature_property$ end") },
+        },
+        "GvariableDeclaration$_nameOrArrayBinding_arrayBindingPattern$_omitted$": ($) => { write("GvariableDeclaration$_nameOrArrayBinding_arrayBindingPattern$_omitted$") },
+        "GvariableDeclaration$_nameOrArrayBinding_arrayBindingPattern$_bindingElement$": {
+            begin: ($) => { write("GvariableDeclaration$_nameOrArrayBinding_arrayBindingPattern$_bindingElement$ begin") },
+            end: ($) => { write("GvariableDeclaration$_nameOrArrayBinding_arrayBindingPattern$_bindingElement$ end") },
+        },
+        "GvariableDeclaration$_nameOrArrayBinding_arrayBindingPattern$": {
+            begin: ($) => { write("GvariableDeclaration$_nameOrArrayBinding_arrayBindingPattern$ begin") },
+            end: ($) => { write("GvariableDeclaration$_nameOrArrayBinding_arrayBindingPattern$ end") },
+        },
+        "GvariableDeclaration$": {
+            begin: ($) => { write("GvariableDeclaration$ begin") },
+            end: ($) => { write("GvariableDeclaration$ end") },
+        },
+        "GvariableDeclarationList$": {
+            begin: ($) => { write("GvariableDeclarationList$ begin") },
+            end: ($) => { write("GvariableDeclarationList$ end") },
+        },
+        "root_endOfFile$": ($) => { write("root_endOfFile$") },
+        "root": {
+            begin: ($) => { write("root begin") },
+            end: ($) => { write("root end") },
         },
     }
+    
 }
