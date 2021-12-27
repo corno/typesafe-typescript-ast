@@ -4,7 +4,7 @@ import * as uast from "../../../pub/esc/interfaces/untypedAST"
 import { loadTypedProject } from "../../../pub/esc/implementations/parser/loadTypedProject";
 import { createFoo } from "./foo";
 import * as path from "path"
-import { visit } from "../../../pub/esc/typescriptAST/implementation/visitor_template.generated";
+import { visit } from "../../../pub/esc/typescriptAST/esc/implementation/visitor_template.generated";
 
 function getLineInfo(
     $: tsmorph.Node,

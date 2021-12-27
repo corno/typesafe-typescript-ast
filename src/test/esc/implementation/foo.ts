@@ -1,5 +1,5 @@
 import { Node } from "ts-morph";
-import { FOO } from "../../../pub/esc/typescriptAST/implementation/visitor_template.generated";
+import { FOO } from "../../../pub/esc/typescriptAST/esc/implementation/visitor_template.generated";
 
 export function createFoo(
     write: (str: string) => void
