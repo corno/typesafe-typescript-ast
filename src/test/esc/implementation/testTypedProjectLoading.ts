@@ -37,7 +37,7 @@ export function testTypedProjectLoading(
             console.error(`>unexpected root '${$.child.getKindName()}' @ ${$.path}${getLineInfo($.child)}`)
         },
         reportUnexpectedChild: ($) => {
-            console.error(`>'${$.nodePath}': unexpected child '${$.child.getKindName()}' @ ${$.filePath}${getLineInfo($.child)}`)
+            console.error(`>'${$.nodePath}': unexpected child '${$.child.getKindName()}', expected ${$.expected === null ? "nothing" : $.expected.map(($) => `'${$}'`).join(" or ")}} @ ${$.filePath}${getLineInfo($.child)}`)
         },
         reportMissingSymbol: ($) => {
             console.error(`>'${$.nodePath}': missing symbol (options: ${$.kindNameOptions.map(($) => `'${$}'`).join(", ")}) @ ${$.filePath}${$.parentAnnotation === null ? "" : getLineInfo($.parentAnnotation)}`)

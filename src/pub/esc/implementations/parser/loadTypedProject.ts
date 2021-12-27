@@ -16,6 +16,7 @@ export function loadTypedProject<Annotation>($p: {
         filePath: string,
         nodePath: string,
         child: Annotation,
+        expected: null | string[]
     }) => void,
     reportMissingSymbol: ($: {
         filePath: string,
@@ -60,7 +61,8 @@ export function loadTypedProject<Annotation>($p: {
                                         $p.reportUnexpectedChild({
                                             nodePath: $.path,
                                             child: $.child.annotation,
-                                            filePath: path
+                                            filePath: path,
+                                            expected: $.expected,
                                         })
                                     },
                                     ($) => {

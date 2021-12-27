@@ -1,4 +1,4 @@
-import * as gr from "generate-typesafe-ast/esc/interfaces"
+import * as gr from "generate-typesafe-ast/interface/types"
 
 export const typeScriptGrammar: gr.Grammar = {
     globalValueTypes: {
