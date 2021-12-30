@@ -1,6 +1,6 @@
 import * as pr from "pareto-runtime"
 import * as tsmorph from "ts-morph";
-import * as uast from "../../../pub/esc/interfaces/untypedAST"
+import * as uast from "../../../pub/interfaces/untypedAST/types"
 import { loadTypedProject } from "../../../pub/esc/implementations/parser/loadTypedProject";
 import { createFoo } from "./foo";
 import * as path from "path"

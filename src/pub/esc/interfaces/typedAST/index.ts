@@ -1,1 +1,1 @@
-export * from "./Project"
+export * from "../../../interfaces/typedAST/types/Project"

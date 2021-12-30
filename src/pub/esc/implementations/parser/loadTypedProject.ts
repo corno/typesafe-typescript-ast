@@ -1,6 +1,6 @@
 import * as tsm from "ts-morph"
 import * as tast from "../../interfaces/typedAST"
-import * as uast from "../../interfaces/untypedAST"
+import * as uast from "../../../interfaces/untypedAST/types"
 import { parse } from "../../typescriptAST/esc/implementation/parser.generated"
 
 export function loadTypedProject<Annotation>($p: {

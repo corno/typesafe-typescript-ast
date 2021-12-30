@@ -6,7 +6,7 @@ export function parse<Annotation>(
     $: uast.Node<Annotation>,
     callback: ($: tast.Nroot<Annotation>) => void,
     reportUnexpectedRoot: ($: { root: uast.Node<Annotation>, }) => void,
-    reportUnexpectedChild: ($: { path: string, child: uast.Node<Annotation>, expected: null | string[] }) => void,
+    reportUnexpectedChild: ($: { path: string, child: uast.Node<Annotation>, expected: pr.optional<string[]> }) => void,
     reportMissingToken: ($: { parentAnnotation: Annotation, path: string, kindNameOptions: string[], }) => void,
 ): void {
     function Gblock(
@@ -421,7 +421,6 @@ export function parse<Annotation>(
                                 children.reverse()
                                 callback({
                                     annotation: $.annotation,
-                                    content: null
                                 })
                                 if (children.length > 0) {
                                     reportUnexpectedChild({
@@ -660,7 +659,6 @@ export function parse<Annotation>(
                                     children.reverse()
                                     callback({
                                         annotation: $.annotation,
-                                        content: null
                                     })
                                     if (children.length > 0) {
                                         reportUnexpectedChild({
@@ -705,7 +703,6 @@ export function parse<Annotation>(
                                     children.reverse()
                                     callback({
                                         annotation: $.annotation,
-                                        content: null
                                     })
                                     if (children.length > 0) {
                                         reportUnexpectedChild({
@@ -750,7 +747,6 @@ export function parse<Annotation>(
                                     children.reverse()
                                     callback({
                                         annotation: $.annotation,
-                                        content: null
                                     })
                                     if (children.length > 0) {
                                         reportUnexpectedChild({
@@ -795,7 +791,6 @@ export function parse<Annotation>(
                                     children.reverse()
                                     callback({
                                         annotation: $.annotation,
-                                        content: null
                                     })
                                     if (children.length > 0) {
                                         reportUnexpectedChild({
@@ -840,7 +835,6 @@ export function parse<Annotation>(
                                     children.reverse()
                                     callback({
                                         annotation: $.annotation,
-                                        content: null
                                     })
                                     if (children.length > 0) {
                                         reportUnexpectedChild({
@@ -885,7 +879,6 @@ export function parse<Annotation>(
                                     children.reverse()
                                     callback({
                                         annotation: $.annotation,
-                                        content: null
                                     })
                                     if (children.length > 0) {
                                         reportUnexpectedChild({
@@ -930,7 +923,6 @@ export function parse<Annotation>(
                                     children.reverse()
                                     callback({
                                         annotation: $.annotation,
-                                        content: null
                                     })
                                     if (children.length > 0) {
                                         reportUnexpectedChild({
@@ -975,7 +967,6 @@ export function parse<Annotation>(
                                     children.reverse()
                                     callback({
                                         annotation: $.annotation,
-                                        content: null
                                     })
                                     if (children.length > 0) {
                                         reportUnexpectedChild({
@@ -1020,7 +1011,6 @@ export function parse<Annotation>(
                                     children.reverse()
                                     callback({
                                         annotation: $.annotation,
-                                        content: null
                                     })
                                     if (children.length > 0) {
                                         reportUnexpectedChild({
@@ -1065,7 +1055,6 @@ export function parse<Annotation>(
                                     children.reverse()
                                     callback({
                                         annotation: $.annotation,
-                                        content: null
                                     })
                                     if (children.length > 0) {
                                         reportUnexpectedChild({
@@ -1110,7 +1099,6 @@ export function parse<Annotation>(
                                     children.reverse()
                                     callback({
                                         annotation: $.annotation,
-                                        content: null
                                     })
                                     if (children.length > 0) {
                                         reportUnexpectedChild({
@@ -1463,7 +1451,6 @@ export function parse<Annotation>(
                             children.reverse()
                             callback({
                                 annotation: $.annotation,
-                                content: null
                             })
                             if (children.length > 0) {
                                 reportUnexpectedChild({
@@ -1506,7 +1493,6 @@ export function parse<Annotation>(
                                         children.reverse()
                                         callback({
                                             annotation: $.annotation,
-                                            content: null
                                         })
                                         if (children.length > 0) {
                                             reportUnexpectedChild({
@@ -1638,7 +1624,6 @@ export function parse<Annotation>(
                     children.reverse()
                     callback({
                         annotation: $.annotation,
-                        content: null
                     })
                     if (children.length > 0) {
                         reportUnexpectedChild({
@@ -1823,7 +1808,6 @@ export function parse<Annotation>(
                     children.reverse()
                     callback({
                         annotation: $.annotation,
-                        content: null
                     })
                     if (children.length > 0) {
                         reportUnexpectedChild({
@@ -1873,7 +1857,6 @@ export function parse<Annotation>(
                     children.reverse()
                     callback({
                         annotation: $.annotation,
-                        content: null
                     })
                     if (children.length > 0) {
                         reportUnexpectedChild({
@@ -2626,7 +2609,6 @@ export function parse<Annotation>(
                     children.reverse()
                     callback({
                         annotation: $.annotation,
-                        content: null
                     })
                     if (children.length > 0) {
                         reportUnexpectedChild({
@@ -3067,7 +3049,6 @@ export function parse<Annotation>(
                     children.reverse()
                     callback({
                         annotation: $.annotation,
-                        content: null
                     })
                     if (children.length > 0) {
                         reportUnexpectedChild({
@@ -3112,7 +3093,6 @@ export function parse<Annotation>(
                     children.reverse()
                     callback({
                         annotation: $.annotation,
-                        content: null
                     })
                     if (children.length > 0) {
                         reportUnexpectedChild({
@@ -3157,7 +3137,6 @@ export function parse<Annotation>(
                     children.reverse()
                     callback({
                         annotation: $.annotation,
-                        content: null
                     })
                     if (children.length > 0) {
                         reportUnexpectedChild({
@@ -3319,7 +3298,6 @@ export function parse<Annotation>(
                         children.reverse()
                         callback({
                             annotation: $.annotation,
-                            content: null
                         })
                         if (children.length > 0) {
                             reportUnexpectedChild({
@@ -5851,7 +5829,6 @@ export function parse<Annotation>(
                     children.reverse()
                     callback({
                         annotation: $.annotation,
-                        content: null
                     })
                     if (children.length > 0) {
                         reportUnexpectedChild({
@@ -5945,7 +5922,6 @@ export function parse<Annotation>(
                     children.reverse()
                     callback({
                         annotation: $.annotation,
-                        content: null
                     })
                     if (children.length > 0) {
                         reportUnexpectedChild({
@@ -6170,7 +6146,6 @@ export function parse<Annotation>(
                                 children.reverse()
                                 callback({
                                     annotation: $.annotation,
-                                    content: null
                                 })
                                 if (children.length > 0) {
                                     reportUnexpectedChild({
@@ -6302,7 +6277,6 @@ export function parse<Annotation>(
                     children.reverse()
                     callback({
                         annotation: $.annotation,
-                        content: null
                     })
                     if (children.length > 0) {
                         reportUnexpectedChild({
@@ -6347,7 +6321,6 @@ export function parse<Annotation>(
                     children.reverse()
                     callback({
                         annotation: $.annotation,
-                        content: null
                     })
                     if (children.length > 0) {
                         reportUnexpectedChild({
@@ -6631,7 +6604,6 @@ export function parse<Annotation>(
                     children.reverse()
                     callback({
                         annotation: $.annotation,
-                        content: null
                     })
                     if (children.length > 0) {
                         reportUnexpectedChild({
@@ -6890,7 +6862,6 @@ export function parse<Annotation>(
                     children.reverse()
                     callback({
                         annotation: $.annotation,
-                        content: null
                     })
                     if (children.length > 0) {
                         reportUnexpectedChild({
@@ -7048,7 +7019,6 @@ export function parse<Annotation>(
                     children.reverse()
                     callback({
                         annotation: $.annotation,
-                        content: null
                     })
                     if (children.length > 0) {
                         reportUnexpectedChild({
@@ -7590,7 +7560,6 @@ export function parse<Annotation>(
                                     children.reverse()
                                     callback({
                                         annotation: $.annotation,
-                                        content: null
                                     })
                                     if (children.length > 0) {
                                         reportUnexpectedChild({
@@ -7998,7 +7967,6 @@ export function parse<Annotation>(
                                         children.reverse()
                                         callback({
                                             annotation: $.annotation,
-                                            content: null
                                         })
                                         if (children.length > 0) {
                                             reportUnexpectedChild({
@@ -8348,7 +8316,6 @@ export function parse<Annotation>(
                     children.reverse()
                     callback({
                         annotation: $.annotation,
-                        content: null
                     })
                     if (children.length > 0) {
                         reportUnexpectedChild({

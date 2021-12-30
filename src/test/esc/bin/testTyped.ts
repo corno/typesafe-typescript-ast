@@ -2,12 +2,17 @@
 
 import { testTypedProjectLoading } from "../implementation/testTypedProjectLoading";
 
-const [, , tsconfigPath] = process.argv
 
-if (tsconfigPath === undefined) {
-    throw new Error("missing tsconfig path")
+function x() {
+    const [, , tsconfigPath] = process.argv
+
+    if (tsconfigPath === undefined) {
+        throw new Error("missing tsconfig path")
+    }
+
+    testTypedProjectLoading(
+        tsconfigPath
+    )
 }
 
-testTypedProjectLoading(
-    tsconfigPath
-)
+x()
