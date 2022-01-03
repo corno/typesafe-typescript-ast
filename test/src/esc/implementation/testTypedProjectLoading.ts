@@ -1,91 +1,68 @@
 import * as pr from "pareto-runtime"
 import * as tsmorph from "ts-morph";
-import * as uast from "../../../../pub/src/modules/untypedAST/interface/types"
-import { loadTypedProject } from "../../../../pub/src/esc/implementations/parser/loadTypedProject";
+import * as tast from "../../../../pub/dist/modules/typescriptAST"
 import { createFoo } from "./foo";
-import * as path from "path"
-import { visit } from "../../../../pub/src/esc/typescriptAST/esc/implementation/visitor_template.generated";
-
-function getLineInfo(
-    $: tsmorph.Node,
-) {
-    const lp = $.getSourceFile().getLineAndColumnAtPos($.getStart())
-    return `[${lp.line}, ${lp.column}]`
-}
 
 export function testTypedProjectLoading(
     tsconfigPath: string
 ) {
-    loadTypedProject<tsmorph.Node>({
-        callback: ($) => {
-            $.sourceFiles.forEach(($) => {
-                console.log($.path)
-                visit(
-                    $.root,
+    function getLineInfo(
+        $: tsmorph.Node,
+    ) {
+        const lp = $.getSourceFile().getLineAndColumnAtPos($.getStart())
+        return `[${lp.line}, ${lp.column}]`
+    }
+
+
+    const project = new tsmorph.Project({})
+    project.addSourceFilesFromTsConfig(tsconfigPath)
+    project.getSourceFiles().forEach(($) => {
+        const filePath = $.getFilePath()
+        function wrapNode($: tsmorph.Node): tast.TUntypedNode<tsmorph.Node> {
+            class WrappedNode implements tast.TUntypedNode<tsmorph.Node> {
+                get kindName() {
+                    return $.getKindName()
+                }
+                get value() {
+                    return $.getText()
+                }
+                get children() {
+                    return {
+                        forEach: (callback: ($: tast.TUntypedNode<tsmorph.Node>) => void) => {
+                            $.forEachChild((x) => {
+                                callback(wrapNode(x))
+                            })
+                        }
+                    }
+                }
+                get annotation() {
+                    return $
+                }
+            }
+            return new WrappedNode()
+        }
+        tast.parse<tsmorph.Node>(
+            wrapNode($),
+            ($) => {
+                console.log(filePath)
+                tast.visit(
+                    $,
                     createFoo(
                         (str) => {
-                            //console.log(`    ${str}`)
+                            console.log(`    ${str}`)
                         }
                     ),
                 )
-            })
-        },
-        createAnnotation: ($) => {
-            return $
-        },
-        reportUnexpectedRoot: ($) => {
-            console.error(`>unexpected root '${$.child.getKindName()}' @ ${$.path}${getLineInfo($.child)}`)
-        },
-        reportUnexpectedChild: ($) => {
-            console.error(`>'${$.nodePath}': unexpected child '${$.child.getKindName()}', expected ${$.expected === null ? "nothing" : $.expected.map(($) => `'${$}'`).join(" or ")}} @ ${$.filePath}${getLineInfo($.child)}`)
-        },
-        reportMissingSymbol: ($) => {
-            console.error(`>'${$.nodePath}': missing symbol (options: ${$.kindNameOptions.map(($) => `'${$}'`).join(", ")}) @ ${$.filePath}${$.parentAnnotation === null ? "" : getLineInfo($.parentAnnotation)}`)
-        },
-        loadUntypedProject: ($p) => {
-            const project = new tsmorph.Project({})
-            project.addSourceFilesFromTsConfig(tsconfigPath)
-
-            $p.callback(
-                {
-                    get path() {
-                        return pr.dirname(path.resolve(tsconfigPath))
-                    },
-                    sourceFiles: {
-                        forEach: ((callback) => {
-                            project.getSourceFiles().forEach(($) => {
-                                function wrapNode($: tsmorph.Node): uast.Node<tsmorph.Node> {
-                                    class WrappedNode implements uast.Node<tsmorph.Node> {
-                                        get kindName() {
-                                            return $.getKindName()
-                                        }
-                                        get value() {
-                                            return $.getText()
-                                        }
-                                        get children() {
-                                            return {
-                                                forEach: (callback: ($: uast.Node<tsmorph.Node>) => void) => {
-                                                    $.forEachChild((x) => {
-                                                        callback(wrapNode(x))
-                                                    })
-                                                }
-                                            }
-                                        }
-                                        get annotation() {
-                                            return $p.createAnnotation($)
-                                        }
-                                    }
-                                    return new WrappedNode()
-                                }
-                                callback({
-                                    path: $.getFilePath(),
-                                    node: wrapNode($)
-                                })
-                            })
-                        })
-                    }
-                },
-            )
-        }
+            },
+            ($) => {
+                console.error(`>unexpected root '${$.root.annotation.getKindName()}' @ ${filePath}${getLineInfo($.root.annotation)}`)
+            },
+            ($) => {
+                console.error(`>'${$.path}': unexpected child '${$.child.kindName}', expected ${$.expected === null ? "nothing" : $.expected.map(($) => `'${$}'`).join(" or ")}} @ ${filePath}${getLineInfo($.child.annotation)}`)
+            },
+            ($) => {
+                console.error(`>'${$.path}': missing symbol (options: ${$.kindNameOptions.map(($) => `'${$}'`).join(", ")}) @ ${filePath}${$.parentAnnotation === null ? "" : getLineInfo($.parentAnnotation)}`)
+            }
+        )
     })
 }

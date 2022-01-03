@@ -1,5 +1,5 @@
 import { Node } from "ts-morph";
-import { FOO } from "../../../../pub/src/esc/typescriptAST/esc/implementation/visitor_template.generated";
+import { FOO } from "../../../../pub/dist/modules/typescriptAST"
 
 export function createFoo(
     write: (str: string) => void
@@ -305,5 +305,5 @@ export function createFoo(
             end: ($) => { write("root end") },
         },
     }
-    
+
 }

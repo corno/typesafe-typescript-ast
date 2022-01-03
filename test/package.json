@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@types/node": "^17.0.5",
+    "pareto-runtime": "^0.16.0",
+    "pareto-test": "^0.33.0",
+    "ts-morph": "^13.0.2"
+  }
+}

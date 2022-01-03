@@ -7,9 +7,6 @@
     "update2latestAndPublishMinor": "./scripts/update2latestAndPublish.sh minor",
     "update2latestAndPublishPath": "./scripts/update2latestAndPublish.sh patch",
     "generateASTNSchema": "astn-expand ./src/modules/schema/etc/schema.astn | astn-generate > ./src/modules/schema",
-
     "generate-ts-api": "npm run build && ./dist/generateCode/esc/bin/generateCode.js ./src/pub/esc/typescriptAST && npm run build"
-
-    
   }
 }
