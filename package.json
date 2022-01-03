@@ -1,24 +1,15 @@
 {
-  "dependencies": {
-    "pareto-runtime": "^0.15.0",
-    "ts-morph": "^13.0.2",
-    "typescript": "^4.5.4"
-  },
-  "devDependencies": {
-    "@types/node": "^17.0.5",
-    "generate-typesafe-ast": "^0.0.16"
-  },
-  "name": "typesafe-typescript-ast",
   "scripts": {
-    "build": "rm -rf ./dist && tsc && npm run makeEscBinExecutable",
-    "generate-ts-api": "npm run build && ./dist/generateCode/esc/bin/generateCode.js ./src/pub/esc/typescriptAST && npm run build",
-    "copyPackage": "npx copyPackage",
-    "makeEscBinExecutable": "find ./dist/*/esc/bin/ -type f -name \"*.js\" -exec chmod 777 {} +",
-    "pubMin": "npm run validatePublishReadiness && npm version minor && npm run copyPackage && cd ./dist/pub && git push && npm publish",
-    "pubPatch": "npm run validatePublishReadiness && npm version patch && npm run copyPackage && cd ./dist/pub && git push && npm publish",
-    "test": "npm run build && ./dist/test/esc/bin/testTyped.js ./tsconfig.json",
-    "update2latest": "ncu -u --packageFile package.json && npm install && tsc",
-    "validatePublishReadiness": "git diff --exit-code && ncu -u --packageFile package.json && npm install && npm run build"
-  },
-  "version": "0.5.3"
+    "test": "./scripts/buildAndTest.sh",
+    "pubMin": "./scripts/publish.sh minor",
+    "pubPatch": "./scripts/publish.sh patch",
+    "update2latest": "./scripts/update2latest.sh",
+    "update2latestAndPublishMinor": "./scripts/update2latestAndPublish.sh minor",
+    "update2latestAndPublishPath": "./scripts/update2latestAndPublish.sh patch",
+    "generateASTNSchema": "astn-expand ./src/modules/schema/etc/schema.astn | astn-generate > ./src/modules/schema",
+
+    "generate-ts-api": "npm run build && ./dist/generateCode/esc/bin/generateCode.js ./src/pub/esc/typescriptAST && npm run build"
+
+    
+  }
 }
