@@ -305,5 +305,4 @@ export function createFoo(
             end: ($) => { write("root end") },
         },
     }
-
 }
