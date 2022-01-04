@@ -27,5 +27,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/corno/typesafe-typescript-ast.git"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
