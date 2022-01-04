@@ -1,15 +1,15 @@
 {
   "dependencies": {
-    "pareto-runtime": "^0.16.0",
+    "pareto-runtime": "^0.16.2",
     "ts-morph": "^13.0.2",
     "typescript": "^4.5.4"
   },
   "devDependencies": {
     "@types/node": "^17.0.7",
-    "generate-typesafe-ast": "^0.1.0"
+    "generate-typesafe-ast": "^0.1.3"
   },
   "name": "typesafe-typescript-ast",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "author": "Corno",
   "bugs": {
     "url": "https://github.com/corno/typesafe-typescript-ast/issues"
