@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "generate-typesafe-ast": "^0.0.24"
+    "generate-typesafe-ast": "^0.1.5"
   }
 }
