@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "pareto-runtime": "^0.18.0",
+    "pareto-runtime": "^0.19.0",
     "ts-morph": "^13.0.3",
     "typescript": "^4.5.5"
   },
