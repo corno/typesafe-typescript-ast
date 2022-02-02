@@ -5,7 +5,7 @@
   },
   "devDependencies": {},
   "name": "typesafe-typescript-ast",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "author": "Corno",
   "bugs": {
     "url": "https://github.com/corno/typesafe-typescript-ast/issues"
