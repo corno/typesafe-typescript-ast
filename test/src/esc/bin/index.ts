@@ -6,13 +6,14 @@ import * as pr from "pareto-runtime"
 
 function x() {
 
-    //const [, , tsconfigPath] = pr.getProcessArguments()
-    //
-    // if (tsconfigPath === undefined) {
-    //     throw new Error("missing tsconfig path")
-    // }
+    const [, , dataDir] = pr.getProcessArguments()
+    
+    if (dataDir === undefined) {
+        throw new Error("missing dataDir path")
+    }
 
-    const tsconfigPath = "./pub/tsconfig.json"
+    //a bit ugly, I want to test the pub dir
+    const tsconfigPath = pr.join([dataDir, "../../pub/tsconfig.json"])
 
     testTypedProjectLoading(
         tsconfigPath
