@@ -1,6 +1,6 @@
 import * as pr from "pareto-runtime"
 import * as tsmorph from "ts-morph";
-import * as tast from "../../../../pub/dist/modules/typescriptAST"
+import * as tast from "../../../../pub/dist/generated/typescriptAST"
 import { createFoo } from "./foo";
 
 export function testTypedProjectLoading(

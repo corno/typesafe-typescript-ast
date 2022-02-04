@@ -1,6 +1,6 @@
-import * as gr from "generate-typesafe-ast/interface/types"
+import * as gr from "generate-typesafe-ast"
 
-export const typeScriptGrammar: gr.Grammar = {
+export const typeScriptGrammar: gr.TGrammar = {
     globalValueTypes: {
         block: ["node", {
             name: "Block",

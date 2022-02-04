@@ -1,5 +1,5 @@
 import { Node } from "ts-morph";
-import { FOO } from "../../../../pub/dist/modules/typescriptAST"
+import { FOO } from "../../../../pub/dist/generated/typescriptAST"
 
 export function createFoo(
     write: (str: string) => void

@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 import * as pr from "pareto-runtime"
+import * as pf from "pareto-filesystem"
 import * as tsg from "../../data/typescriptGrammar"
-import * as gta from "generate-typesafe-ast/esc/implementations"
-import * as fp from "fountain-pen/esc/implementations/fountain-pen"
+import * as gta from "generate-typesafe-ast"
+import * as fp from "fountain-pen"
 
 function x() {
 
@@ -22,11 +23,54 @@ function x() {
             indentation: "    ",
         },
         ($i) => {
+            const wc = $i
+            pf.wrapDirectory(
+                {
+                    rootDirectory: targetDirPath,
+                },
+                {
+                    callback: ($i) => {
+                        const dir = $i
+                        gta.generateCode(
+                            {
+                                grammar: tsg.typeScriptGrammar,
+                            },
+                            {
+                                writeContext: wc,
+                                onError: ($) => {
+                                    console.error($)
+                                },
+                                createFile: ($, $i) => {
+                                    let data = ""
+                                    $i({
+                                        onData: ($) => {
+                                            data += $
+                                        },
+                                        onEnd: () => {
+                                            dir.writeFile(
+                                                {
+                                                    filePath: $,
+                                                    data: data
+                                                },
+                                                () => {
 
-            gta.generateCode(
-                $i,
-                tsg.typeScriptGrammar,
-                targetDirPath
+                                                }
+                                            )
+                                        }
+                                    })
+
+                                    //targetDirPath
+                                },
+                            }
+                        )
+                    },
+                    onError: ($) => {
+                        pr.logError(pf.printFSError($))
+                    },
+                    onEnd: () => {
+
+                    },
+                }
             )
         },
     )
