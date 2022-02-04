@@ -1,4 +1,3 @@
-import * as pr from "pareto-runtime"
 import * as tsmorph from "ts-morph";
 import * as tast from "../../../../pub/dist/generated/typescriptAST"
 import { createFoo } from "./foo";
@@ -12,7 +11,6 @@ export function testTypedProjectLoading(
         const lp = $.getSourceFile().getLineAndColumnAtPos($.getStart())
         return `[${lp.line}, ${lp.column}]`
     }
-
 
     const project = new tsmorph.Project({})
     project.addSourceFilesFromTsConfig(tsconfigPath)
