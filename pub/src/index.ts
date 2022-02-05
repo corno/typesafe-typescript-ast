@@ -1,1 +1,1 @@
-export * from "./tmp/typescriptAST"
+export * from "./generated/typescriptAST"
