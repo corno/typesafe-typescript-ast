@@ -4,7 +4,7 @@
     "typescript": "^4.5.5"
   },
   "name": "typesafe-typescript-ast",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "author": "Corno",
   "bugs": {
     "url": "https://github.com/corno/typesafe-typescript-ast/issues"
