@@ -26,7 +26,7 @@ function x() {
             const wc = $i
             pf.wrapDirectory(
                 {
-                    rootDirectory: targetDirPath,
+                    rootDirectory: pr.join([targetDirPath, "typescriptAST"]),
                 },
                 {
                     callback: ($i) => {
@@ -36,31 +36,30 @@ function x() {
                                 grammar: tsg.typeScriptGrammar,
                             },
                             {
-                                writeContext: wc,
                                 onError: ($) => {
                                     console.error($)
                                 },
-                                createFile: ($, $i) => {
-                                    let data = ""
-                                    $i({
-                                        onData: ($) => {
-                                            data += $
+                                createWriteStream: ($, $i) => {
+                                    const x = $i
+                                    dir.createWriteStream(
+                                        {
+                                            path: $.path,
+                                            createMissingDirectories: true,
                                         },
-                                        onEnd: () => {
-                                            dir.writeFile(
-                                                {
-                                                    filePath: $,
-                                                    data: data
-                                                },
-                                                () => {
-
-                                                }
-                                            )
+                                        {
+                                            consumer: ($i) => {
+                                                wc.processBlock(
+                                                    {
+                                                        onBlock: ($) => {
+                                                            x($)
+                                                        },
+                                                        consumer: $i,
+                                                    }
+                                                )
+                                            }
                                         }
-                                    })
-
-                                    //targetDirPath
-                                },
+                                    )
+                                }
                             }
                         )
                     },

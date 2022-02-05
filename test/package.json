@@ -5,6 +5,6 @@
     "ts-morph": "^13.0.3"
   },
   "devDependencies": {
-    "@types/node": "^17.0.14"
+    "@types/node": "^17.0.15"
   }
 }

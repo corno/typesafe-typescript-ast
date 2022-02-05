@@ -1,6 +1,5 @@
 {
   "scripts": {
-    "generateASTNSchema": "astn-expand ./src/modules/schema/etc/schema.astn | astn-generate > ./src/modules/schema",
-    "generate-ts-api": "cd ./pareto ./scripts/buildDevPackage.sh && cd .. && ./dev/dist/generateCode/esc/bin/generateCode.js ./pub/src/pub/esc/typescriptAST && cd ./pareto && ./scripts/buildAndTest.sh"
+    "generate-ts-api": "cd ./pareto && ./scripts/buildDevPackage.sh && cd .. && node ./dev/dist/esc/bin/generateCode.js ./pub/src/generated && cd ./pareto && ./scripts/buildAndTest.sh"
   }
 }
