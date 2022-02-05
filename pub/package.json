@@ -3,7 +3,6 @@
     "pareto-runtime": "^0.19.1",
     "typescript": "^4.5.5"
   },
-  "devDependencies": {},
   "name": "typesafe-typescript-ast",
   "version": "0.7.0",
   "author": "Corno",
