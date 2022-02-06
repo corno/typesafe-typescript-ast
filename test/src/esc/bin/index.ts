@@ -5,7 +5,8 @@ import { testTypedProjectLoading } from "../implementation/testTypedProjectLoadi
 import * as pr from "pareto-runtime"
 
 pr.runProgram(
-    (dataDir) => {
+    ($) => {
+        const dataDir = $.argument
 
         function x() {
 
