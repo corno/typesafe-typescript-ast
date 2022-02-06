@@ -5,74 +5,79 @@ import * as tsg from "../../data/typescriptGrammar"
 import * as gta from "generate-typesafe-ast"
 import * as fp from "fountain-pen"
 
-function x() {
+pr.runProgram(
+    (targetDirPath) => {
 
-    const [, , targetDirPath] = pr.getProcessArguments()
+        function x() {
 
-    if (targetDirPath === undefined) {
-        pr.logError("missing target directory path")
-        pr.processExit(1)
-    }
 
-    fp.createContext(
-        pr.trimRight,
-    ).configure(
-        {
-            newline: "\r\n",
-            trimLines: true,
-            indentation: "    ",
-        },
-        ($i) => {
-            const wc = $i
-            pf.wrapDirectory(
+            if (targetDirPath === undefined) {
+                pr.logError("missing target directory path")
+                pr.processExit(1)
+            }
+
+            fp.createContext(
+                pr.trimRight,
+            ).configure(
                 {
-                    rootDirectory: pr.join([targetDirPath, "typescriptAST"]),
+                    newline: "\r\n",
+                    trimLines: true,
+                    indentation: "    ",
                 },
-                {
-                    callback: ($i) => {
-                        const dir = $i
-                        gta.generateCode(
-                            {
-                                grammar: tsg.typeScriptGrammar,
-                            },
-                            {
-                                onError: ($) => {
-                                    console.error($)
-                                },
-                                createWriteStream: ($, $i) => {
-                                    const x = $i
-                                    dir.createWriteStream(
-                                        {
-                                            path: $.path,
-                                            createMissingDirectories: true,
+                ($i) => {
+                    const wc = $i
+                    pf.wrapDirectory(
+                        {
+                            rootDirectory: pr.join([targetDirPath, "typescriptAST"]),
+                        },
+                        {
+                            callback: ($i) => {
+                                const dir = $i
+                                gta.generateCode(
+                                    {
+                                        grammar: tsg.typeScriptGrammar,
+                                    },
+                                    {
+                                        onError: ($) => {
+                                            console.error($)
                                         },
-                                        {
-                                            consumer: ($i) => {
-                                                wc.processBlock(
-                                                    {
-                                                        onBlock: ($) => {
-                                                            x($)
-                                                        },
-                                                        consumer: $i,
+                                        createWriteStream: ($, $i) => {
+                                            const x = $i
+                                            dir.createWriteStream(
+                                                {
+                                                    path: $.path,
+                                                    createMissingDirectories: true,
+                                                },
+                                                {
+                                                    consumer: ($i) => {
+                                                        wc.processBlock(
+                                                            {
+                                                                onBlock: ($) => {
+                                                                    x($)
+                                                                },
+                                                                consumer: $i,
+                                                            }
+                                                        )
                                                     }
-                                                )
-                                            }
+                                                }
+                                            )
                                         }
-                                    )
-                                }
-                            }
-                        )
-                    },
-                    onError: ($) => {
-                        pr.logError(pf.printFSError($))
-                    },
-                    onEnd: () => {
+                                    }
+                                )
+                            },
+                            onError: ($) => {
+                                pr.logError(pf.printFSError($))
+                            },
+                            onEnd: () => {
 
-                    },
-                }
+                            },
+                        }
+                    )
+                },
             )
-        },
-    )
-}
+        }
 
-x()
+        x()
+
+    }
+)

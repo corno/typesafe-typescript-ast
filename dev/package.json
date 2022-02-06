@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "generate-typesafe-ast": "^0.4.0",
-    "pareto-filesystem": "^0.7.0"
+    "generate-typesafe-ast": "^0.6.1",
+    "pareto-filesystem": "^0.7.0",
+    "pareto-runtime": "^0.22.0"
   }
 }

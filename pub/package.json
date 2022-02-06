@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "pareto-runtime": "^0.19.1",
+    "pareto-runtime": "^0.22.0",
     "typescript": "^4.5.5"
   },
   "name": "typesafe-typescript-ast",

@@ -4,20 +4,24 @@ import { testTypedProjectLoading } from "../implementation/testTypedProjectLoadi
 
 import * as pr from "pareto-runtime"
 
-function x() {
+pr.runProgram(
+    (dataDir) => {
 
-    const [, , dataDir] = pr.getProcessArguments()
-    
-    if (dataDir === undefined) {
-        throw new Error("missing dataDir path")
+        function x() {
+
+
+            if (dataDir === undefined) {
+                throw new Error("missing dataDir path")
+            }
+
+            //a bit ugly, I want to test the pub dir
+            const tsconfigPath = pr.join([dataDir, "../../pub/tsconfig.json"])
+
+            testTypedProjectLoading(
+                tsconfigPath
+            )
+        }
+
+        x()
     }
-
-    //a bit ugly, I want to test the pub dir
-    const tsconfigPath = pr.join([dataDir, "../../pub/tsconfig.json"])
-
-    testTypedProjectLoading(
-        tsconfigPath
-    )
-}
-
-x()
+)
